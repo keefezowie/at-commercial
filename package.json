@@ -1,0 +1,15 @@
+{
+  "name": "at-commercial-website",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/marketing"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @at/marketing",
+    "build": "npm run build --workspace @at/marketing",
+    "start": "npm run start --workspace @at/marketing",
+    "lint": "npm run lint --workspace @at/marketing"
+  }
+}
+
