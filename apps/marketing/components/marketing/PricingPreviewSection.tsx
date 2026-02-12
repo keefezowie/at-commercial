@@ -1,12 +1,18 @@
+"use client";
+
+import type { Route } from "next";
+import { m } from "framer-motion";
 import styles from "@/components/marketing/marketing.module.css";
 import { PricingPreviewCard } from "@/components/marketing/PricingPreviewCard";
+import { createSectionReveal, createStaggerContainer, useMotionProfile } from "@/lib/motion";
 
 type PricingItem = {
   tier: string;
   audience: string;
   points: string[];
   cta: string;
-  href: string;
+  href: Route;
+  featured?: boolean;
 };
 
 type Props = {
@@ -14,9 +20,13 @@ type Props = {
 };
 
 export function PricingPreviewSection({ items }: Props) {
+  const profile = useMotionProfile("low");
+  const sectionMotion = createSectionReveal(profile, { y: 10 });
+  const gridMotion = createStaggerContainer(profile, { y: 0 });
+
   return (
     <section className="section">
-      <div className="container">
+      <m.div className="container" {...sectionMotion}>
         <div className={styles.sectionTop}>
           <span className="eyebrow">Pricing Preview</span>
           <h2 className="section-title">Commercial pathways for pilot to enterprise rollout.</h2>
@@ -25,13 +35,12 @@ export function PricingPreviewSection({ items }: Props) {
             complexity.
           </p>
         </div>
-        <div className={`grid-3 ${styles.pricingGrid}`}>
-          {items.map((item, index) => (
-            <PricingPreviewCard key={item.tier} item={item} index={index} />
+        <m.div className={`grid-3 ${styles.pricingGrid}`} {...gridMotion}>
+          {items.map((item) => (
+            <PricingPreviewCard key={item.tier} item={item} />
           ))}
-        </div>
-      </div>
+        </m.div>
+      </m.div>
     </section>
   );
 }
-

@@ -1,8 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
+import { useState } from "react";
 import styles from "@/components/marketing/marketing.module.css";
-import { useMotionSafe } from "@/lib/motion";
+import {
+  createSectionReveal,
+  createStaggerContainer,
+  createStaggerItem,
+  useMotionProfile
+} from "@/lib/motion";
 
 type Step = {
   label: string;
@@ -14,11 +20,15 @@ type Props = {
 };
 
 export function WorkflowStepper({ items }: Props) {
-  const { section, item } = useMotionSafe();
+  const [activeStep, setActiveStep] = useState(0);
+  const profile = useMotionProfile("medium");
+  const sectionMotion = createSectionReveal(profile, { y: 14 });
+  const listMotion = createStaggerContainer(profile, { y: 0 });
+  const itemMotion = createStaggerItem(profile, { y: 10 });
 
   return (
     <section className="section">
-      <motion.div className="container" {...section(0.05)}>
+      <m.div className="container" {...sectionMotion}>
         <div className={styles.sectionTop}>
           <span className="eyebrow">Workflow</span>
           <h2 className="section-title">From upload to export with operational controls in place.</h2>
@@ -28,19 +38,28 @@ export function WorkflowStepper({ items }: Props) {
           </p>
         </div>
 
-        <div className={styles.workflowWrap}>
+        <m.div className={styles.workflowWrap} {...listMotion}>
           {items.map((step, index) => (
-            <motion.article key={step.label} className={`card ${styles.workflowItem}`} {...item(index)}>
-              <span className={styles.workflowPoint} aria-hidden />
+            <m.article
+              key={step.label}
+              className={`card ${styles.workflowItem} ${index === activeStep ? styles.workflowItemActive : ""}`}
+              onViewportEnter={() => setActiveStep(index)}
+              onFocusCapture={() => setActiveStep(index)}
+              viewport={{ amount: 0.45, once: false }}
+              {...itemMotion}
+            >
+              <span
+                className={`${styles.workflowPoint} ${index === activeStep ? styles.workflowPointActive : ""}`}
+                aria-hidden
+              />
               <h3>
                 {index + 1}. {step.label}
               </h3>
               <p>{step.detail}</p>
-            </motion.article>
+            </m.article>
           ))}
-        </div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }
-

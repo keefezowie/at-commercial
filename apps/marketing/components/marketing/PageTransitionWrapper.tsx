@@ -1,24 +1,29 @@
 "use client";
 
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { useMotionSafe } from "@/lib/motion";
+import { m } from "framer-motion";
+import { motionSprings, useMotionProfile } from "@/lib/motion";
 
 type Props = {
   children: ReactNode;
 };
 
 export function PageTransitionWrapper({ children }: Props) {
-  const { prefersReducedMotion } = useMotionSafe();
+  const profile = useMotionProfile("low");
 
   return (
-    <motion.div
-      initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
-      animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      transition={prefersReducedMotion ? { duration: 0.01 } : { type: "spring", stiffness: 130, damping: 20 }}
+    <m.div
+      initial={profile.reduced ? { opacity: 1 } : { opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={
+        profile.reduced
+          ? { duration: 0.01 }
+          : {
+              ...motionSprings.default
+            }
+      }
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
-

@@ -1,4 +1,19 @@
+import type { Route } from "next";
 import { siteConfig } from "@/lib/site-config";
+
+type NavLink = {
+  label: string;
+  href: Route;
+};
+
+type PricingPreviewItem = {
+  tier: string;
+  audience: string;
+  points: string[];
+  cta: string;
+  href: Route;
+  featured?: boolean;
+};
 
 export const navLinks = [
   { label: "Features", href: "/features" },
@@ -6,7 +21,7 @@ export const navLinks = [
   { label: "CAD Translation", href: "/cad-translation" },
   { label: "Security", href: "/security" },
   { label: "Pricing", href: "/pricing" }
-];
+] satisfies readonly NavLink[];
 
 export const proofChips = [
   "DOCX",
@@ -105,7 +120,8 @@ export const pricingPreview = [
     audience: "Multi-team adoption",
     points: ["Expanded usage profiles", "Glossary governance", "Priority onboarding"],
     cta: "Request Demo",
-    href: "/demo"
+    href: "/demo",
+    featured: true
   },
   {
     tier: "Enterprise",
@@ -114,7 +130,7 @@ export const pricingPreview = [
     cta: "Talk to Sales",
     href: "/contact"
   }
-];
+] satisfies readonly PricingPreviewItem[];
 
 export const faqs = [
   {
@@ -147,4 +163,3 @@ export const faqs = [
       "Commercial plans are scoped by usage and workflow complexity. Teams can request a guided evaluation and pricing discussion."
   }
 ];
-

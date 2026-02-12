@@ -28,7 +28,16 @@
   --section-y-tight: clamp(3rem, 5vw, 5rem);
   --line-readable: 70ch;
 
-  --transition-fast: 160ms ease;
-  --transition-base: 260ms ease;
-}
+  --motion-duration-micro: 160ms;
+  --motion-duration-ui: 220ms;
+  --motion-duration-section: 540ms;
+  --motion-duration-hero: 860ms;
+  --motion-duration-ambient: 12s;
+  --motion-duration-float: 9s;
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-stagger-children: 0.06s;
+  --motion-stagger-section-delay: 0.08s;
 
+  --transition-fast: var(--motion-duration-micro) var(--motion-ease-out);
+  --transition-base: var(--motion-duration-ui) var(--motion-ease-out);
+}

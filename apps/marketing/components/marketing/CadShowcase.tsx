@@ -1,17 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styles from "@/components/marketing/marketing.module.css";
 import { trackEvent } from "@/lib/analytics";
-import { useMotionSafe } from "@/lib/motion";
+import {
+  createSectionReveal,
+  createStaggerContainer,
+  createStaggerItem,
+  useMotionProfile
+} from "@/lib/motion";
 
 export function CadShowcase() {
-  const { section, item } = useMotionSafe();
+  const profile = useMotionProfile("medium");
+  const sectionMotion = createSectionReveal(profile, { y: 14 });
+  const showcaseMotion = createStaggerContainer(profile, { y: 0 });
+  const itemMotion = createStaggerItem(profile, { y: 10 });
 
   return (
     <section className="section">
-      <motion.div className="container" {...section(0.04)}>
+      <m.div className="container" {...sectionMotion}>
         <div className={styles.sectionTop}>
           <span className="eyebrow">CAD Translation</span>
           <h2 className="section-title">
@@ -23,8 +31,8 @@ export function CadShowcase() {
           </p>
         </div>
 
-        <div className={styles.cadShowcase}>
-          <motion.article className={`card ${styles.cadPanel}`} {...item(0)}>
+        <m.div className={styles.cadShowcase} {...showcaseMotion}>
+          <m.article className={`card ${styles.cadPanel} ${styles.cardInteractive}`} {...itemMotion}>
             <h3>Engineering-native workflow support</h3>
             <p className="section-description">
               Use the same authenticated flow to manage translation jobs across business files and CAD
@@ -46,9 +54,9 @@ export function CadShowcase() {
                 Talk to Sales
               </Link>
             </div>
-          </motion.article>
+          </m.article>
 
-          <motion.aside className={`${styles.cadVisual} glass`} {...item(1)}>
+          <m.aside className={`${styles.cadVisual} glass ${styles.cardInteractive}`} {...itemMotion}>
             <div className={styles.cadVisualGrid}>
               <div className={styles.cadVisualBox}>
                 <p className="mono">Input</p>
@@ -71,10 +79,9 @@ export function CadShowcase() {
                 <p>Route translated assets back into engineering documentation pipelines.</p>
               </div>
             </div>
-          </motion.aside>
-        </div>
-      </motion.div>
+          </m.aside>
+        </m.div>
+      </m.div>
     </section>
   );
 }
-

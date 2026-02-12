@@ -1,11 +1,19 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
+import { useMemo, useRef } from "react";
 import styles from "@/components/marketing/marketing.module.css";
+import { MagneticAction } from "@/components/marketing/MagneticAction";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";
-import { useMotionSafe } from "@/lib/motion";
+import {
+  createHeroLayer,
+  createMicroInteraction,
+  motionEasing,
+  motionTokens,
+  useMotionProfile
+} from "@/lib/motion";
 
 const floatingChips = [
   { label: "Format Integrity", value: "DOCX / PPTX / XLSX", style: { top: "8%", right: "-2%" } },
@@ -14,113 +22,225 @@ const floatingChips = [
 ] as const;
 
 export function HeroLayered() {
-  const { prefersReducedMotion } = useMotionSafe();
+  const sectionRef = useRef<HTMLElement>(null);
+  const profile = useMotionProfile("high");
+  const buttonMotion = createMicroInteraction(profile, { kind: "button" });
+  const heroDelays = useMemo(
+    () => ({
+      headline: profile.reduced ? 0 : 0.1,
+      subhead: profile.reduced ? 0 : 0.2,
+      cta: profile.reduced ? 0 : 0.3,
+      chips: profile.reduced ? 0 : 0.36,
+      visual: profile.reduced ? 0 : 0.45
+    }),
+    [profile.reduced]
+  );
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const backgroundY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, profile.reduced ? 0 : -motionTokens.parallax.backgroundRange]
+  );
+  const visualY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, profile.reduced ? 0 : -motionTokens.parallax.foregroundRange]
+  );
 
   return (
-    <section className={styles.hero}>
+    <section ref={sectionRef} className={styles.hero} data-reduced-motion={profile.reduced ? "true" : "false"}>
+      <div className={styles.heroAmbientBase} aria-hidden />
+      <m.div
+        className={styles.heroAmbientDrift}
+        aria-hidden
+        style={profile.reduced ? undefined : { y: backgroundY }}
+        animate={
+          profile.reduced
+            ? undefined
+            : {
+                x: [-10, 6, -10],
+                y: [-6, 8, -6]
+              }
+        }
+        transition={
+          profile.reduced
+            ? undefined
+            : {
+                duration: motionTokens.duration.ambientLoop / 1000,
+                ease: "easeInOut",
+                repeat: Number.POSITIVE_INFINITY
+              }
+        }
+      />
       <div className={`container ${styles.heroGrid}`}>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: prefersReducedMotion ? 0.15 : 0.38 }}
-        >
+        <div>
           <span className="eyebrow">Enterprise AI Document Translation Platform</span>
-          <h1 className={styles.heroTitle}>
+          <m.h1
+            className={styles.heroTitle}
+            data-hero-stage="headline"
+            data-hero-delay="100"
+            {...createHeroLayer(profile, { delay: heroDelays.headline, y: 16 })}
+          >
             Translate business and engineering documents without losing operational control.
-          </h1>
-          <p className={styles.heroLead}>
+          </m.h1>
+          <m.p
+            className={styles.heroLead}
+            data-hero-stage="subhead"
+            data-hero-delay="200"
+            {...createHeroLayer(profile, { delay: heroDelays.subhead, y: 12 })}
+          >
             {siteConfig.productName} delivers format-preserving document workflows, glossary and termbase
             control, OCR handling for image text, and CAD translation pathways for DWG and DXF teams.
-          </p>
-          <div className="cta-row">
-            <motion.div whileTap={{ scale: 0.97 }} whileHover={{ y: -1 }}>
-              <Link
-                href="/demo"
-                className="button button-primary link-focus"
-                onClick={() => trackEvent("cta_primary_click", { location: "hero" })}
+          </m.p>
+          <m.div
+            className="cta-row"
+            data-hero-stage="cta"
+            data-hero-delay="300"
+            {...createHeroLayer(profile, { delay: heroDelays.cta, y: 10 })}
+          >
+            <MagneticAction enabled={profile.allowHover}>
+              <m.div {...buttonMotion}>
+                <Link
+                  href="/demo"
+                  className="button button-primary link-focus"
+                  onClick={() => trackEvent("cta_primary_click", { location: "hero" })}
+                >
+                  Request Demo
+                </Link>
+              </m.div>
+            </MagneticAction>
+            <MagneticAction enabled={profile.allowHover}>
+              <m.a
+                {...buttonMotion}
+                href={siteConfig.appUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="button button-secondary link-focus"
+                onClick={() => trackEvent("cta_open_app_click", { location: "hero" })}
               >
-                Request Demo
-              </Link>
-            </motion.div>
-            <motion.a
-              whileTap={{ scale: 0.97 }}
-              whileHover={{ y: -1 }}
-              href={siteConfig.appUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="button button-secondary link-focus"
-              onClick={() => trackEvent("cta_open_app_click", { location: "hero" })}
-            >
-              Open App
-            </motion.a>
-          </div>
-          <div className={styles.chipRail}>
+                Open App
+              </m.a>
+            </MagneticAction>
+          </m.div>
+          <m.div
+            className={styles.chipRail}
+            {...createHeroLayer(profile, { delay: heroDelays.chips, y: 8 })}
+          >
             <span className="chip mono">Async tasks + history</span>
             <span className="chip mono">Role-based termbase permissions</span>
             <span className="chip mono">Procurement-ready workflow posture</span>
-          </div>
-        </motion.div>
+          </m.div>
+        </div>
 
-        <motion.div
-          className={styles.heroFrameWrap}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: prefersReducedMotion ? 0.15 : 0.46, delay: prefersReducedMotion ? 0 : 0.14 }}
+        <m.div
+          className={styles.heroFrameDepth}
+          style={profile.reduced ? undefined : { y: visualY }}
+          data-hero-stage="visual"
+          data-hero-delay="450"
+          {...createHeroLayer(profile, { delay: heroDelays.visual, y: 14 })}
         >
-          <div className={styles.heroGlow} aria-hidden />
-          <div className={styles.heroFrame}>
-            <div className={styles.heroFrameHead}>
-              <p className={styles.heroFrameTitle}>Live workflow preview</p>
-              <div className={styles.heroDotRow}>
-                <span className={styles.heroDot} />
-                <span className={styles.heroDot} />
-                <span className={styles.heroDot} />
-              </div>
-            </div>
-            <div className={styles.heroPanel}>
-              <div className={styles.heroPanelRow}>
-                <span className={styles.heroPanelLabel}>Pipeline</span>
-                <span className={styles.heroPanelValue}>Upload → Configure → Review → Export</span>
-              </div>
-              <div className={styles.heroPanelRow}>
-                <span className={styles.heroPanelLabel}>Input batch</span>
-                <span className={styles.heroPanelValue}>DOCX, PDF, DWG, DXF</span>
-              </div>
-              <div className={styles.heroPanelRow}>
-                <span className={styles.heroPanelLabel}>Controls</span>
-                <span className={styles.heroPanelValue}>Termbase + OCR + scoped access</span>
-              </div>
-              <div className={styles.heroPanelRow}>
-                <span className={styles.heroPanelLabel}>Status</span>
-                <span className={styles.heroPanelValue}>Active platform availability</span>
-              </div>
-            </div>
-          </div>
-
-          {floatingChips.map((chip, index) => (
-            <motion.div
-              key={chip.label}
-              className={styles.heroMetricChip}
-              style={chip.style}
+          <m.div
+            className={styles.heroFrameWrap}
+            animate={
+              profile.reduced
+                ? undefined
+                : {
+                    y: [0, -6, 0]
+                  }
+            }
+            transition={
+              profile.reduced
+                ? undefined
+                : {
+                    duration: motionTokens.duration.floatLoop / 1000,
+                    ease: "easeInOut",
+                    repeat: Number.POSITIVE_INFINITY
+                  }
+            }
+          >
+            <m.div
+              className={styles.heroGlow}
+              aria-hidden
               animate={
-                prefersReducedMotion
-                  ? { opacity: 1 }
-                  : { y: [-1, 1, -1], opacity: [1, 0.97, 1] }
+                profile.reduced
+                  ? undefined
+                  : {
+                      opacity: [0.7, 1, 0.7]
+                    }
               }
-              transition={{
-                duration: prefersReducedMotion ? 0 : 5 + index * 0.9,
-                repeat: prefersReducedMotion ? 0 : Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-                delay: index * 0.35
-              }}
-            >
-              <strong>{chip.label}</strong>
-              {chip.value}
-            </motion.div>
-          ))}
-        </motion.div>
+              transition={
+                profile.reduced
+                  ? undefined
+                  : {
+                      duration: motionTokens.duration.ambientLoop / 1000,
+                      ease: motionEasing.out,
+                      repeat: Number.POSITIVE_INFINITY
+                    }
+              }
+            />
+            <div className={styles.heroFrame}>
+              <div className={styles.heroFrameHead}>
+                <p className={styles.heroFrameTitle}>Live workflow preview</p>
+                <div className={styles.heroDotRow}>
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroDot} />
+                </div>
+              </div>
+              <div className={styles.heroPanel}>
+                <div className={styles.heroPanelRow}>
+                  <span className={styles.heroPanelLabel}>Pipeline</span>
+                  <span className={styles.heroPanelValue}>
+                    Upload {"->"} Configure {"->"} Review {"->"} Export
+                  </span>
+                </div>
+                <div className={styles.heroPanelRow}>
+                  <span className={styles.heroPanelLabel}>Input batch</span>
+                  <span className={styles.heroPanelValue}>DOCX, PDF, DWG, DXF</span>
+                </div>
+                <div className={styles.heroPanelRow}>
+                  <span className={styles.heroPanelLabel}>Controls</span>
+                  <span className={styles.heroPanelValue}>Termbase + OCR + scoped access</span>
+                </div>
+                <div className={styles.heroPanelRow}>
+                  <span className={styles.heroPanelLabel}>Status</span>
+                  <span className={styles.heroPanelValue}>Active platform availability</span>
+                </div>
+              </div>
+            </div>
+
+            {floatingChips.map((chip, index) => (
+              <m.div
+                key={chip.label}
+                className={styles.heroMetricChip}
+                style={chip.style}
+                animate={
+                  profile.reduced
+                    ? { opacity: 1 }
+                    : {
+                        y: [0, -2, 0],
+                        opacity: [0.95, 1, 0.95]
+                      }
+                }
+                transition={{
+                  duration: profile.reduced ? 0 : motionTokens.duration.floatLoop / 1000 + index * 0.4,
+                  repeat: profile.reduced ? 0 : Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                  delay: profile.reduced ? 0 : index * 0.2
+                }}
+              >
+                <strong>{chip.label}</strong>
+                {chip.value}
+              </m.div>
+            ))}
+          </m.div>
+        </m.div>
       </div>
     </section>
   );
 }
-

@@ -1,53 +1,271 @@
-import { MotionProps, useReducedMotion } from "framer-motion";
+"use client";
 
-const springBase = { type: "spring", stiffness: 140, damping: 18, mass: 0.8 };
+import { MotionProps, Transition, useReducedMotion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 
-export const motionPresets = {
-  sectionReveal: (delay = 0): MotionProps => ({
-    initial: { opacity: 0, y: 18, filter: "blur(4px)" },
-    whileInView: { opacity: 1, y: 0, filter: "blur(0px)" },
-    viewport: { once: true, amount: 0.28 },
-    transition: { ...springBase, delay }
-  }),
-  itemReveal: (index = 0): MotionProps => ({
-    initial: { opacity: 0, y: 12 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { ...springBase, delay: index * 0.06 }
-  }),
-  buttonTap: {
-    whileTap: { scale: 0.97 },
-    whileHover: { y: -1 }
-  } as MotionProps
+const msToSeconds = (value: number) => value / 1000;
+
+export const motionTokens = {
+  duration: {
+    micro: 160,
+    ui: 220,
+    section: 540,
+    hero: 860,
+    ambientLoop: 12000,
+    floatLoop: 9000
+  },
+  stagger: {
+    children: 0.06,
+    sectionDelay: 0.08
+  },
+  nav: {
+    scrollThreshold: 32
+  },
+  hover: {
+    cardLift: -4,
+    buttonPressScale: 0.98,
+    magneticMaxOffset: 3
+  },
+  parallax: {
+    backgroundRange: 18,
+    foregroundRange: 10
+  }
+} as const;
+
+export const motionEasing = {
+  out: [0.16, 1, 0.3, 1] as const
 };
 
-export const useMotionSafe = () => {
+export const motionSprings = {
+  default: {
+    type: "spring" as const,
+    stiffness: 150,
+    damping: 22,
+    mass: 0.9
+  },
+  hero: {
+    type: "spring" as const,
+    stiffness: 100,
+    damping: 22,
+    mass: 0.95
+  }
+};
+
+export const motionViewport = {
+  once: true,
+  amount: 0.2
+} as const;
+
+export type MotionIntensity = "high" | "medium" | "low";
+
+export type MotionProfile = {
+  reduced: boolean;
+  allowHover: boolean;
+  intensity: MotionIntensity;
+  intensityScale: number;
+  staggerChildren: number;
+  sectionDelay: number;
+  viewport: typeof motionViewport;
+};
+
+const intensityScaleMap: Record<MotionIntensity, number> = {
+  high: 1,
+  medium: 0.8,
+  low: 0.6
+};
+
+type SectionRevealOptions = {
+  amount?: number;
+  delay?: number;
+  y?: number;
+};
+
+type StaggerOptions = {
+  amount?: number;
+  delay?: number;
+  y?: number;
+};
+
+type HeroLayerOptions = {
+  delay?: number;
+  y?: number;
+};
+
+type MicroInteractionOptions = {
+  kind: "button" | "card" | "link";
+};
+
+const reducedTransition: Transition = {
+  duration: msToSeconds(motionTokens.duration.micro),
+  ease: motionEasing.out
+};
+
+export const useMotionProfile = (intensity: MotionIntensity = "medium"): MotionProfile => {
   const prefersReducedMotion = useReducedMotion();
+  const [allowHover, setAllowHover] = useState(false);
 
-  const section = (delay = 0): MotionProps =>
-    prefersReducedMotion
-      ? {
-          initial: { opacity: 0 },
-          whileInView: { opacity: 1 },
-          viewport: { once: true, amount: 0.1 },
-          transition: { duration: 0.18, delay }
-        }
-      : motionPresets.sectionReveal(delay);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) {
+      return;
+    }
 
-  const item = (index = 0): MotionProps =>
-    prefersReducedMotion
-      ? {
-          initial: { opacity: 0 },
-          whileInView: { opacity: 1 },
-          viewport: { once: true, amount: 0.1 },
-          transition: { duration: 0.14, delay: index * 0.03 }
-        }
-      : motionPresets.itemReveal(index);
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setAllowHover(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  return useMemo(() => {
+    const reduced = Boolean(prefersReducedMotion);
+    return {
+      reduced,
+      allowHover: allowHover && !reduced,
+      intensity,
+      intensityScale: intensityScaleMap[intensity],
+      staggerChildren: reduced ? 0.01 : motionTokens.stagger.children,
+      sectionDelay: reduced ? 0 : motionTokens.stagger.sectionDelay,
+      viewport: motionViewport
+    };
+  }, [allowHover, intensity, prefersReducedMotion]);
+};
+
+export const createSectionReveal = (
+  profile: MotionProfile,
+  options: SectionRevealOptions = {}
+): MotionProps => {
+  const revealOffset = options.y ?? 16 * profile.intensityScale;
+
+  if (profile.reduced) {
+    return {
+      initial: { opacity: 0 },
+      whileInView: { opacity: 1 },
+      viewport: { once: true, amount: options.amount ?? motionViewport.amount },
+      transition: reducedTransition
+    };
+  }
 
   return {
-    prefersReducedMotion,
-    section,
-    item
+    initial: { opacity: 0, y: revealOffset },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: options.amount ?? motionViewport.amount },
+    transition: {
+      ...motionSprings.default,
+      delay: options.delay ?? profile.sectionDelay
+    }
   };
 };
 
+export const createStaggerContainer = (
+  profile: MotionProfile,
+  options: StaggerOptions = {}
+): MotionProps => {
+  const revealOffset = profile.reduced ? 0 : options.y ?? 16 * profile.intensityScale;
+  const visibleTransition: Transition = profile.reduced
+    ? {
+        ...reducedTransition,
+        staggerChildren: profile.staggerChildren,
+        delayChildren: 0,
+        when: "beforeChildren"
+      }
+    : {
+        ...motionSprings.default,
+        delay: options.delay ?? 0,
+        when: "beforeChildren",
+        staggerChildren: profile.staggerChildren,
+        delayChildren: profile.sectionDelay
+      };
+
+  return {
+    initial: "hidden",
+    whileInView: "visible",
+    viewport: { once: true, amount: options.amount ?? motionViewport.amount },
+    variants: {
+      hidden: {
+        opacity: 0,
+        y: revealOffset
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: visibleTransition
+      }
+    }
+  };
+};
+
+export const createStaggerItem = (profile: MotionProfile, options: StaggerOptions = {}): MotionProps => {
+  const revealOffset = profile.reduced ? 0 : options.y ?? 12 * profile.intensityScale;
+
+  return {
+    variants: {
+      hidden: {
+        opacity: 0,
+        y: revealOffset
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: profile.reduced ? reducedTransition : motionSprings.default
+      }
+    }
+  };
+};
+
+export const createHeroLayer = (profile: MotionProfile, options: HeroLayerOptions = {}): MotionProps => {
+  const revealOffset = options.y ?? 18 * profile.intensityScale;
+  if (profile.reduced) {
+    return {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      transition: reducedTransition
+    };
+  }
+
+  return {
+    initial: { opacity: 0, y: revealOffset },
+    animate: { opacity: 1, y: 0 },
+    transition: {
+      ...motionSprings.hero,
+      delay: options.delay ?? 0
+    }
+  };
+};
+
+export const createMicroInteraction = (
+  profile: MotionProfile,
+  options: MicroInteractionOptions
+): MotionProps => {
+  if (profile.reduced) {
+    return {};
+  }
+
+  if (options.kind === "button") {
+    return {
+      whileTap: { scale: motionTokens.hover.buttonPressScale },
+      whileHover: profile.allowHover ? { y: -1 } : undefined,
+      transition: {
+        duration: msToSeconds(motionTokens.duration.micro),
+        ease: motionEasing.out
+      }
+    };
+  }
+
+  if (options.kind === "card") {
+    return {
+      whileHover: profile.allowHover ? { y: motionTokens.hover.cardLift } : undefined,
+      transition: {
+        duration: msToSeconds(motionTokens.duration.micro),
+        ease: motionEasing.out
+      }
+    };
+  }
+
+  return {
+    whileHover: profile.allowHover ? { y: -1 } : undefined,
+    transition: {
+      duration: msToSeconds(motionTokens.duration.micro),
+      ease: motionEasing.out
+    }
+  };
+};

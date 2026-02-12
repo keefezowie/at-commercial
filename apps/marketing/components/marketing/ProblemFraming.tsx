@@ -1,8 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styles from "@/components/marketing/marketing.module.css";
-import { useMotionSafe } from "@/lib/motion";
+import {
+  createSectionReveal,
+  createStaggerContainer,
+  createStaggerItem,
+  useMotionProfile
+} from "@/lib/motion";
 
 type Item = {
   title: string;
@@ -14,11 +19,14 @@ type Props = {
 };
 
 export function ProblemFraming({ items }: Props) {
-  const { section, item } = useMotionSafe();
+  const profile = useMotionProfile("medium");
+  const sectionMotion = createSectionReveal(profile, { y: 14 });
+  const gridMotion = createStaggerContainer(profile, { y: 0 });
+  const itemMotion = createStaggerItem(profile, { y: 10 });
 
   return (
     <section className="section">
-      <motion.div className="container" {...section()}>
+      <m.div className="container" {...sectionMotion}>
         <div className={styles.sectionTop}>
           <span className="eyebrow">Problem Framing</span>
           <h2 className="section-title">
@@ -30,16 +38,19 @@ export function ProblemFraming({ items }: Props) {
           </p>
         </div>
 
-        <div className={`grid-4 ${styles.problemGrid}`}>
-          {items.map((problem, index) => (
-            <motion.article key={problem.title} className={`card ${styles.problemCard}`} {...item(index)}>
+        <m.div className={`grid-4 ${styles.problemGrid}`} {...gridMotion}>
+          {items.map((problem) => (
+            <m.article
+              key={problem.title}
+              className={`card ${styles.problemCard} ${styles.cardInteractive}`}
+              {...itemMotion}
+            >
               <h3>{problem.title}</h3>
               <p>{problem.detail}</p>
-            </motion.article>
+            </m.article>
           ))}
-        </div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }
-

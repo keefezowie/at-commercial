@@ -1,8 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styles from "@/components/marketing/marketing.module.css";
-import { useMotionSafe } from "@/lib/motion";
+import {
+  createSectionReveal,
+  createStaggerContainer,
+  createStaggerItem,
+  useMotionProfile
+} from "@/lib/motion";
 
 type FormatRow = {
   format: string;
@@ -16,11 +21,14 @@ type Props = {
 };
 
 export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Props) {
-  const { section, item } = useMotionSafe();
+  const profile = useMotionProfile("medium");
+  const sectionMotion = createSectionReveal(profile, { y: 14 });
+  const bodyMotion = createStaggerContainer(profile, { y: 0 });
+  const rowMotion = createStaggerItem(profile, { y: 8 });
 
   return (
     <section className="section">
-      <motion.div className="container" {...section()}>
+      <m.div className="container" {...sectionMotion}>
         <div className={styles.sectionTop}>
           <span className="eyebrow">Formats Matrix</span>
           <h2 className="section-title">{title}</h2>
@@ -39,25 +47,18 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
                 <th>Notes</th>
               </tr>
             </thead>
-            <tbody>
-              {rows.map((row, index) => (
-                <motion.tr
-                  key={row.format}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={item(index).transition}
-                >
+            <m.tbody {...bodyMotion}>
+              {rows.map((row) => (
+                <m.tr key={row.format} {...rowMotion}>
                   <td className="mono">{row.format}</td>
                   <td>{row.coverage}</td>
                   <td>{row.note}</td>
-                </motion.tr>
+                </m.tr>
               ))}
-            </tbody>
+            </m.tbody>
           </table>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }
-

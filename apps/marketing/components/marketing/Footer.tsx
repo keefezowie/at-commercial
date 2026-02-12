@@ -18,27 +18,45 @@ export function Footer() {
           <div className={styles.footerLinks}>
             <section>
               <h3>Product</h3>
-              <Link href="/features">Features</Link>
-              <Link href="/formats">Formats</Link>
-              <Link href="/cad-translation">CAD Translation</Link>
-              <Link href="/pricing">Pricing</Link>
+              <Link href="/features" className="link-focus">
+                Features
+              </Link>
+              <Link href="/formats" className="link-focus">
+                Formats
+              </Link>
+              <Link href="/cad-translation" className="link-focus">
+                CAD Translation
+              </Link>
+              <Link href="/pricing" className="link-focus">
+                Pricing
+              </Link>
             </section>
             <section>
               <h3>Company</h3>
-              <Link href="/security">Security</Link>
-              <Link href="/contact">Contact</Link>
-              <a href={siteConfig.appUrl} target="_blank" rel="noreferrer">
+              <Link href="/security" className="link-focus">
+                Security
+              </Link>
+              <Link href="/contact" className="link-focus">
+                Contact
+              </Link>
+              <a href={siteConfig.appUrl} target="_blank" rel="noreferrer" className="link-focus">
                 Open App
               </a>
-              <a href="#" aria-disabled>
+              <a href="#" aria-disabled className="link-focus">
                 Status
               </a>
             </section>
             <section>
               <h3>Legal</h3>
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
-              <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>
+              <Link href="/privacy" className="link-focus">
+                Privacy
+              </Link>
+              <Link href="/terms" className="link-focus">
+                Terms
+              </Link>
+              <a href={`mailto:${siteConfig.supportEmail}`} className="link-focus">
+                {siteConfig.supportEmail}
+              </a>
             </section>
           </div>
         </div>
@@ -53,4 +71,3 @@ export function Footer() {
     </footer>
   );
 }
-
