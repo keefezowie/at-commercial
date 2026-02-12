@@ -20,4 +20,3 @@ NEXT_PUBLIC_PRODUCT_NAME=AT Translate
 NEXT_PUBLIC_MARKETING_DOMAIN=translate.example.com
 NEXT_PUBLIC_APP_DOMAIN=app.translate.example.com
 ```
-
