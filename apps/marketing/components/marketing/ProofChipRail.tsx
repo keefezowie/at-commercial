@@ -24,7 +24,7 @@ export function ProofChipRail({ title = "Supported workflows", items }: Props) {
     <section className="section-tight">
       <m.div className="container" {...sectionMotion}>
         <div className={styles.sectionTop}>
-          <span className="eyebrow">Proof Rail</span>
+          <span className="eyebrow">Coverage Snapshot</span>
           <h2 className="section-title">{title}</h2>
         </div>
         <m.div className={styles.chipRail} aria-label="Format and capability proof chips" {...chipRailMotion}>

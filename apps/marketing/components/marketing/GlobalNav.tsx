@@ -116,7 +116,7 @@ export function GlobalNav() {
                 className="button button-primary link-focus"
                 onClick={() => trackEvent("cta_primary_click", { location: "global_nav" })}
               >
-                Request Demo
+                Request Enterprise Demo
               </Link>
             </m.div>
           </MagneticAction>
@@ -200,7 +200,7 @@ export function GlobalNav() {
                       trackEvent("cta_primary_click", { location: "mobile_nav" });
                     }}
                   >
-                    Request Demo
+                    Request Enterprise Demo
                   </Link>
                 </m.div>
               </div>

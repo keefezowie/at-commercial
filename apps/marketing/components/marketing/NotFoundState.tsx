@@ -14,7 +14,7 @@ export function NotFoundState() {
             Back to Home
           </Link>
           <Link href="/demo" className="button button-secondary link-focus">
-            Request Demo
+            Request Enterprise Demo
           </Link>
         </div>
       </div>

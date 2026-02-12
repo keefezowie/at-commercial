@@ -18,14 +18,14 @@ export function CadShowcase() {
   const itemMotion = createStaggerItem(profile, { y: 10 });
 
   return (
-    <section className="section">
+    <section className={`section ${styles.cadSection}`}>
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
+        <div className={`${styles.sectionTop} ${styles.cadSectionTop}`}>
           <span className="eyebrow">CAD Translation</span>
-          <h2 className="section-title">
+          <h2 className={`section-title ${styles.cadSectionTitle}`}>
             Bring DWG and DXF engineering workflows into your translation delivery lane.
           </h2>
-          <p className="section-description">
+          <p className={`section-description ${styles.cadSectionDescription}`}>
             CAD coverage is a practical differentiator for teams coordinating product documentation,
             engineering diagrams, and global implementation handoffs.
           </p>

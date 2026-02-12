@@ -109,25 +109,25 @@ export const formatRows = [
 
 export const pricingPreview = [
   {
-    tier: "Pilot",
+    tier: "Pilot Launch",
     audience: "Small rollout team",
     points: ["Guided onboarding", "Core document workflows", "Standard support"],
-    cta: "Start Evaluation",
+    cta: "Start Pilot",
     href: "/demo"
   },
   {
-    tier: "Growth",
+    tier: "Growth Program",
     audience: "Multi-team adoption",
     points: ["Expanded usage profiles", "Glossary governance", "Priority onboarding"],
-    cta: "Request Demo",
+    cta: "Request Enterprise Demo",
     href: "/demo",
     featured: true
   },
   {
-    tier: "Enterprise",
+    tier: "Enterprise Governance",
     audience: "Procurement-led deployment",
     points: ["Security alignment review", "CAD workflow consultation", "Commercial SLA discussion"],
-    cta: "Talk to Sales",
+    cta: "Contact Sales",
     href: "/contact"
   }
 ] satisfies readonly PricingPreviewItem[];

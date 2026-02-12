@@ -73,6 +73,9 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
+  width: fit-content;
+  max-width: 100%;
+  justify-self: start;
   padding: 0.35rem 0.8rem;
   background: rgba(10, 111, 232, 0.08);
   color: var(--accent-strong);

@@ -27,8 +27,8 @@ export const motionTokens = {
     magneticMaxOffset: 3
   },
   parallax: {
-    backgroundRange: 18,
-    foregroundRange: 10
+    backgroundRange: 16,
+    foregroundRange: 8
   }
 } as const;
 

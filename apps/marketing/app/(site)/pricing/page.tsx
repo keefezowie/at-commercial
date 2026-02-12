@@ -29,7 +29,7 @@ export default function PricingPage() {
               Talk to Sales
             </Link>
             <Link href="/demo" className="button button-secondary link-focus">
-              Request Demo
+              Request Enterprise Demo
             </Link>
           </div>
         </div>

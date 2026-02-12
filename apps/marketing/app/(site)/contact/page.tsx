@@ -25,7 +25,7 @@ export default function ContactPage() {
           <ContactForm />
           <div className="cta-row" style={{ marginTop: "1rem" }}>
             <Link href="/demo" className="button button-secondary link-focus">
-              Request Demo
+              Request Enterprise Demo
             </Link>
           </div>
           <p style={{ marginTop: "1rem", color: "var(--text-secondary)" }}>

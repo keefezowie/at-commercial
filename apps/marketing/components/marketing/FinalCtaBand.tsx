@@ -38,7 +38,7 @@ export function FinalCtaBand() {
                   className="button button-secondary link-focus"
                   onClick={() => trackEvent("cta_primary_click", { location: "final_cta" })}
                 >
-                  Request Demo
+                  Request Enterprise Demo
                 </Link>
               </m.div>
             </MagneticAction>

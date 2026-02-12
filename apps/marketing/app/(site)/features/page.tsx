@@ -30,7 +30,7 @@ export default function FeaturesPage() {
         <div className="container">
           <div className="cta-row">
             <Link href="/demo" className="button button-primary link-focus">
-              Request Demo
+              Request Enterprise Demo
             </Link>
             <Link href="/cad-translation" className="button button-secondary link-focus">
               View CAD

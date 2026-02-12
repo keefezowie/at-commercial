@@ -28,7 +28,7 @@ export function ProblemFraming({ items }: Props) {
     <section className="section">
       <m.div className="container" {...sectionMotion}>
         <div className={styles.sectionTop}>
-          <span className="eyebrow">Problem Framing</span>
+          <span className="eyebrow">Operational Risks</span>
           <h2 className="section-title">
             Most document translation projects break on operations, not language coverage.
           </h2>

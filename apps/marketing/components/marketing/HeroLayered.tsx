@@ -63,8 +63,8 @@ export function HeroLayered() {
           profile.reduced
             ? undefined
             : {
-                x: [-10, 6, -10],
-                y: [-6, 8, -6]
+                x: [-8, 4, -8],
+                y: [-4, 6, -4]
               }
         }
         transition={
@@ -80,6 +80,12 @@ export function HeroLayered() {
       <div className={`container ${styles.heroGrid}`}>
         <div>
           <span className="eyebrow">Enterprise AI Document Translation Platform</span>
+          <m.div
+            className={styles.heroAccentLine}
+            initial={profile.reduced ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={profile.reduced ? { duration: 0.01 } : { duration: 0.48, delay: 0.12 }}
+          />
           <m.h1
             className={styles.heroTitle}
             data-hero-stage="headline"
@@ -107,10 +113,10 @@ export function HeroLayered() {
               <m.div {...buttonMotion}>
                 <Link
                   href="/demo"
-                  className="button button-primary link-focus"
+                  className={`button button-primary link-focus ${styles.heroPrimaryCta}`}
                   onClick={() => trackEvent("cta_primary_click", { location: "hero" })}
                 >
-                  Request Demo
+                  Request Enterprise Demo
                 </Link>
               </m.div>
             </MagneticAction>
@@ -120,13 +126,18 @@ export function HeroLayered() {
                 href={siteConfig.appUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="button button-secondary link-focus"
+                className={`button button-secondary link-focus ${styles.heroSecondaryCta}`}
                 onClick={() => trackEvent("cta_open_app_click", { location: "hero" })}
               >
                 Open App
               </m.a>
             </MagneticAction>
           </m.div>
+          <m.ul className={styles.heroAssurance} {...createHeroLayer(profile, { delay: 0.34, y: 8 })}>
+            <li>No credit card required</li>
+            <li>Enterprise demo within 48 hours</li>
+            <li>Secure evaluation environment</li>
+          </m.ul>
           <m.div
             className={styles.chipRail}
             {...createHeroLayer(profile, { delay: heroDelays.chips, y: 8 })}

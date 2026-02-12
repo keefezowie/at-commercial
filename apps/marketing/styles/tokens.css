@@ -24,8 +24,8 @@
   --shadow-lg: 0 28px 72px rgba(9, 30, 66, 0.12);
 
   --container-max: 1160px;
-  --section-y: clamp(4.5rem, 8vw, 8rem);
-  --section-y-tight: clamp(3rem, 5vw, 5rem);
+  --section-y: clamp(5rem, 8.5vw, 8.6rem);
+  --section-y-tight: clamp(3.25rem, 5.2vw, 5.6rem);
   --line-readable: 70ch;
 
   --motion-duration-micro: 160ms;
