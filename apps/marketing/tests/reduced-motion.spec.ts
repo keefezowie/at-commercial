@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.use({ reducedMotion: "reduce" });
+test.use({ contextOptions: { reducedMotion: "reduce" } });
 
 test.describe("reduced motion profile", () => {
   test("disables magnetic hover and keeps FAQ open/close instant", async ({ page }) => {

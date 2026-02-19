@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { m } from "framer-motion";
 import styles from "@/components/marketing/marketing.module.css";
-import { trackEvent } from "@/lib/analytics";
+import { type PageTemplate, trackEvent } from "@/lib/analytics";
+import { siteConfig } from "@/lib/site-config";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -26,7 +27,11 @@ const securityPoints = [
   }
 ];
 
-export function SecurityPanel() {
+type Props = {
+  pageTemplate?: PageTemplate;
+};
+
+export function SecurityPanel({ pageTemplate = "home" }: Props) {
   const profile = useMotionProfile("low");
   const sectionMotion = createSectionReveal(profile, { y: 12 });
   const listMotion = createStaggerContainer(profile, { y: 0 });
@@ -40,7 +45,7 @@ export function SecurityPanel() {
           <h2 className="section-title">Designed for enterprise procurement conversations.</h2>
           <p className="section-description">
             This V1 marketing site avoids unverified certification claims while clearly presenting
-            operational controls and access posture.
+            operational controls. Discovery and security review lead into subscription onboarding.
           </p>
         </div>
 
@@ -59,17 +64,44 @@ export function SecurityPanel() {
         <div className="cta-row" style={{ marginTop: "1rem" }}>
           <Link
             href="/demo"
-            className="button button-secondary link-focus"
-            onClick={() => trackEvent("security_section_cta_click", { target: "demo" })}
+            className="button button-primary link-focus"
+            onClick={() =>
+              trackEvent("cta_primary_request_demo_click", {
+                surface: "security_section",
+                page_template: pageTemplate,
+                cta_role: "primary_demo"
+              })
+            }
           >
-            Request Security Overview
+            Request Demo
           </Link>
+          <a
+            href={siteConfig.appUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="button button-secondary link-focus"
+            onClick={() =>
+              trackEvent("cta_secondary_subscriber_login_click", {
+                surface: "security_section",
+                page_template: pageTemplate,
+                cta_role: "secondary_login"
+              })
+            }
+          >
+            Subscriber Login
+          </a>
           <Link
             href="/contact"
-            className="button button-secondary link-focus"
-            onClick={() => trackEvent("security_section_cta_click", { target: "contact" })}
+            className={styles.tertiaryCtaLink}
+            onClick={() =>
+              trackEvent("cta_tertiary_talk_to_sales_click", {
+                surface: "security_section",
+                page_template: pageTemplate,
+                cta_role: "tertiary_sales"
+              })
+            }
           >
-            Contact Sales
+            Talk to Sales
           </Link>
         </div>
       </m.div>

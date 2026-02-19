@@ -114,9 +114,15 @@ export function HeroLayered() {
                 <Link
                   href="/demo"
                   className={`button button-primary link-focus ${styles.heroPrimaryCta}`}
-                  onClick={() => trackEvent("cta_primary_click", { location: "hero" })}
+                  onClick={() =>
+                    trackEvent("cta_primary_request_demo_click", {
+                      surface: "hero",
+                      page_template: "home",
+                      cta_role: "primary_demo"
+                    })
+                  }
                 >
-                  Request Enterprise Demo
+                  Request Demo
                 </Link>
               </m.div>
             </MagneticAction>
@@ -127,16 +133,25 @@ export function HeroLayered() {
                 target="_blank"
                 rel="noreferrer"
                 className={`button button-secondary link-focus ${styles.heroSecondaryCta}`}
-                onClick={() => trackEvent("cta_open_app_click", { location: "hero" })}
+                onClick={() =>
+                  trackEvent("cta_secondary_subscriber_login_click", {
+                    surface: "hero",
+                    page_template: "home",
+                    cta_role: "secondary_login"
+                  })
+                }
               >
-                Open App
+                Subscriber Login
               </m.a>
             </MagneticAction>
           </m.div>
+          <m.p className={styles.heroSubscriberHint} {...createHeroLayer(profile, { delay: 0.33, y: 8 })}>
+            Already subscribed? Use Subscriber Login. New teams should start with Request Demo.
+          </m.p>
           <m.ul className={styles.heroAssurance} {...createHeroLayer(profile, { delay: 0.34, y: 8 })}>
             <li>No credit card required</li>
             <li>Enterprise demo within 48 hours</li>
-            <li>Secure evaluation environment</li>
+            <li>Subscription onboarding support included</li>
           </m.ul>
           <m.div
             className={styles.chipRail}

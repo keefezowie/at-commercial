@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteConfig } from "@/lib/site-config";
 
 export function NotFoundState() {
   return (
@@ -14,8 +15,16 @@ export function NotFoundState() {
             Back to Home
           </Link>
           <Link href="/demo" className="button button-secondary link-focus">
-            Request Enterprise Demo
+            Request Demo
           </Link>
+          <a
+            href={siteConfig.appUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="button button-secondary link-focus"
+          >
+            Subscriber Login
+          </a>
         </div>
       </div>
     </main>

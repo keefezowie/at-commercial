@@ -1,0 +1,23 @@
+<svg width="860" height="560" viewBox="0 0 860 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="560" rx="20" fill="#F2F8FF"/>
+  <rect x="36" y="36" width="788" height="488" rx="16" fill="#FFFFFF" stroke="#CDE1FA" stroke-width="2"/>
+  <text x="70" y="88" fill="#1A3F76" font-size="26" font-family="Arial, sans-serif" font-weight="700">3. Review Output Quality</text>
+  <rect x="70" y="118" width="718" height="3" fill="#D8E6FB"/>
+  <rect x="70" y="154" width="350" height="320" rx="14" fill="#FAFCFF" stroke="#D1E2FA"/>
+  <text x="94" y="192" fill="#20456E" font-size="19" font-family="Arial, sans-serif" font-weight="700">Source Segment</text>
+  <rect x="94" y="212" width="302" height="96" rx="10" fill="#EEF5FF"/>
+  <text x="108" y="246" fill="#284B73" font-size="17" font-family="Arial, sans-serif">Ensure dimensional annotations remain</text>
+  <text x="108" y="272" fill="#284B73" font-size="17" font-family="Arial, sans-serif">consistent across translated layers.</text>
+  <text x="94" y="350" fill="#20456E" font-size="19" font-family="Arial, sans-serif" font-weight="700">Target Segment</text>
+  <rect x="94" y="370" width="302" height="96" rx="10" fill="#E8F2FF"/>
+  <text x="108" y="404" fill="#284B73" font-size="17" font-family="Arial, sans-serif">Dimensional annotations are retained</text>
+  <text x="108" y="430" fill="#284B73" font-size="17" font-family="Arial, sans-serif">across translated drawing layers.</text>
+  <rect x="444" y="154" width="344" height="320" rx="14" fill="#F8FCFF" stroke="#D1E2FA"/>
+  <text x="470" y="192" fill="#21456E" font-size="19" font-family="Arial, sans-serif" font-weight="700">Quality Checks</text>
+  <rect x="470" y="214" width="292" height="54" rx="12" fill="#EAF3FF"/>
+  <text x="490" y="246" fill="#1D4A8F" font-size="18" font-family="Arial, sans-serif">Format integrity: pass</text>
+  <rect x="470" y="282" width="292" height="54" rx="12" fill="#EAF3FF"/>
+  <text x="490" y="314" fill="#1D4A8F" font-size="18" font-family="Arial, sans-serif">Glossary compliance: pass</text>
+  <rect x="470" y="350" width="292" height="54" rx="12" fill="#E4F4EA" stroke="#9FD3B5"/>
+  <text x="490" y="382" fill="#176B43" font-size="18" font-family="Arial, sans-serif">Ready for export</text>
+</svg>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { m } from "framer-motion";
 import styles from "@/components/marketing/marketing.module.css";
 import {
@@ -25,6 +26,7 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
   const sectionMotion = createSectionReveal(profile, { y: 14 });
   const bodyMotion = createStaggerContainer(profile, { y: 0 });
   const rowMotion = createStaggerItem(profile, { y: 8 });
+  const previewMotion = createStaggerContainer(profile, { y: 0 });
 
   return (
     <section className="section">
@@ -58,6 +60,41 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
             </m.tbody>
           </table>
         </div>
+        <m.div className={styles.formatPreviewGrid} {...previewMotion}>
+          <m.article className={`card ${styles.formatPreviewCard}`} {...rowMotion}>
+            <h3>DOCX and table fidelity</h3>
+            <p>Columns, row spacing, and ownership metadata remain structured in translated exports.</p>
+            <Image
+              src="/mockups/result-doc-after.svg"
+              alt="DOCX translated output preview"
+              width={1200}
+              height={760}
+              className={styles.formatPreviewImage}
+            />
+          </m.article>
+          <m.article className={`card ${styles.formatPreviewCard}`} {...rowMotion}>
+            <h3>PPTX visual continuity</h3>
+            <p>Slide hierarchy and bullet rhythm preserve presentation readability after translation.</p>
+            <Image
+              src="/mockups/result-slide-after.svg"
+              alt="PPTX translated output preview"
+              width={1200}
+              height={760}
+              className={styles.formatPreviewImage}
+            />
+          </m.article>
+          <m.article className={`card ${styles.formatPreviewCard}`} {...rowMotion}>
+            <h3>DWG and DXF annotation mapping</h3>
+            <p>Annotation positions stay anchored while layer labels are localized for engineering teams.</p>
+            <Image
+              src="/mockups/result-cad-after.svg"
+              alt="CAD translated output preview"
+              width={1200}
+              height={760}
+              className={styles.formatPreviewImage}
+            />
+          </m.article>
+        </m.div>
       </m.div>
     </section>
   );

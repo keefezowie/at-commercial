@@ -5,6 +5,7 @@ import { FormatsMatrix } from "@/components/marketing/FormatsMatrix";
 import { PageHero } from "@/components/marketing/PageHero";
 import { formatRows } from "@/content/site-content";
 import { buildPageMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/formats",
@@ -26,15 +27,20 @@ export default function FormatsPage() {
         <div className="container">
           <div className="cta-row">
             <Link href="/demo" className="button button-primary link-focus">
-              Start Evaluation
+              Request Demo
             </Link>
-            <Link href="/demo" className="button button-secondary link-focus">
-              Request Enterprise Demo
-            </Link>
+            <a
+              href={siteConfig.appUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-secondary link-focus"
+            >
+              Subscriber Login
+            </a>
           </div>
         </div>
       </section>
-      <FinalCtaBand />
+      <FinalCtaBand pageTemplate="formats" />
     </main>
   );
 }

@@ -1,0 +1,20 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="24" fill="#EEF6FF"/>
+  <rect x="46" y="46" width="1108" height="668" rx="18" fill="#FFFFFF" stroke="#BDD6F8" stroke-width="2"/>
+  <rect x="86" y="90" width="318" height="34" rx="10" fill="#E4F1E9"/>
+  <text x="104" y="113" fill="#176C42" font-size="18" font-family="Arial, sans-serif" font-weight="700">Translated Slide (JA)</text>
+  <text x="86" y="188" fill="#102648" font-size="52" font-family="Arial, sans-serif" font-weight="700">Q4 Logistics Strategy</text>
+  <text x="86" y="234" fill="#37557F" font-size="26" font-family="Arial, sans-serif">Modernization milestones by region</text>
+  <rect x="86" y="274" width="1022" height="3" fill="#D4E5FC"/>
+  <circle cx="112" cy="330" r="8" fill="#2A74DE"/>
+  <text x="136" y="338" fill="#253F65" font-size="28" font-family="Arial, sans-serif">Automate terminology QA for release packets</text>
+  <circle cx="112" cy="394" r="8" fill="#2A74DE"/>
+  <text x="136" y="402" fill="#253F65" font-size="28" font-family="Arial, sans-serif">Reduce multilingual turnaround to under 24h</text>
+  <circle cx="112" cy="458" r="8" fill="#2A74DE"/>
+  <text x="136" y="466" fill="#253F65" font-size="28" font-family="Arial, sans-serif">Unify CAD and document localization pipelines</text>
+  <rect x="872" y="292" width="236" height="58" rx="12" fill="#EAF2FF" stroke="#BCD6F8"/>
+  <text x="894" y="329" fill="#1F4C8F" font-size="20" font-family="Arial, sans-serif" font-weight="700">Slide Layout Preserved</text>
+  <rect x="86" y="540" width="1022" height="134" rx="14" fill="#F5FAFF" stroke="#D0E3FB"/>
+  <text x="116" y="590" fill="#1F4067" font-size="30" font-family="Arial, sans-serif" font-weight="700">KPI: 34% faster multilingual release cycle</text>
+  <text x="116" y="630" fill="#3D5A82" font-size="22" font-family="Arial, sans-serif">Program owner: global operations enablement</text>
+</svg>

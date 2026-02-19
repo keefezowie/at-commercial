@@ -21,9 +21,9 @@ export default function CadTranslationPage() {
         title="Engineering translation workflows that align with enterprise documentation delivery."
         description="Support DWG and DXF handoffs without splitting tooling between business and engineering teams."
       />
-      <CadShowcase />
+      <CadShowcase pageTemplate="cad_translation" />
       <WorkflowStepper items={workflowSteps} />
-      <FinalCtaBand />
+      <FinalCtaBand pageTemplate="cad_translation" />
     </main>
   );
 }

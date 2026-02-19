@@ -9,7 +9,9 @@ import { PricingPreviewSection } from "@/components/marketing/PricingPreviewSect
 import { ProblemFraming } from "@/components/marketing/ProblemFraming";
 import { ProofChipRail } from "@/components/marketing/ProofChipRail";
 import { SecurityPanel } from "@/components/marketing/SecurityPanel";
+import { TranslationResultsGallery } from "@/components/marketing/TranslationResultsGallery";
 import { WorkflowStepper } from "@/components/marketing/WorkflowStepper";
+import { WorkflowPreviewStrip } from "@/components/marketing/WorkflowPreviewStrip";
 import {
   faqs,
   formatRows,
@@ -34,15 +36,17 @@ export default function HomePage() {
     <main>
       <HeroLayered />
       <ProofChipRail items={proofChips} />
+      <TranslationResultsGallery />
       <ProblemFraming items={problemCards} />
       <OutcomesSection items={outcomes} />
       <WorkflowStepper items={workflowSteps} />
+      <WorkflowPreviewStrip />
       <FormatsMatrix rows={formatRows} />
-      <CadShowcase />
-      <SecurityPanel />
-      <PricingPreviewSection items={pricingPreview} />
+      <CadShowcase pageTemplate="home" />
+      <SecurityPanel pageTemplate="home" />
+      <PricingPreviewSection items={pricingPreview} pageTemplate="home" />
       <FaqAccordion items={faqs} />
-      <FinalCtaBand />
+      <FinalCtaBand pageTemplate="home" />
       <script
         type="application/ld+json"
         suppressHydrationWarning

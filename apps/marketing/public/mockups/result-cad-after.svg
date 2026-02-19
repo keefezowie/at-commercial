@@ -1,0 +1,25 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="24" fill="#0E315F"/>
+  <rect x="34" y="34" width="1132" height="692" rx="18" fill="#123D75" stroke="#2F5E98" stroke-width="2"/>
+  <rect x="62" y="62" width="276" height="34" rx="10" fill="#1A6A49"/>
+  <text x="80" y="85" fill="#DDF8EA" font-size="18" font-family="Arial, sans-serif" font-weight="700">CAD Translated Layer (JP)</text>
+  <rect x="84" y="130" width="1032" height="540" rx="14" fill="#0C2A52" stroke="#2A578E"/>
+  <line x1="84" y1="220" x2="1116" y2="220" stroke="#224E86"/>
+  <line x1="84" y1="320" x2="1116" y2="320" stroke="#224E86"/>
+  <line x1="84" y1="420" x2="1116" y2="420" stroke="#224E86"/>
+  <line x1="84" y1="520" x2="1116" y2="520" stroke="#224E86"/>
+  <line x1="220" y1="130" x2="220" y2="670" stroke="#224E86"/>
+  <line x1="430" y1="130" x2="430" y2="670" stroke="#224E86"/>
+  <line x1="640" y1="130" x2="640" y2="670" stroke="#224E86"/>
+  <line x1="850" y1="130" x2="850" y2="670" stroke="#224E86"/>
+  <polyline points="160,590 220,470 340,470 400,350 560,350 620,250 900,250" stroke="#8DD0FF" stroke-width="4" fill="none"/>
+  <circle cx="900" cy="250" r="7" fill="#8DD0FF"/>
+  <rect x="156" y="562" width="178" height="40" rx="8" fill="#1C4F8A" stroke="#4679B2"/>
+  <text x="174" y="588" fill="#E2F0FF" font-size="19" font-family="Arial, sans-serif">VALVE ASSY JP</text>
+  <rect x="530" y="326" width="222" height="40" rx="8" fill="#1C4F8A" stroke="#4679B2"/>
+  <text x="548" y="352" fill="#E2F0FF" font-size="19" font-family="Arial, sans-serif">PRESSURE ROOM JP</text>
+  <rect x="836" y="226" width="198" height="40" rx="8" fill="#1C4F8A" stroke="#4679B2"/>
+  <text x="852" y="252" fill="#E2F0FF" font-size="19" font-family="Arial, sans-serif">OUTPUT PORT JP</text>
+  <rect x="884" y="160" width="232" height="42" rx="10" fill="#EAF2FF" stroke="#BCD6F8"/>
+  <text x="904" y="186" fill="#1F4B8E" font-size="18" font-family="Arial, sans-serif" font-weight="700">Annotation Positions Preserved</text>
+</svg>

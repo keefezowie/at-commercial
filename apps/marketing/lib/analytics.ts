@@ -1,11 +1,52 @@
 "use client";
 
+type MetadataValue = string | number | boolean;
+
+export type CtaRole = "primary_demo" | "secondary_login" | "tertiary_sales";
+
+export type CtaSurface =
+  | "global_nav"
+  | "mobile_nav"
+  | "mobile_sticky_bar"
+  | "hero"
+  | "final_cta"
+  | "pricing_card"
+  | "cad_section"
+  | "security_section"
+  | "features_page"
+  | "formats_page"
+  | "security_page"
+  | "pricing_page"
+  | "demo_page"
+  | "contact_page"
+  | "legal_page"
+  | "footer"
+  | "not_found";
+
+export type PageTemplate =
+  | "home"
+  | "features"
+  | "formats"
+  | "cad_translation"
+  | "security"
+  | "pricing"
+  | "demo"
+  | "contact"
+  | "legal"
+  | "not_found";
+
+export type MarketingEventMetadata = Record<string, MetadataValue> & {
+  surface?: CtaSurface;
+  page_template?: PageTemplate;
+  cta_role?: CtaRole;
+};
+
 export type MarketingEvent = {
   event_name: string;
   page_path: string;
   session_id: string;
   timestamp: string;
-  metadata?: Record<string, string | number | boolean>;
+  metadata?: MarketingEventMetadata;
   utm?: Record<string, string>;
 };
 
@@ -34,7 +75,7 @@ const getUtm = (): Record<string, string> => {
 
 export const trackEvent = (
   event_name: string,
-  metadata?: Record<string, string | number | boolean>
+  metadata?: MarketingEventMetadata
 ): void => {
   if (typeof window === "undefined") return;
 

@@ -1,0 +1,37 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="24" fill="#F2F8FF"/>
+  <rect x="42" y="42" width="1116" height="676" rx="18" fill="#FFFFFF" stroke="#BFD7F7" stroke-width="2"/>
+  <rect x="74" y="76" width="268" height="34" rx="9" fill="#E3F2EA"/>
+  <text x="92" y="99" fill="#18623D" font-size="18" font-family="Arial, sans-serif" font-weight="700">Translated Output (JP)</text>
+  <text x="74" y="152" fill="#132645" font-size="38" font-family="Arial, sans-serif" font-weight="700">Global Safety Requirements</text>
+  <rect x="74" y="176" width="840" height="3" fill="#D9E7FB"/>
+  <rect x="74" y="208" width="1048" height="18" rx="6" fill="#EAF3FF"/>
+  <rect x="74" y="236" width="960" height="18" rx="6" fill="#EAF3FF"/>
+  <rect x="74" y="264" width="1024" height="18" rx="6" fill="#EAF3FF"/>
+  <rect x="74" y="292" width="890" height="18" rx="6" fill="#EAF3FF"/>
+  <rect x="946" y="125" width="176" height="42" rx="10" fill="#EAF2FF" stroke="#BCD6F8"/>
+  <text x="965" y="151" fill="#1F4B8D" font-size="17" font-family="Arial, sans-serif" font-weight="700">Layout Preserved</text>
+  <text x="74" y="346" fill="#3E5A82" font-size="22" font-family="Arial, sans-serif" font-weight="700">Procedure Table</text>
+  <rect x="74" y="366" width="1048" height="286" rx="12" fill="#FAFCFF" stroke="#CCE0FA"/>
+  <rect x="74" y="366" width="1048" height="52" rx="12" fill="#E6F0FF"/>
+  <text x="100" y="399" fill="#1D437D" font-size="20" font-family="Arial, sans-serif" font-weight="700">Step</text>
+  <text x="360" y="399" fill="#1D437D" font-size="20" font-family="Arial, sans-serif" font-weight="700">Task Description (Translated)</text>
+  <text x="930" y="399" fill="#1D437D" font-size="20" font-family="Arial, sans-serif" font-weight="700">Owner</text>
+  <line x1="330" y1="366" x2="330" y2="652" stroke="#CCE0FA"/>
+  <line x1="900" y1="366" x2="900" y2="652" stroke="#CCE0FA"/>
+  <line x1="74" y1="458" x2="1122" y2="458" stroke="#CCE0FA"/>
+  <line x1="74" y1="510" x2="1122" y2="510" stroke="#CCE0FA"/>
+  <line x1="74" y1="562" x2="1122" y2="562" stroke="#CCE0FA"/>
+  <text x="102" y="448" fill="#203A62" font-size="18" font-family="Arial, sans-serif">1</text>
+  <text x="360" y="448" fill="#203A62" font-size="18" font-family="Arial, sans-serif">Review incoming project metadata</text>
+  <text x="930" y="448" fill="#203A62" font-size="18" font-family="Arial, sans-serif">Ops</text>
+  <text x="102" y="500" fill="#203A62" font-size="18" font-family="Arial, sans-serif">2</text>
+  <text x="360" y="500" fill="#203A62" font-size="18" font-family="Arial, sans-serif">Run QA checklist against glossary terms</text>
+  <text x="930" y="500" fill="#203A62" font-size="18" font-family="Arial, sans-serif">QA</text>
+  <text x="102" y="552" fill="#203A62" font-size="18" font-family="Arial, sans-serif">3</text>
+  <text x="360" y="552" fill="#203A62" font-size="18" font-family="Arial, sans-serif">Generate final bilingual package for export</text>
+  <text x="930" y="552" fill="#203A62" font-size="18" font-family="Arial, sans-serif">PM</text>
+  <text x="102" y="604" fill="#203A62" font-size="18" font-family="Arial, sans-serif">4</text>
+  <text x="360" y="604" fill="#203A62" font-size="18" font-family="Arial, sans-serif">Archive assets and send release notification</text>
+  <text x="930" y="604" fill="#203A62" font-size="18" font-family="Arial, sans-serif">Ops</text>
+</svg>

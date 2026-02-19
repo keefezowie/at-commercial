@@ -18,15 +18,23 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Reach sales for evaluations, procurement support, or commercial planning."
-        description="Use the form below and include your project context. We route requests for sales, support, and partnership discussions."
+        description="Use the form below and include project context. We route sales conversations toward guided demo and subscription onboarding."
       />
       <section className="section-tight">
         <div className="container">
           <ContactForm />
           <div className="cta-row" style={{ marginTop: "1rem" }}>
-            <Link href="/demo" className="button button-secondary link-focus">
-              Request Enterprise Demo
+            <Link href="/demo" className="button button-primary link-focus">
+              Request Demo
             </Link>
+            <a
+              href={siteConfig.appUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-secondary link-focus"
+            >
+              Subscriber Login
+            </a>
           </div>
           <p style={{ marginTop: "1rem", color: "var(--text-secondary)" }}>
             Direct contact: <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> |{" "}

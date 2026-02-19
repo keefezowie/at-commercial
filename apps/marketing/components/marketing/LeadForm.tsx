@@ -41,8 +41,11 @@ const initialState: LeadFormState = {
 };
 
 export function LeadForm({ sourcePage }: Props) {
+  const pageTemplate = sourcePage === "/demo" ? "demo" : "home";
   const [state, setState] = useState<LeadFormState>(initialState);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [submitAttempted, setSubmitAttempted] = useState(false);
   const [started, setStarted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<MarketingLeadResponse | null>(null);
@@ -69,12 +72,35 @@ export function LeadForm({ sourcePage }: Props) {
   const updateStarted = () => {
     if (!started) {
       setStarted(true);
-      trackEvent("demo_form_start");
+      trackEvent("demo_form_start", {
+        surface: "demo_page",
+        page_template: pageTemplate
+      });
     }
   };
 
+  const markTouched = (field: string) => {
+    setTouched((previous) => ({ ...previous, [field]: true }));
+  };
+
+  const clearError = (field: string) => {
+    setErrors((previous) => {
+      if (!previous[field]) {
+        return previous;
+      }
+      const next = { ...previous };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const showError = (field: string) =>
+    Boolean(errors[field]) && (submitAttempted || touched[field]);
+
   const toggleMultiValue = (key: "file_types" | "target_languages", value: string) => {
     updateStarted();
+    markTouched(key);
+    clearError(key);
     setState((previous) => {
       const exists = previous[key].includes(value);
       const nextValues = exists
@@ -86,6 +112,7 @@ export function LeadForm({ sourcePage }: Props) {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitAttempted(true);
     const validation = validate();
     setErrors(validation);
     setResult(null);
@@ -115,14 +142,29 @@ export function LeadForm({ sourcePage }: Props) {
       const payload: MarketingLeadResponse = await response.json();
       setResult(payload);
       if (response.ok && payload.status === "accepted") {
-        trackEvent("demo_form_submit_success", { route: payload.route ?? "unknown" });
+        trackEvent("demo_form_submit_success", {
+          surface: "demo_page",
+          page_template: pageTemplate,
+          route: payload.route ?? "unknown"
+        });
         setState(initialState);
+        setErrors({});
+        setTouched({});
+        setSubmitAttempted(false);
       } else {
-        trackEvent("demo_form_submit_error", { reason: payload.message });
+        trackEvent("demo_form_submit_error", {
+          surface: "demo_page",
+          page_template: pageTemplate,
+          reason: payload.message
+        });
       }
     } catch (error) {
       setResult({ status: "rejected", message: "Unable to submit request right now." });
-      trackEvent("demo_form_submit_error", { reason: "network_or_server_error" });
+      trackEvent("demo_form_submit_error", {
+        surface: "demo_page",
+        page_template: pageTemplate,
+        reason: "network_or_server_error"
+      });
     } finally {
       setSubmitting(false);
     }
@@ -130,58 +172,133 @@ export function LeadForm({ sourcePage }: Props) {
 
   return (
     <form className={`card ${styles.formWrap}`} onSubmit={onSubmit} noValidate>
+      <p className={styles.formIntro}>
+        Start with your contact and scope details. We use this to route demo and onboarding guidance.
+      </p>
       <div className={styles.formGrid}>
-        <div className={styles.formField}>
-          <label htmlFor="full_name">Full name</label>
-          <input
-            id="full_name"
-            value={state.full_name}
-            onChange={(event) => {
-              updateStarted();
-              setState((previous) => ({ ...previous, full_name: event.target.value }));
-            }}
-          />
-          {errors.full_name ? <p className={styles.errorText}>{errors.full_name}</p> : null}
-        </div>
-
         <div className={styles.formField}>
           <label htmlFor="email">Work email</label>
           <input
             id="email"
             type="email"
+            placeholder="name@company.com"
+            autoComplete="email"
+            inputMode="email"
+            aria-invalid={showError("email")}
+            aria-describedby={showError("email") ? "lead-email-error" : undefined}
             value={state.email}
             onChange={(event) => {
               updateStarted();
+              clearError("email");
               setState((previous) => ({ ...previous, email: event.target.value }));
             }}
+            onBlur={() => {
+              markTouched("email");
+              setErrors(validate());
+            }}
           />
-          {errors.email ? <p className={styles.errorText}>{errors.email}</p> : null}
+          {showError("email") ? (
+            <p id="lead-email-error" className={styles.errorText}>
+              {errors.email}
+            </p>
+          ) : null}
+        </div>
+
+        <div className={styles.formField}>
+          <label htmlFor="full_name">Full name</label>
+          <input
+            id="full_name"
+            placeholder="Jane Doe"
+            autoComplete="name"
+            aria-invalid={showError("full_name")}
+            aria-describedby={showError("full_name") ? "lead-full-name-error" : undefined}
+            value={state.full_name}
+            onChange={(event) => {
+              updateStarted();
+              clearError("full_name");
+              setState((previous) => ({ ...previous, full_name: event.target.value }));
+            }}
+            onBlur={() => {
+              markTouched("full_name");
+              setErrors(validate());
+            }}
+          />
+          {showError("full_name") ? (
+            <p id="lead-full-name-error" className={styles.errorText}>
+              {errors.full_name}
+            </p>
+          ) : null}
         </div>
 
         <div className={styles.formField}>
           <label htmlFor="company">Company</label>
           <input
             id="company"
+            placeholder="Acme Corporation"
+            autoComplete="organization"
+            aria-invalid={showError("company")}
+            aria-describedby={showError("company") ? "lead-company-error" : undefined}
             value={state.company}
             onChange={(event) => {
               updateStarted();
+              clearError("company");
               setState((previous) => ({ ...previous, company: event.target.value }));
             }}
+            onBlur={() => {
+              markTouched("company");
+              setErrors(validate());
+            }}
           />
-          {errors.company ? <p className={styles.errorText}>{errors.company}</p> : null}
+          {showError("company") ? (
+            <p id="lead-company-error" className={styles.errorText}>
+              {errors.company}
+            </p>
+          ) : null}
         </div>
 
         <div className={styles.formField}>
           <label htmlFor="role">Role</label>
           <input
             id="role"
+            placeholder="Localization manager"
+            autoComplete="organization-title"
+            aria-invalid={showError("role")}
+            aria-describedby={showError("role") ? "lead-role-error" : undefined}
             value={state.role}
             onChange={(event) => {
               updateStarted();
+              clearError("role");
               setState((previous) => ({ ...previous, role: event.target.value }));
             }}
+            onBlur={() => {
+              markTouched("role");
+              setErrors(validate());
+            }}
           />
-          {errors.role ? <p className={styles.errorText}>{errors.role}</p> : null}
+          {showError("role") ? (
+            <p id="lead-role-error" className={styles.errorText}>
+              {errors.role}
+            </p>
+          ) : null}
+        </div>
+
+        <div className={styles.formField}>
+          <label htmlFor="intent">Primary intent</label>
+          <select
+            id="intent"
+            value={state.intent}
+            onChange={(event) => {
+              updateStarted();
+              setState((previous) => ({
+                ...previous,
+                intent: event.target.value as LeadFormState["intent"]
+              }));
+            }}
+          >
+            <option value="demo">Demo</option>
+            <option value="security_review">Security review</option>
+            <option value="pricing_discussion">Pricing discussion</option>
+          </select>
         </div>
 
         <div className={styles.formField}>
@@ -209,13 +326,24 @@ export function LeadForm({ sourcePage }: Props) {
           <input
             id="monthly_volume"
             placeholder="e.g. 5,000 files/month"
+            aria-invalid={showError("monthly_volume")}
+            aria-describedby={showError("monthly_volume") ? "lead-monthly-volume-error" : undefined}
             value={state.monthly_volume}
             onChange={(event) => {
               updateStarted();
+              clearError("monthly_volume");
               setState((previous) => ({ ...previous, monthly_volume: event.target.value }));
             }}
+            onBlur={() => {
+              markTouched("monthly_volume");
+              setErrors(validate());
+            }}
           />
-          {errors.monthly_volume ? <p className={styles.errorText}>{errors.monthly_volume}</p> : null}
+          {showError("monthly_volume") ? (
+            <p id="lead-monthly-volume-error" className={styles.errorText}>
+              {errors.monthly_volume}
+            </p>
+          ) : null}
         </div>
 
         <div className={`${styles.formField} ${styles.formFull}`}>
@@ -235,7 +363,7 @@ export function LeadForm({ sourcePage }: Props) {
               );
             })}
           </div>
-          {errors.file_types ? <p className={styles.errorText}>{errors.file_types}</p> : null}
+          {showError("file_types") ? <p className={styles.errorText}>{errors.file_types}</p> : null}
         </div>
 
         <div className={`${styles.formField} ${styles.formFull}`}>
@@ -255,32 +383,15 @@ export function LeadForm({ sourcePage }: Props) {
               );
             })}
           </div>
-          {errors.target_languages ? <p className={styles.errorText}>{errors.target_languages}</p> : null}
-        </div>
-
-        <div className={styles.formField}>
-          <label htmlFor="intent">Primary intent</label>
-          <select
-            id="intent"
-            value={state.intent}
-            onChange={(event) =>
-              setState((previous) => ({
-                ...previous,
-                intent: event.target.value as LeadFormState["intent"]
-              }))
-            }
-          >
-            <option value="demo">Demo</option>
-            <option value="security_review">Security review</option>
-            <option value="pricing_discussion">Pricing discussion</option>
-          </select>
+          {showError("target_languages") ? <p className={styles.errorText}>{errors.target_languages}</p> : null}
         </div>
 
         <div className={`${styles.formField} ${styles.formFull}`}>
-          <label htmlFor="notes">Notes</label>
+          <label htmlFor="notes">Notes (optional)</label>
           <textarea
             id="notes"
             rows={4}
+            placeholder="Share timeline, stakeholders, and constraints."
             value={state.notes}
             onChange={(event) =>
               setState((previous) => ({ ...previous, notes: event.target.value }))
@@ -292,14 +403,22 @@ export function LeadForm({ sourcePage }: Props) {
           <label className={styles.chipCheck} data-checked={state.consent}>
             <input
               type="checkbox"
+              aria-invalid={showError("consent")}
+              aria-describedby={showError("consent") ? "lead-consent-error" : undefined}
               checked={state.consent}
-              onChange={(event) =>
-                setState((previous) => ({ ...previous, consent: event.target.checked }))
-              }
+              onChange={(event) => {
+                markTouched("consent");
+                clearError("consent");
+                setState((previous) => ({ ...previous, consent: event.target.checked }));
+              }}
             />
             I agree to be contacted about this request.
           </label>
-          {errors.consent ? <p className={styles.errorText}>{errors.consent}</p> : null}
+          {showError("consent") ? (
+            <p id="lead-consent-error" className={styles.errorText}>
+              {errors.consent}
+            </p>
+          ) : null}
         </div>
       </div>
 

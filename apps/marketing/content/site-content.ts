@@ -17,10 +17,9 @@ type PricingPreviewItem = {
 
 export const navLinks = [
   { label: "Features", href: "/features" },
-  { label: "Formats", href: "/formats" },
-  { label: "CAD Translation", href: "/cad-translation" },
   { label: "Security", href: "/security" },
-  { label: "Pricing", href: "/pricing" }
+  { label: "Pricing", href: "/pricing" },
+  { label: "Contact", href: "/contact" }
 ] satisfies readonly NavLink[];
 
 export const proofChips = [
@@ -112,14 +111,14 @@ export const pricingPreview = [
     tier: "Pilot Launch",
     audience: "Small rollout team",
     points: ["Guided onboarding", "Core document workflows", "Standard support"],
-    cta: "Start Pilot",
+    cta: "Request Demo",
     href: "/demo"
   },
   {
     tier: "Growth Program",
     audience: "Multi-team adoption",
     points: ["Expanded usage profiles", "Glossary governance", "Priority onboarding"],
-    cta: "Request Enterprise Demo",
+    cta: "Request Demo",
     href: "/demo",
     featured: true
   },
@@ -155,7 +154,7 @@ export const faqs = [
   },
   {
     question: "Is the platform available now?",
-    answer: `Yes. ${siteConfig.productName} is available for authenticated use today through ${siteConfig.appUrl}.`
+    answer: `Yes. ${siteConfig.productName} is available for subscribed teams through ${siteConfig.appUrl}. New organizations should request a demo to start evaluation and onboarding.`
   },
   {
     question: "How is pricing handled?",

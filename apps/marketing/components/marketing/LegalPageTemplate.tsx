@@ -1,5 +1,6 @@
 import styles from "@/components/marketing/marketing.module.css";
 import Link from "next/link";
+import { siteConfig } from "@/lib/site-config";
 
 type Section = {
   heading: string;
@@ -32,12 +33,17 @@ export function LegalPageTemplate({ title, updatedDate, intro, sections }: Props
             </section>
           ))}
           <div className="cta-row" style={{ marginTop: "1.2rem" }}>
-            <Link href="/contact" className="button button-primary link-focus">
-              Contact
+            <Link href="/demo" className="button button-primary link-focus">
+              Request Demo
             </Link>
-            <Link href="/" className="button button-secondary link-focus">
-              Home
-            </Link>
+            <a
+              href={siteConfig.appUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-secondary link-focus"
+            >
+              Subscriber Login
+            </a>
           </div>
         </article>
       </div>

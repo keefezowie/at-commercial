@@ -10,53 +10,81 @@ export function Footer() {
           <div className={styles.footerBrand}>
             <strong>{siteConfig.productName}</strong>
             <p>
-              Enterprise AI document translation workflows for business and engineering teams. Live
-              platform access is available now.
+              Enterprise AI document translation workflows for business and engineering teams.
+              Subscription access is available after evaluation and onboarding.
             </p>
           </div>
 
           <div className={styles.footerLinks}>
-            <section>
+            <section className={styles.footerColumn}>
               <h3>Product</h3>
-              <Link href="/features" className="link-focus">
-                Features
-              </Link>
-              <Link href="/formats" className="link-focus">
-                Formats
-              </Link>
-              <Link href="/cad-translation" className="link-focus">
-                CAD Translation
-              </Link>
-              <Link href="/pricing" className="link-focus">
-                Pricing
-              </Link>
+              <ul className={styles.footerLinkList}>
+                <li>
+                  <Link href="/features" className="link-focus">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/formats" className="link-focus">
+                    Formats
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/cad-translation" className="link-focus">
+                    CAD Translation
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pricing" className="link-focus">
+                    Pricing
+                  </Link>
+                </li>
+              </ul>
             </section>
-            <section>
+            <section className={styles.footerColumn}>
               <h3>Company</h3>
-              <Link href="/security" className="link-focus">
-                Security
-              </Link>
-              <Link href="/contact" className="link-focus">
-                Contact
-              </Link>
-              <a href={siteConfig.appUrl} target="_blank" rel="noreferrer" className="link-focus">
-                Open App
-              </a>
-              <a href="#" aria-disabled className="link-focus">
-                Status
-              </a>
+              <ul className={styles.footerLinkList}>
+                <li>
+                  <Link href="/security" className="link-focus">
+                    Security
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="link-focus">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/demo" className="link-focus">
+                    Request Demo
+                  </Link>
+                </li>
+                <li>
+                  <a href={siteConfig.appUrl} target="_blank" rel="noreferrer" className="link-focus">
+                    Subscriber Login
+                  </a>
+                </li>
+              </ul>
             </section>
-            <section>
+            <section className={styles.footerColumn}>
               <h3>Legal</h3>
-              <Link href="/privacy" className="link-focus">
-                Privacy
-              </Link>
-              <Link href="/terms" className="link-focus">
-                Terms
-              </Link>
-              <a href={`mailto:${siteConfig.supportEmail}`} className="link-focus">
-                {siteConfig.supportEmail}
-              </a>
+              <ul className={styles.footerLinkList}>
+                <li>
+                  <Link href="/privacy" className="link-focus">
+                    Privacy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="link-focus">
+                    Terms
+                  </Link>
+                </li>
+                <li>
+                  <a href={`mailto:${siteConfig.supportEmail}`} className={`link-focus ${styles.footerEmail}`}>
+                    {siteConfig.supportEmail}
+                  </a>
+                </li>
+              </ul>
             </section>
           </div>
         </div>

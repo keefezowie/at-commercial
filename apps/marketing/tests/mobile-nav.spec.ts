@@ -18,6 +18,8 @@ test.describe("mobile navigation", () => {
     const panel = page.getByTestId("mobile-menu-panel");
     await expect(panel).toBeVisible();
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
+    await expect(panel.getByRole("link", { name: "Request Demo" })).toBeVisible();
+    await expect(panel.getByRole("link", { name: "Subscriber Login" })).toBeVisible();
 
     await page.keyboard.press("Escape");
     await expect(panel).toBeHidden();
@@ -25,7 +27,7 @@ test.describe("mobile navigation", () => {
     await toggle.click();
     await expect(panel).toBeVisible();
 
-    await page.getByRole("link", { name: "Pricing" }).first().click();
+    await panel.getByRole("link", { name: "Pricing" }).click();
     await page.waitForURL("**/pricing");
     await expect(panel).toBeHidden();
   });

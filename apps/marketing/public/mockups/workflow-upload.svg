@@ -1,0 +1,16 @@
+<svg width="860" height="560" viewBox="0 0 860 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="560" rx="20" fill="#F4F8FF"/>
+  <rect x="36" y="36" width="788" height="488" rx="16" fill="#FFFFFF" stroke="#D0E1FA" stroke-width="2"/>
+  <text x="70" y="88" fill="#1A3F76" font-size="26" font-family="Arial, sans-serif" font-weight="700">1. Upload Source Files</text>
+  <rect x="70" y="118" width="718" height="3" fill="#D9E7FA"/>
+  <rect x="70" y="154" width="280" height="190" rx="14" fill="#F7FBFF" stroke="#D2E3FB"/>
+  <rect x="122" y="204" width="176" height="90" rx="12" fill="#EAF3FF"/>
+  <text x="150" y="258" fill="#1D4B8F" font-size="22" font-family="Arial, sans-serif" font-weight="700">Drop files</text>
+  <rect x="384" y="154" width="404" height="190" rx="14" fill="#FAFCFF" stroke="#D2E3FB"/>
+  <text x="412" y="196" fill="#26446A" font-size="20" font-family="Arial, sans-serif">Batch A (12 files) - DOCX, PPTX, PDF</text>
+  <text x="412" y="236" fill="#26446A" font-size="20" font-family="Arial, sans-serif">Batch B (6 files) - DWG, DXF</text>
+  <text x="412" y="276" fill="#26446A" font-size="20" font-family="Arial, sans-serif">Batch C (4 files) - XLSX, TXT</text>
+  <rect x="70" y="378" width="718" height="96" rx="14" fill="#E9F2FF" stroke="#BED5F7"/>
+  <text x="98" y="420" fill="#1F4A8D" font-size="22" font-family="Arial, sans-serif" font-weight="700">Target languages:</text>
+  <text x="310" y="420" fill="#1F4A8D" font-size="22" font-family="Arial, sans-serif">Japanese, German, Indonesian</text>
+</svg>

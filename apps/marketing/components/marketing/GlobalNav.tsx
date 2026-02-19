@@ -9,15 +9,29 @@ import { MagneticAction } from "@/components/marketing/MagneticAction";
 import { navLinks } from "@/content/site-content";
 import { createMicroInteraction, motionEasing, motionTokens, useMotionProfile } from "@/lib/motion";
 import { siteConfig } from "@/lib/site-config";
-import { trackEvent } from "@/lib/analytics";
+import { type PageTemplate, trackEvent } from "@/lib/analytics";
 
 const mobileMenuId = "mobile-nav-menu";
+
+const getPageTemplate = (pathname: string): PageTemplate => {
+  if (pathname === "/") return "home";
+  if (pathname.startsWith("/features")) return "features";
+  if (pathname.startsWith("/formats")) return "formats";
+  if (pathname.startsWith("/cad-translation")) return "cad_translation";
+  if (pathname.startsWith("/security")) return "security";
+  if (pathname.startsWith("/pricing")) return "pricing";
+  if (pathname.startsWith("/demo")) return "demo";
+  if (pathname.startsWith("/contact")) return "contact";
+  if (pathname.startsWith("/privacy") || pathname.startsWith("/terms")) return "legal";
+  return "home";
+};
 
 export function GlobalNav() {
   const pathname = usePathname();
   const profile = useMotionProfile("low");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pageTemplate = useMemo(() => getPageTemplate(pathname), [pathname]);
 
   const uiTransition = useMemo(
     () =>
@@ -28,6 +42,7 @@ export function GlobalNav() {
   );
 
   const buttonMotion = createMicroInteraction(profile, { kind: "button" });
+  const linkMotion = createMicroInteraction(profile, { kind: "link" });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > motionTokens.nav.scrollThreshold);
@@ -75,10 +90,7 @@ export function GlobalNav() {
       <div className={`container ${styles.navInner}`}>
         <Link href="/" className={`${styles.brand} link-focus`}>
           <span className={styles.brandMark} aria-hidden />
-          <span className={styles.brandText}>
-            {siteConfig.productName}
-            <span className={styles.statusBadge}>Platform available</span>
-          </span>
+          <span className={styles.brandText}>{siteConfig.productName}</span>
         </Link>
 
         <nav className={styles.navLinks} aria-label="Primary">
@@ -98,28 +110,41 @@ export function GlobalNav() {
 
         <div className={styles.navCtas}>
           <MagneticAction enabled={profile.allowHover}>
-            <m.a
-              {...buttonMotion}
-              href={siteConfig.appUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="button button-secondary link-focus"
-              onClick={() => trackEvent("cta_open_app_click", { location: "global_nav" })}
-            >
-              Open App
-            </m.a>
-          </MagneticAction>
-          <MagneticAction enabled={profile.allowHover}>
             <m.div {...buttonMotion}>
               <Link
                 href="/demo"
-                className="button button-primary link-focus"
-                onClick={() => trackEvent("cta_primary_click", { location: "global_nav" })}
+                className={`button button-primary link-focus ${styles.navPrimaryCta}`}
+                onClick={() =>
+                  trackEvent("cta_primary_request_demo_click", {
+                    surface: "global_nav",
+                    page_template: pageTemplate,
+                    cta_role: "primary_demo"
+                  })
+                }
               >
-                Request Enterprise Demo
+                Request Demo
               </Link>
             </m.div>
           </MagneticAction>
+          <div className={styles.navSubscriberBlock}>
+            <span className={styles.navSubscriberHint}>Already subscribed?</span>
+            <m.a
+              {...linkMotion}
+              href={siteConfig.appUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={`${styles.navSubscriberLink} link-focus`}
+              onClick={() =>
+                trackEvent("cta_secondary_subscriber_login_click", {
+                  surface: "global_nav",
+                  page_template: pageTemplate,
+                  cta_role: "secondary_login"
+                })
+              }
+            >
+              Subscriber Login
+            </m.a>
+          </div>
         </div>
 
         <button
@@ -178,31 +203,42 @@ export function GlobalNav() {
                 })}
               </nav>
               <div className={styles.mobileCtas}>
-                <m.a
-                  {...buttonMotion}
-                  href={siteConfig.appUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="button button-secondary link-focus"
-                  onClick={() => {
-                    setMenuOpen(false);
-                    trackEvent("cta_open_app_click", { location: "mobile_nav" });
-                  }}
-                >
-                  Open App
-                </m.a>
                 <m.div {...buttonMotion}>
                   <Link
                     href="/demo"
                     className="button button-primary link-focus"
                     onClick={() => {
                       setMenuOpen(false);
-                      trackEvent("cta_primary_click", { location: "mobile_nav" });
+                      trackEvent("cta_primary_request_demo_click", {
+                        surface: "mobile_nav",
+                        page_template: pageTemplate,
+                        cta_role: "primary_demo"
+                      });
                     }}
                   >
-                    Request Enterprise Demo
+                    Request Demo
                   </Link>
                 </m.div>
+                <p className={styles.mobileSubscriberHint}>
+                  Already subscribed?{" "}
+                  <m.a
+                    {...linkMotion}
+                    href={siteConfig.appUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`${styles.mobileSubscriberLink} link-focus`}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      trackEvent("cta_secondary_subscriber_login_click", {
+                        surface: "mobile_nav",
+                        page_template: pageTemplate,
+                        cta_role: "secondary_login"
+                      });
+                    }}
+                  >
+                    Subscriber Login
+                  </m.a>
+                </p>
               </div>
             </m.div>
           </>

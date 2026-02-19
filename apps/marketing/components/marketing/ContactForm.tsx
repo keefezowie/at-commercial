@@ -25,6 +25,8 @@ const initialState: ContactState = {
 export function ContactForm() {
   const [state, setState] = useState(initialState);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [submitAttempted, setSubmitAttempted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -38,8 +40,27 @@ export function ContactForm() {
     return next;
   };
 
+  const markTouched = (field: string) => {
+    setTouched((previous) => ({ ...previous, [field]: true }));
+  };
+
+  const clearError = (field: string) => {
+    setErrors((previous) => {
+      if (!previous[field]) {
+        return previous;
+      }
+      const next = { ...previous };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const showError = (field: string) =>
+    Boolean(errors[field]) && (submitAttempted || touched[field]);
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitAttempted(true);
     const validation = validate();
     setErrors(validation);
     setMessage(null);
@@ -56,12 +77,29 @@ export function ContactForm() {
       setMessage(payload.message);
       setSuccess(response.ok && payload.status === "accepted");
       if (response.ok) {
-        trackEvent("contact_submit_success");
+        trackEvent("contact_submit_success", {
+          surface: "contact_page",
+          page_template: "contact"
+        });
         setState(initialState);
+        setErrors({});
+        setTouched({});
+        setSubmitAttempted(false);
+      } else {
+        trackEvent("contact_submit_error", {
+          surface: "contact_page",
+          page_template: "contact",
+          reason: payload.message
+        });
       }
     } catch {
       setSuccess(false);
       setMessage("Unable to send inquiry right now.");
+      trackEvent("contact_submit_error", {
+        surface: "contact_page",
+        page_template: "contact",
+        reason: "network_or_server_error"
+      });
     } finally {
       setSubmitting(false);
     }
@@ -69,34 +107,68 @@ export function ContactForm() {
 
   return (
     <form className={`card ${styles.formWrap}`} onSubmit={onSubmit} noValidate>
+      <p className={styles.formIntro}>
+        Share your requirements and we will route the conversation to sales, support, or partnership.
+      </p>
       <div className={styles.formGrid}>
-        <div className={styles.formField}>
-          <label htmlFor="contact_name">Full name</label>
-          <input
-            id="contact_name"
-            value={state.full_name}
-            onChange={(event) =>
-              setState((previous) => ({ ...previous, full_name: event.target.value }))
-            }
-          />
-          {errors.full_name ? <p className={styles.errorText}>{errors.full_name}</p> : null}
-        </div>
-
         <div className={styles.formField}>
           <label htmlFor="contact_email">Work email</label>
           <input
             id="contact_email"
             type="email"
+            placeholder="name@company.com"
+            autoComplete="email"
+            inputMode="email"
+            aria-invalid={showError("email")}
+            aria-describedby={showError("email") ? "contact-email-error" : undefined}
             value={state.email}
-            onChange={(event) => setState((previous) => ({ ...previous, email: event.target.value }))}
+            onChange={(event) => {
+              clearError("email");
+              setState((previous) => ({ ...previous, email: event.target.value }));
+            }}
+            onBlur={() => {
+              markTouched("email");
+              setErrors(validate());
+            }}
           />
-          {errors.email ? <p className={styles.errorText}>{errors.email}</p> : null}
+          {showError("email") ? (
+            <p id="contact-email-error" className={styles.errorText}>
+              {errors.email}
+            </p>
+          ) : null}
+        </div>
+
+        <div className={styles.formField}>
+          <label htmlFor="contact_name">Full name</label>
+          <input
+            id="contact_name"
+            placeholder="Jane Doe"
+            autoComplete="name"
+            aria-invalid={showError("full_name")}
+            aria-describedby={showError("full_name") ? "contact-name-error" : undefined}
+            value={state.full_name}
+            onChange={(event) => {
+              clearError("full_name");
+              setState((previous) => ({ ...previous, full_name: event.target.value }));
+            }}
+            onBlur={() => {
+              markTouched("full_name");
+              setErrors(validate());
+            }}
+          />
+          {showError("full_name") ? (
+            <p id="contact-name-error" className={styles.errorText}>
+              {errors.full_name}
+            </p>
+          ) : null}
         </div>
 
         <div className={styles.formField}>
           <label htmlFor="contact_company">Company</label>
           <input
             id="contact_company"
+            placeholder="Acme Corporation"
+            autoComplete="organization"
             value={state.company}
             onChange={(event) =>
               setState((previous) => ({ ...previous, company: event.target.value }))
@@ -127,26 +199,46 @@ export function ContactForm() {
           <textarea
             id="contact_message"
             rows={5}
+            placeholder="Tell us your language pairs, file formats, and timeline."
+            aria-invalid={showError("message")}
+            aria-describedby={showError("message") ? "contact-message-error" : undefined}
             value={state.message}
-            onChange={(event) =>
-              setState((previous) => ({ ...previous, message: event.target.value }))
-            }
+            onChange={(event) => {
+              clearError("message");
+              setState((previous) => ({ ...previous, message: event.target.value }));
+            }}
+            onBlur={() => {
+              markTouched("message");
+              setErrors(validate());
+            }}
           />
-          {errors.message ? <p className={styles.errorText}>{errors.message}</p> : null}
+          {showError("message") ? (
+            <p id="contact-message-error" className={styles.errorText}>
+              {errors.message}
+            </p>
+          ) : null}
         </div>
 
         <div className={`${styles.formField} ${styles.formFull}`}>
           <label className={styles.chipCheck} data-checked={state.consent}>
             <input
               type="checkbox"
+              aria-invalid={showError("consent")}
+              aria-describedby={showError("consent") ? "contact-consent-error" : undefined}
               checked={state.consent}
-              onChange={(event) =>
-                setState((previous) => ({ ...previous, consent: event.target.checked }))
-              }
+              onChange={(event) => {
+                markTouched("consent");
+                clearError("consent");
+                setState((previous) => ({ ...previous, consent: event.target.checked }));
+              }}
             />
             I agree to be contacted about this inquiry.
           </label>
-          {errors.consent ? <p className={styles.errorText}>{errors.consent}</p> : null}
+          {showError("consent") ? (
+            <p id="contact-consent-error" className={styles.errorText}>
+              {errors.consent}
+            </p>
+          ) : null}
         </div>
       </div>
 

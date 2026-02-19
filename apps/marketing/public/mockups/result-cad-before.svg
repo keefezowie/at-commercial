@@ -1,0 +1,23 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="24" fill="#0D2E59"/>
+  <rect x="34" y="34" width="1132" height="692" rx="18" fill="#11386B" stroke="#2A578E" stroke-width="2"/>
+  <rect x="62" y="62" width="240" height="34" rx="10" fill="#1B4C86"/>
+  <text x="80" y="85" fill="#D7E8FF" font-size="18" font-family="Arial, sans-serif" font-weight="700">CAD Source Layer (EN)</text>
+  <rect x="84" y="130" width="1032" height="540" rx="14" fill="#0C2A52" stroke="#2A578E"/>
+  <line x1="84" y1="220" x2="1116" y2="220" stroke="#204C82"/>
+  <line x1="84" y1="320" x2="1116" y2="320" stroke="#204C82"/>
+  <line x1="84" y1="420" x2="1116" y2="420" stroke="#204C82"/>
+  <line x1="84" y1="520" x2="1116" y2="520" stroke="#204C82"/>
+  <line x1="220" y1="130" x2="220" y2="670" stroke="#204C82"/>
+  <line x1="430" y1="130" x2="430" y2="670" stroke="#204C82"/>
+  <line x1="640" y1="130" x2="640" y2="670" stroke="#204C82"/>
+  <line x1="850" y1="130" x2="850" y2="670" stroke="#204C82"/>
+  <polyline points="160,590 220,470 340,470 400,350 560,350 620,250 900,250" stroke="#8DD0FF" stroke-width="4" fill="none"/>
+  <circle cx="900" cy="250" r="7" fill="#8DD0FF"/>
+  <rect x="156" y="562" width="178" height="40" rx="8" fill="#184377" stroke="#3C6EA5"/>
+  <text x="174" y="588" fill="#DBEEFF" font-size="19" font-family="Arial, sans-serif">VALVE ASSEMBLY</text>
+  <rect x="530" y="326" width="222" height="40" rx="8" fill="#184377" stroke="#3C6EA5"/>
+  <text x="548" y="352" fill="#DBEEFF" font-size="19" font-family="Arial, sans-serif">PRESSURE CHAMBER</text>
+  <rect x="836" y="226" width="198" height="40" rx="8" fill="#184377" stroke="#3C6EA5"/>
+  <text x="852" y="252" fill="#DBEEFF" font-size="19" font-family="Arial, sans-serif">OUTPUT PORT</text>
+</svg>

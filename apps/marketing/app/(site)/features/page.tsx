@@ -7,6 +7,7 @@ import { ProofChipRail } from "@/components/marketing/ProofChipRail";
 import { WorkflowStepper } from "@/components/marketing/WorkflowStepper";
 import { outcomes, proofChips, workflowSteps } from "@/content/site-content";
 import { buildPageMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/features",
@@ -30,15 +31,23 @@ export default function FeaturesPage() {
         <div className="container">
           <div className="cta-row">
             <Link href="/demo" className="button button-primary link-focus">
-              Request Enterprise Demo
+              Request Demo
             </Link>
+            <a
+              href={siteConfig.appUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-secondary link-focus"
+            >
+              Subscriber Login
+            </a>
             <Link href="/cad-translation" className="button button-secondary link-focus">
               View CAD
             </Link>
           </div>
         </div>
       </section>
-      <FinalCtaBand />
+      <FinalCtaBand pageTemplate="features" />
     </main>
   );
 }

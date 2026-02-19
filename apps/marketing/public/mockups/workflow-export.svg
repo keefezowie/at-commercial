@@ -1,0 +1,18 @@
+<svg width="860" height="560" viewBox="0 0 860 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="560" rx="20" fill="#F2F8FF"/>
+  <rect x="36" y="36" width="788" height="488" rx="16" fill="#FFFFFF" stroke="#CCE0FA" stroke-width="2"/>
+  <text x="70" y="88" fill="#1A3F76" font-size="26" font-family="Arial, sans-serif" font-weight="700">4. Export Delivery Package</text>
+  <rect x="70" y="118" width="718" height="3" fill="#D8E6FB"/>
+  <rect x="70" y="154" width="718" height="128" rx="14" fill="#EAF3FF" stroke="#C4DAF8"/>
+  <text x="96" y="196" fill="#1E4A8D" font-size="24" font-family="Arial, sans-serif" font-weight="700">Output Bundle v1.6</text>
+  <text x="96" y="234" fill="#2D4F77" font-size="20" font-family="Arial, sans-serif">docs_jp, slides_jp, cad_jp, quality_report.pdf</text>
+  <rect x="70" y="306" width="470" height="168" rx="14" fill="#FAFCFF" stroke="#D3E3FA"/>
+  <text x="96" y="344" fill="#21466F" font-size="20" font-family="Arial, sans-serif" font-weight="700">Delivery Log</text>
+  <text x="96" y="380" fill="#2B4E76" font-size="18" font-family="Arial, sans-serif">09:42  Package signed and archived</text>
+  <text x="96" y="412" fill="#2B4E76" font-size="18" font-family="Arial, sans-serif">09:44  Stakeholders notified</text>
+  <text x="96" y="444" fill="#2B4E76" font-size="18" font-family="Arial, sans-serif">09:45  Export ticket marked complete</text>
+  <rect x="566" y="306" width="222" height="168" rx="14" fill="#E5F4EA" stroke="#9FD2B4"/>
+  <text x="596" y="364" fill="#176B43" font-size="26" font-family="Arial, sans-serif" font-weight="700">Delivered</text>
+  <text x="596" y="400" fill="#2A6C4B" font-size="18" font-family="Arial, sans-serif">4 locales</text>
+  <text x="596" y="426" fill="#2A6C4B" font-size="18" font-family="Arial, sans-serif">22 files</text>
+</svg>
