@@ -43,7 +43,87 @@
 }
 
 .resultCard {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   padding: 1rem;
+  --card-fade-mask: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.94) 74%,
+    rgba(0, 0, 0, 0.7) 86%,
+    rgba(0, 0, 0, 0.34) 94%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: var(--card-fade-mask);
+  mask-image: var(--card-fade-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.resultCard::before,
+.resultCard::after,
+.workflowPreviewCard::before,
+.workflowPreviewCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.resultCard::before,
+.workflowPreviewCard::before {
+  z-index: 3;
+  background: linear-gradient(
+    108deg,
+    transparent 0%,
+    rgba(245, 245, 245, 0.05) 30%,
+    transparent 50%,
+    transparent 64%,
+    rgba(245, 245, 245, 0.04) 82%,
+    transparent 100%
+  );
+  opacity: 0.38;
+  animation: gallerySheen 11s ease-in-out infinite;
+}
+
+.resultCard::after,
+.workflowPreviewCard::after {
+  z-index: 3;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 8, 8, 0) 48%,
+      rgba(8, 8, 8, 0.32) 68%,
+      rgba(8, 8, 8, 0.76) 89%,
+      rgba(8, 8, 8, 0.96) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(8, 8, 8, 0.42) 0%,
+      rgba(8, 8, 8, 0) 12%,
+      rgba(8, 8, 8, 0) 88%,
+      rgba(8, 8, 8, 0.42) 100%
+    );
+  opacity: 0.96;
+}
+
+.resultCard > *,
+.workflowPreviewCard > * {
+  position: relative;
+  z-index: 2;
+}
+
+.resultsGrid .resultCard:nth-child(2)::before {
+  animation-delay: -2.4s;
+}
+
+.resultsGrid .resultCard:nth-child(3)::before {
+  animation-delay: -4.7s;
 }
 
 .resultCardHead h3 {
@@ -90,6 +170,7 @@
 .beforeAfterReveal {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -101,6 +182,7 @@
   background: var(--accent);
   transform: translateX(-50%);
   box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.92);
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -148,6 +230,7 @@
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+  z-index: 4;
   pointer-events: none;
 }
 
@@ -199,6 +282,196 @@
 
 .outcomeCard {
   padding: 1.25rem 1.15rem;
+}
+
+.outcomeFigureHead {
+  display: grid;
+  gap: 0.58rem;
+  margin-bottom: 0.95rem;
+}
+
+.figureLabel {
+  font-size: 0.67rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.outcomeFigure {
+  position: relative;
+  min-height: 146px;
+  border-radius: 14px;
+  border: 1px solid rgba(112, 112, 112, 0.42);
+  background: linear-gradient(180deg, rgba(15, 15, 15, 0.92), rgba(10, 10, 10, 0.9));
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.outcomeFigure::before,
+.outcomeFigure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.outcomeFigure::before {
+  z-index: 0;
+  opacity: 0.26;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 38px,
+      rgba(168, 168, 168, 0.2) 38px 39px
+    ),
+    linear-gradient(
+      108deg,
+      transparent 0%,
+      rgba(245, 245, 245, 0.05) 28%,
+      transparent 52%,
+      rgba(245, 245, 245, 0.04) 76%,
+      transparent 100%
+    );
+  animation: figureSheen 9s ease-in-out infinite;
+}
+
+.outcomeFigure::after {
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(245, 245, 245, 0.04) 0%,
+    rgba(10, 10, 10, 0) 34%,
+    rgba(10, 10, 10, 0.42) 100%
+  );
+}
+
+.figureStackTop,
+.figureStackLayer,
+.figureCube,
+.figureStep {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgba(178, 178, 178, 0.46);
+  background: rgba(8, 8, 8, 0.28);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.figureStackTop {
+  width: 104px;
+  height: 38px;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%) skewX(-28deg);
+  border-radius: 8px;
+  animation: figureFloat 5.8s ease-in-out infinite;
+}
+
+.figureStackLayer {
+  width: 96px;
+  height: 28px;
+  left: 50%;
+  transform: translateX(-50%) skewX(-28deg);
+  border-radius: 7px;
+  animation: figureFloat 5.8s ease-in-out infinite;
+}
+
+.figureStackLayer:nth-of-type(2) {
+  top: 56px;
+  animation-delay: -0.9s;
+}
+
+.figureStackLayer:nth-of-type(3) {
+  top: 76px;
+  animation-delay: -1.8s;
+}
+
+.figureStackLayer:nth-of-type(4) {
+  top: 96px;
+  animation-delay: -2.7s;
+}
+
+.figureStackLayer:nth-of-type(5) {
+  top: 116px;
+  animation-delay: -3.6s;
+}
+
+.figureCube {
+  width: 52px;
+  height: 52px;
+  border-radius: 9px;
+  animation: figureCubeDrift 6.6s ease-in-out infinite;
+}
+
+.figureCubeA {
+  left: 24%;
+  top: 30%;
+}
+
+.figureCubeB {
+  left: 46%;
+  top: 18%;
+  animation-delay: -1.3s;
+}
+
+.figureCubeC {
+  left: 58%;
+  top: 46%;
+  animation-delay: -2.2s;
+}
+
+.figureCubeD {
+  left: 36%;
+  top: 54%;
+  animation-delay: -3.1s;
+}
+
+.figureStep {
+  left: 50%;
+  height: 10px;
+  border-radius: 4px;
+  transform-origin: left center;
+  animation: figureStepShift 6.8s ease-in-out infinite;
+}
+
+.figureStepA {
+  width: 34px;
+  bottom: 20px;
+  transform: translateX(-44%);
+}
+
+.figureStepB {
+  width: 46px;
+  bottom: 32px;
+  transform: translateX(-43%);
+  animation-delay: -0.5s;
+}
+
+.figureStepC {
+  width: 58px;
+  bottom: 44px;
+  transform: translateX(-42%);
+  animation-delay: -1s;
+}
+
+.figureStepD {
+  width: 70px;
+  bottom: 56px;
+  transform: translateX(-41%);
+  animation-delay: -1.5s;
+}
+
+.figureStepE {
+  width: 82px;
+  bottom: 68px;
+  transform: translateX(-40%);
+  animation-delay: -2s;
+}
+
+.figureStepF {
+  width: 94px;
+  bottom: 80px;
+  transform: translateX(-39%);
+  animation-delay: -2.5s;
 }
 
 .cardInteractive {
@@ -462,7 +735,37 @@
 }
 
 .workflowPreviewCard {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   padding: 0.95rem;
+  --card-fade-mask: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.94) 74%,
+    rgba(0, 0, 0, 0.7) 86%,
+    rgba(0, 0, 0, 0.34) 94%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: var(--card-fade-mask);
+  mask-image: var(--card-fade-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.workflowPreviewCard:nth-child(2)::before {
+  animation-delay: -2.6s;
+}
+
+.workflowPreviewCard:nth-child(3)::before {
+  animation-delay: -4.8s;
+}
+
+.workflowPreviewCard:nth-child(4)::before {
+  animation-delay: -6.2s;
 }
 
 .workflowPreviewHead {
@@ -486,19 +789,23 @@
 .workflowPreviewImage {
   width: 100%;
   height: auto;
+  display: block;
   border-radius: 10px;
   border: 1px solid var(--border);
-  margin-top: 0.7rem;
+  margin-top: 0;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .workflowPreviewZoom {
+  position: relative;
+  display: block;
   border: 0;
   background: transparent;
   padding: 0;
-  margin-top: 0.5rem;
+  margin-top: 0.7rem;
   cursor: zoom-in;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .workflowPreviewCard p {
@@ -727,6 +1034,60 @@
   padding: clamp(1.3rem, 3vw, 2rem);
 }
 
+@keyframes gallerySheen {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: translateX(-1.5%);
+  }
+  50% {
+    opacity: 0.52;
+    transform: translateX(1.5%);
+  }
+}
+
+@keyframes figureSheen {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateX(-1%);
+  }
+  50% {
+    opacity: 0.34;
+    transform: translateX(1%);
+  }
+}
+
+@keyframes figureFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) skewX(-28deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-2px) skewX(-28deg);
+  }
+}
+
+@keyframes figureCubeDrift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes figureStepShift {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.14);
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
 .cardInteractive:hover {
     transform: translateY(-3px);
@@ -870,6 +1231,18 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .resultCard::before,
+  .workflowPreviewCard::before,
+  .outcomeFigure::before,
+  .figureStackTop,
+  .figureStackLayer,
+  .figureCube,
+  .figureStep {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+
   .cardInteractive,
   .cardInteractive::after,
   .workflowItem,

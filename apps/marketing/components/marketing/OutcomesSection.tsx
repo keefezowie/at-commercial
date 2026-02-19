@@ -35,9 +35,9 @@ export function OutcomesSection({ items }: Props) {
           description="Core workflows map directly to validated capabilities, avoiding speculative claims and reducing procurement friction."
         />
         <m.div className="grid-2" style={{ marginTop: "1.6rem" }} {...gridMotion}>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <m.div key={item.title} {...itemMotion}>
-              <OutcomeCard item={item} />
+              <OutcomeCard item={item} index={index} />
             </m.div>
           ))}
         </m.div>
