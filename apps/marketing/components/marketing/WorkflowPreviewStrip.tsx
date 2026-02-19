@@ -4,7 +4,8 @@ import Image from "next/image";
 import { m } from "framer-motion";
 import { useState } from "react";
 import { ImageLightbox, type LightboxImage } from "@/components/marketing/ImageLightbox";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -59,11 +60,7 @@ export function WorkflowPreviewStrip({
   return (
     <section className="section-tight">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">{eyebrow}</span>
-          <h2 className="section-title">{title}</h2>
-          <p className="section-description">{description}</p>
-        </div>
+        <SectionShell eyebrow={eyebrow} title={title} description={description} />
         <m.div className={styles.workflowPreviewGrid} {...listMotion}>
           {workflowPanels.map((panel, index) => (
             <m.article key={panel.id} className={`card ${styles.workflowPreviewCard}`} {...itemMotion}>

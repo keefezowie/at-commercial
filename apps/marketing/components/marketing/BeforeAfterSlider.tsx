@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { KeyboardEvent, PointerEvent as ReactPointerEvent, useRef, useState } from "react";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
 import type { LightboxImage } from "@/components/marketing/ImageLightbox";
 
 type SlideImage = {

@@ -4,7 +4,8 @@ import { m } from "framer-motion";
 import { useState } from "react";
 import { BeforeAfterSlider } from "@/components/marketing/BeforeAfterSlider";
 import { ImageLightbox, type LightboxImage } from "@/components/marketing/ImageLightbox";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -46,14 +47,11 @@ export function TranslationResultsGallery() {
   return (
     <section className="section">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">Translation Results</span>
-          <h2 className="section-title">See before and after outputs at a glance.</h2>
-          <p className="section-description">
-            Synthetic previews below show the type of format-preserving results teams can expect during
-            evaluation.
-          </p>
-        </div>
+        <SectionShell
+          eyebrow="Translation Results"
+          title="See before and after outputs at a glance."
+          description="Synthetic previews below show the type of format-preserving results teams can expect during evaluation."
+        />
         <m.div className={styles.resultsGrid} {...gridMotion}>
           {translationExamples.map((example) => (
             <m.article key={example.id} className={`card ${styles.resultCard}`} {...cardMotion}>

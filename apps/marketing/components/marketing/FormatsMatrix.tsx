@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -31,14 +32,11 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
   return (
     <section className="section">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">Formats Matrix</span>
-          <h2 className="section-title">{title}</h2>
-          <p className="section-description">
-            Supported formats shown below represent available workflow coverage. Scope and volume can be
-            qualified during evaluation.
-          </p>
-        </div>
+        <SectionShell
+          eyebrow="Formats Matrix"
+          title={title}
+          description="Supported formats shown below represent available workflow coverage. Scope and volume can be qualified during evaluation."
+        />
 
         <div className={`card ${styles.formatsTableWrap}`}>
           <table className={styles.formatsTable}>

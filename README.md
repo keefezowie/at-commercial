@@ -16,7 +16,7 @@ Premium motion-first marketing site scaffold for `{PRODUCT_NAME}`.
 Create `apps/marketing/.env.local`:
 
 ```bash
-NEXT_PUBLIC_PRODUCT_NAME=AT Translate
-NEXT_PUBLIC_MARKETING_DOMAIN=translate.example.com
-NEXT_PUBLIC_APP_DOMAIN=app.translate.example.com
+NEXT_PUBLIC_PRODUCT_NAME=Transora
+NEXT_PUBLIC_MARKETING_DOMAIN=transora.example.com
+NEXT_PUBLIC_APP_DOMAIN=app.transora.example.com
 ```

@@ -1,7 +1,8 @@
 "use client";
 
 import { m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -23,10 +24,7 @@ export function ProofChipRail({ title = "Supported workflows", items }: Props) {
   return (
     <section className="section-tight">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">Coverage Snapshot</span>
-          <h2 className="section-title">{title}</h2>
-        </div>
+        <SectionShell eyebrow="Coverage Snapshot" title={title} size="tight" />
         <m.div className={styles.chipRail} aria-label="Format and capability proof chips" {...chipRailMotion}>
           {items.map((chip) => (
             <m.span key={chip} className="chip mono" {...itemMotion}>

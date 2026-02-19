@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
 import { MagneticAction } from "@/components/marketing/MagneticAction";
 import { siteConfig } from "@/lib/site-config";
 import { type PageTemplate, trackEvent } from "@/lib/analytics";

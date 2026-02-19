@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import { type PageTemplate, trackEvent } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site-config";
 import {
@@ -40,14 +41,11 @@ export function SecurityPanel({ pageTemplate = "home" }: Props) {
   return (
     <section className="section">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">Security Snapshot</span>
-          <h2 className="section-title">Designed for enterprise procurement conversations.</h2>
-          <p className="section-description">
-            This V1 marketing site avoids unverified certification claims while clearly presenting
-            operational controls. Discovery and security review lead into subscription onboarding.
-          </p>
-        </div>
+        <SectionShell
+          eyebrow="Security Snapshot"
+          title="Designed for enterprise procurement conversations."
+          description="This V1 marketing site avoids unverified certification claims while clearly presenting operational controls. Discovery and security review lead into subscription onboarding."
+        />
 
         <m.ul className={styles.securityList} {...listMotion}>
           {securityPoints.map((point) => (

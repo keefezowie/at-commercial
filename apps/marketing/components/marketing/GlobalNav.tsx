@@ -2,9 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, m } from "framer-motion";
 import { usePathname } from "next/navigation";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/shell.module.css";
 import { MagneticAction } from "@/components/marketing/MagneticAction";
 import { navLinks } from "@/content/site-content";
 import { createMicroInteraction, motionEasing, motionTokens, useMotionProfile } from "@/lib/motion";
@@ -89,7 +90,15 @@ export function GlobalNav() {
     >
       <div className={`container ${styles.navInner}`}>
         <Link href="/" className={`${styles.brand} link-focus`}>
-          <span className={styles.brandMark} aria-hidden />
+          <span className={styles.brandLogoWrap} aria-hidden>
+            <Image
+              src="/brand/transora-logo.png"
+              alt=""
+              width={52}
+              height={52}
+              className={`${styles.brandLogo} ${styles.brandLogoMonochrome}`}
+            />
+          </span>
           <span className={styles.brandText}>{siteConfig.productName}</span>
         </Link>
 
@@ -127,7 +136,6 @@ export function GlobalNav() {
             </m.div>
           </MagneticAction>
           <div className={styles.navSubscriberBlock}>
-            <span className={styles.navSubscriberHint}>Already subscribed?</span>
             <m.a
               {...linkMotion}
               href={siteConfig.appUrl}

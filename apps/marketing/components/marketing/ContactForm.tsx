@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/forms.module.css";
 import { trackEvent } from "@/lib/analytics";
 
 type ContactState = {

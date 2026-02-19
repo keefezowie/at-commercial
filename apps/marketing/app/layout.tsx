@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Sora, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Space_Grotesk, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { buildPageMetadata, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
-const sora = Sora({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["600", "700"]
@@ -35,14 +35,19 @@ export const metadata: Metadata = {
     "CAD translation",
     "OCR translation workflow",
     "terminology management"
-  ]
+  ],
+  icons: {
+    icon: [{ url: "/brand/transora-logo.png", type: "image/png" }],
+    shortcut: "/brand/transora-logo.png",
+    apple: "/brand/transora-logo.png"
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`noise-overlay ${sora.variable} ${manrope.variable} ${mono.variable}`}
+        className={`noise-overlay ${spaceGrotesk.variable} ${manrope.variable} ${mono.variable}`}
       >
         {children}
         <script

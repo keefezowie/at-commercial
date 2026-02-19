@@ -2,8 +2,9 @@
 
 import type { Route } from "next";
 import { m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
 import { PricingPreviewCard } from "@/components/marketing/PricingPreviewCard";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import type { PageTemplate } from "@/lib/analytics";
 import { createSectionReveal, createStaggerContainer, useMotionProfile } from "@/lib/motion";
 
@@ -29,14 +30,11 @@ export function PricingPreviewSection({ items, pageTemplate = "home" }: Props) {
   return (
     <section className="section">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">Pricing Preview</span>
-          <h2 className="section-title">Commercial pathways for pilot to enterprise rollout.</h2>
-          <p className="section-description">
-            Discovery leads to request-demo qualification, then subscription onboarding aligned to
-            procurement scope and workflow complexity.
-          </p>
-        </div>
+        <SectionShell
+          eyebrow="Pricing Preview"
+          title="Commercial pathways for pilot to enterprise rollout."
+          description="Discovery leads to request-demo qualification, then subscription onboarding aligned to procurement scope and workflow complexity."
+        />
         <m.div className={`grid-3 ${styles.pricingGrid}`} {...gridMotion}>
           {items.map((item) => (
             <PricingPreviewCard key={item.tier} item={item} pageTemplate={pageTemplate} />

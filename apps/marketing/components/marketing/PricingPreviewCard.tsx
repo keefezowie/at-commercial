@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
 import { type PageTemplate, trackEvent } from "@/lib/analytics";
 import { createStaggerItem, motionTokens, useMotionProfile } from "@/lib/motion";
 

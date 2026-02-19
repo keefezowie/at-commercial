@@ -1,41 +1,53 @@
 :root {
-  --bg-base: #f5f8fd;
-  --bg-surface: #ffffff;
-  --bg-subtle: #eef3fb;
-  --text-primary: #101a2d;
-  --text-secondary: #4a5a77;
-  --text-muted: #6e7d99;
-  --accent: #0a6fe8;
-  --accent-strong: #0051b8;
-  --accent-soft: #5ab6ff;
-  --border: #d7e2f3;
-  --success: #127a4d;
-  --warning: #b26a00;
-  --danger: #c71f3a;
+  --bg-base: #080808;
+  --bg-surface: #111111;
+  --bg-subtle: #171717;
+  --bg-elevated: #1d1d1d;
+  --text-primary: #f5f5f5;
+  --text-secondary: #b3b3b3;
+  --text-muted: #7a7a7a;
+  --accent: #a3a3a3;
+  --accent-strong: #8f8f8f;
+  --accent-soft: #c2c2c2;
+  --accent-violet: #9d9d9d;
+  --border: #2e2e2e;
+  --success: #c9c9c9;
+  --warning: #b7b7b7;
+  --danger: #d7d7d7;
 
-  --radius-xs: 8px;
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
   --radius-xl: 32px;
+  --radius-pill: 999px;
 
-  --shadow-sm: 0 4px 12px rgba(9, 30, 66, 0.08);
-  --shadow-md: 0 16px 40px rgba(9, 30, 66, 0.1);
-  --shadow-lg: 0 28px 72px rgba(9, 30, 66, 0.12);
+  --shadow-sm: 0 10px 24px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 16px 38px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 24px 56px rgba(0, 0, 0, 0.45);
 
-  --container-max: 1160px;
-  --section-y: clamp(4rem, 6.8vw, 6.9rem);
-  --section-y-tight: clamp(2.45rem, 4.4vw, 4.7rem);
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 56px;
+  --space-8: 64px;
+
+  --container-max: 1180px;
+  --section-y: clamp(4rem, 6.4vw, 6.3rem);
+  --section-y-tight: clamp(2.7rem, 4.3vw, 4rem);
   --line-readable: 70ch;
 
   --motion-duration-micro: 160ms;
-  --motion-duration-ui: 220ms;
-  --motion-duration-section: 540ms;
-  --motion-duration-hero: 860ms;
-  --motion-duration-ambient: 12s;
-  --motion-duration-float: 9s;
+  --motion-duration-ui: 200ms;
+  --motion-duration-section: 420ms;
+  --motion-duration-hero: 450ms;
+  --motion-duration-ambient: 8s;
+  --motion-duration-float: 7s;
   --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --motion-stagger-children: 0.06s;
+  --motion-stagger-children: 0.05s;
   --motion-stagger-section-delay: 0.08s;
 
   --transition-fast: var(--motion-duration-micro) var(--motion-ease-out);
@@ -44,7 +56,7 @@
 
 @media (max-width: 768px) {
   :root {
-    --section-y: clamp(2.4rem, 8.8vw, 3.45rem);
-    --section-y-tight: clamp(1.6rem, 5.8vw, 2.4rem);
+    --section-y: clamp(2.7rem, 8.8vw, 3.7rem);
+    --section-y-tight: clamp(1.9rem, 6vw, 2.8rem);
   }
 }

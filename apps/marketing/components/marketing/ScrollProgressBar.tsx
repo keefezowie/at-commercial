@@ -1,7 +1,7 @@
 "use client";
 
 import { m, useScroll } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/shell.module.css";
 import { useMotionProfile } from "@/lib/motion";
 
 export function ScrollProgressBar() {

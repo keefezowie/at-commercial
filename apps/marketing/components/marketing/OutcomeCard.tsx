@@ -1,4 +1,4 @@
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
 
 type Outcome = {
   title: string;

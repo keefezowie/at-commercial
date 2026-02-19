@@ -4,12 +4,12 @@ import Link from "next/link";
 import { AnimatePresence, m } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/shell.module.css";
 import { type PageTemplate, trackEvent } from "@/lib/analytics";
 import { useMotionProfile } from "@/lib/motion";
 import { siteConfig } from "@/lib/site-config";
 
-const revealOffset = 180;
+const revealOffset = 32;
 
 const getPageTemplate = (pathname: string): PageTemplate => {
   if (pathname === "/") return "home";
@@ -32,11 +32,19 @@ export function MobileStickyCta() {
   const hideSticky = pathname.startsWith("/demo");
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > revealOffset);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    if (hideSticky) {
+      setVisible(false);
+      return;
+    }
+
+    const updateVisibility = () => setVisible(window.scrollY > revealOffset);
+    updateVisibility();
+    const interval = window.setInterval(updateVisibility, 160);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, [hideSticky]);
 
   useEffect(() => {
     setVisible(false);

@@ -1,4 +1,4 @@
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/legal.module.css";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 

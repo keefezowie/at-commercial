@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, m } from "framer-motion";
 import { useEffect } from "react";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
 import { useMotionProfile } from "@/lib/motion";
 
 export type LightboxImage = {

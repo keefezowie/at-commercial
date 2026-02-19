@@ -8,27 +8,27 @@ const msToSeconds = (value: number) => value / 1000;
 export const motionTokens = {
   duration: {
     micro: 160,
-    ui: 220,
-    section: 540,
-    hero: 860,
-    ambientLoop: 12000,
-    floatLoop: 9000
+    ui: 200,
+    section: 420,
+    hero: 450,
+    ambientLoop: 8000,
+    floatLoop: 7000
   },
   stagger: {
-    children: 0.06,
+    children: 0.05,
     sectionDelay: 0.08
   },
   nav: {
     scrollThreshold: 32
   },
   hover: {
-    cardLift: -4,
+    cardLift: -3,
     buttonPressScale: 0.98,
     magneticMaxOffset: 3
   },
   parallax: {
-    backgroundRange: 16,
-    foregroundRange: 8
+    backgroundRange: 10,
+    foregroundRange: 5
   }
 } as const;
 
@@ -39,15 +39,15 @@ export const motionEasing = {
 export const motionSprings = {
   default: {
     type: "spring" as const,
-    stiffness: 150,
-    damping: 22,
-    mass: 0.9
+    stiffness: 155,
+    damping: 24,
+    mass: 0.92
   },
   hero: {
     type: "spring" as const,
-    stiffness: 100,
-    damping: 22,
-    mass: 0.95
+    stiffness: 125,
+    damping: 24,
+    mass: 0.92
   }
 };
 

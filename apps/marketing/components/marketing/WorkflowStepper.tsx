@@ -2,7 +2,8 @@
 
 import { m } from "framer-motion";
 import { useState } from "react";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -29,14 +30,11 @@ export function WorkflowStepper({ items }: Props) {
   return (
     <section className="section">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">Workflow</span>
-          <h2 className="section-title">From upload to export with operational controls in place.</h2>
-          <p className="section-description">
-            A practical delivery path for business files and engineering artifacts with asynchronous task
-            flow and authenticated history.
-          </p>
-        </div>
+        <SectionShell
+          eyebrow="Workflow"
+          title="From upload to export with operational controls in place."
+          description="A practical delivery path for business files and engineering artifacts with asynchronous task flow and authenticated history."
+        />
 
         <m.div className={styles.workflowWrap} {...listMotion}>
           {items.map((step, index) => (

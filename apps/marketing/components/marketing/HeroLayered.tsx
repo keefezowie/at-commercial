@@ -1,9 +1,9 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { m, useScroll, useTransform } from "framer-motion";
 import { useMemo, useRef } from "react";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/hero.module.css";
 import { MagneticAction } from "@/components/marketing/MagneticAction";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";

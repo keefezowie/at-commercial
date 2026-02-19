@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -30,10 +31,7 @@ export function FaqAccordion({ items }: Props) {
   return (
     <section className="section">
       <m.div className="container" {...sectionMotion}>
-        <div className={styles.sectionTop}>
-          <span className="eyebrow">FAQ</span>
-          <h2 className="section-title">Answers to high-intent evaluation questions.</h2>
-        </div>
+        <SectionShell eyebrow="FAQ" title="Answers to high-intent evaluation questions." size="tight" />
         <m.div className={styles.faqList} {...listMotion}>
           {items.map((item, index) => {
             const open = openItem === index;

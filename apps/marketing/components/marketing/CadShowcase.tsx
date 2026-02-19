@@ -5,7 +5,8 @@ import { m } from "framer-motion";
 import { useState } from "react";
 import { BeforeAfterSlider } from "@/components/marketing/BeforeAfterSlider";
 import { ImageLightbox, type LightboxImage } from "@/components/marketing/ImageLightbox";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/sections.module.css";
+import { SectionShell } from "@/components/marketing/SectionShell";
 import { type PageTemplate, trackEvent } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site-config";
 import {
@@ -29,16 +30,15 @@ export function CadShowcase({ pageTemplate = "home" }: Props) {
   return (
     <section className={`section ${styles.cadSection}`}>
       <m.div className="container" {...sectionMotion}>
-        <div className={`${styles.sectionTop} ${styles.cadSectionTop}`}>
-          <span className="eyebrow">CAD Translation</span>
-          <h2 className={`section-title ${styles.cadSectionTitle}`}>
-            Bring DWG and DXF workflows into your translation delivery lane.
-          </h2>
-          <p className={`section-description ${styles.cadSectionDescription}`}>
-            Keep engineering markups, layer naming, and handoff quality intact across multilingual CAD
-            delivery.
-          </p>
-        </div>
+        <SectionShell
+          eyebrow="CAD Translation"
+          title="Bring DWG and DXF workflows into your translation delivery lane."
+          description="Keep engineering markups, layer naming, and handoff quality intact across multilingual CAD delivery."
+          tone="inverse"
+          className={styles.cadSectionTop}
+          titleClassName={styles.cadSectionTitle}
+          descriptionClassName={styles.cadSectionDescription}
+        />
 
         <m.div className={styles.cadShowcase} {...showcaseMotion}>
           <m.article className={`card ${styles.cadPanel} ${styles.cardInteractive}`} {...itemMotion}>

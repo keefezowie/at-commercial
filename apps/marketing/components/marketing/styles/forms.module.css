@@ -1,0 +1,104 @@
+.formWrap {
+  margin-top: 1.4rem;
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+}
+
+.formIntro {
+  margin: 0 0 1rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.formField {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.formField label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.formField input,
+.formField select,
+.formField textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 0.7rem;
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.formField input::placeholder,
+.formField textarea::placeholder {
+  color: #7a7a7a;
+}
+
+.formField input:focus,
+.formField select:focus,
+.formField textarea:focus {
+  border-color: #555555;
+  box-shadow: 0 0 0 3px rgba(166, 166, 166, 0.2);
+}
+
+.formFull {
+  grid-column: 1 / -1;
+}
+
+.chipCheckGroup {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.chipCheck {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 0.37rem 0.72rem;
+  color: var(--text-secondary);
+  font-size: 0.81rem;
+  font-weight: 620;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.chipCheck input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chipCheck[data-checked="true"] {
+  border-color: rgba(130, 130, 130, 0.54);
+  background: linear-gradient(180deg, rgba(42, 42, 42, 0.86), rgba(31, 31, 31, 0.86));
+  color: var(--text-primary);
+}
+
+.errorText {
+  color: var(--danger);
+  margin-top: 0.3rem;
+  font-size: 0.79rem;
+}
+
+.successNote {
+  margin-top: 0.6rem;
+  color: var(--success);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

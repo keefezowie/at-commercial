@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/shell.module.css";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import styles from "@/components/marketing/marketing.module.css";
+import styles from "@/components/marketing/styles/hero.module.css";
 import { createStaggerContainer, createStaggerItem, useMotionProfile } from "@/lib/motion";
 
 type Props = {

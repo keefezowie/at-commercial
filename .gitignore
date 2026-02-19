@@ -3,6 +3,7 @@ node_modules
 dist
 coverage
 *.log
+.tmp-shots
 .env
 .env.local
 .env.*.local
