@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { leadSchema } from "@/lib/validation";
 import type { MarketingLeadResponse } from "@/lib/types";
 import { z } from "zod";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy_key");
 
 type LeadPayload = z.infer<typeof leadSchema>;
 
@@ -41,6 +44,31 @@ export async function POST(request: Request) {
   }
 
   const route = classifyLead(result.data);
+
+  try {
+    await resend.emails.send({
+      from: "Transora Lead <onboarding@resend.dev>",
+      to: process.env.CONTACT_EMAIL || "sales@transora.example",
+      subject: `New Lead: ${result.data.company} (${route})`,
+      text: `
+Name: ${result.data.full_name}
+Email: ${result.data.email}
+Company: ${result.data.company}
+Role: ${result.data.role}
+Use Case: ${result.data.use_case}
+Monthly Volume: ${result.data.monthly_volume}
+Intent: ${result.data.intent}
+File Types: ${result.data.file_types.join(", ")}
+Target Languages: ${result.data.target_languages.join(", ")}
+
+Notes:
+${result.data.notes}
+      `,
+    });
+  } catch (error) {
+    console.error("Failed to send email:", error);
+  }
+
   const response: MarketingLeadResponse = {
     status: "accepted",
     lead_id: `lead_${crypto.randomUUID()}`,

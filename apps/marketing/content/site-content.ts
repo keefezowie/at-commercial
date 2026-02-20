@@ -19,6 +19,7 @@ type PricingPreviewItem = {
 export type PricingTier = {
   name: string;
   price: string;
+  annualPrice: string;
   subtitle: string;
   highlights: string[];
 };
@@ -168,18 +169,21 @@ export const pricingTiers = [
   {
     name: "Starter",
     price: "Rp 99.000/bln",
+    annualPrice: "Rp 89.000/bln",
     subtitle: "Freelancers & individuals",
     highlights: ["600.000 chars", "2 image credits", "All document formats", "20 MB max file size"]
   },
   {
     name: "Bisnis",
     price: "Rp 299.000/bln",
+    annualPrice: "Rp 249.000/bln",
     subtitle: "SMBs & agencies",
     highlights: ["2.000.000 chars", "10 image credits", "Custom glossary", "50 MB max file size"]
   },
   {
     name: "Enterprise",
     price: "Rp 1.199.000/bln",
+    annualPrice: "Rp 999.000/bln",
     subtitle: "High-volume operations",
     highlights: ["10.000.000 chars", "30 image credits", "API access", "100 MB max file size"]
   }

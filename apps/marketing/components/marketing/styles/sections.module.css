@@ -796,7 +796,7 @@
 
 .cadSectionTitle {
   font-size: clamp(2.2rem, 5.2vw, 3.95rem);
-  max-width: 18ch;
+  max-width: 32ch;
 }
 
 .cadSectionDescription {
@@ -1129,6 +1129,65 @@
 .priceCta {
   width: 100%;
   margin-top: 0.35rem;
+}
+
+.pricingToggleWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.pricingToggleActive {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.pricingToggleBtn {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease;
+}
+
+.pricingToggleBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.pricingToggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricingToggleThumb[data-annual="true"] {
+  transform: translateX(22px);
+}
+
+.pricingDiscountBadge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-pill);
 }
 
 .pricingTierGrid {

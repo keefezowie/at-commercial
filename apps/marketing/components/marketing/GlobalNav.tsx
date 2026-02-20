@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, m } from "framer-motion";
@@ -15,12 +15,34 @@ import { resolvePageTemplate, trackEvent } from "@/lib/analytics";
 const mobileMenuId = "mobile-nav-menu";
 const mobileToggleId = "mobile-nav-toggle";
 
+const documentTypes = [
+  { title: "DOCX", description: "Formatting-aware translation flow", href: "/#formats" },
+  { title: "PPTX", description: "Slide text and layout continuity", href: "/#formats" },
+  { title: "XLSX", description: "Table-oriented translation outputs", href: "/#formats" },
+  { title: "PDF", description: "OCR workflow available for scanned inputs", href: "/#formats" },
+  { title: "TXT", description: "High-throughput plain text ingestion", href: "/#formats" },
+  { title: "CAD (DWG/DXF)", description: "Engineering pipeline aligned translation", href: "/#cad-translation" }
+];
+
 export function GlobalNav() {
   const pathname = usePathname();
   const profile = useMotionProfile("low");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isFeaturesHovered, setIsFeaturesHovered] = useState(false);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pageTemplate = useMemo(() => resolvePageTemplate(pathname), [pathname]);
+
+  const handleFeaturesMouseEnter = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setIsFeaturesHovered(true);
+  };
+
+  const handleFeaturesMouseLeave = () => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsFeaturesHovered(false);
+    }, 150);
+  };
 
   const uiTransition = useMemo(
     () =>
@@ -109,6 +131,43 @@ export function GlobalNav() {
         <nav className={styles.navLinks} aria-label="Primary">
           {navLinks.map((link) => {
             const active = pathname === link.href;
+            if (link.label === "Features") {
+              return (
+                <div
+                  key={link.href}
+                  className={styles.navDropdownContainer}
+                  onMouseEnter={handleFeaturesMouseEnter}
+                  onMouseLeave={handleFeaturesMouseLeave}
+                >
+                  <Link
+                    href={link.href}
+                    className={`${styles.navLink} link-focus ${styles.linkUnderline} ${active ? styles.navLinkActive : ""}`}
+                  >
+                    {link.label}
+                  </Link>
+                  <AnimatePresence>
+                    {isFeaturesHovered && (
+                      <m.div
+                        className={styles.navDropdown}
+                        initial={{ opacity: 0, y: 10, scale: 0.98, x: "-50%" }}
+                        animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                        exit={{ opacity: 0, y: 10, scale: 0.98, x: "-50%" }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                      >
+                        <div className={styles.navDropdownGrid}>
+                          {documentTypes.map((doc) => (
+                            <Link key={doc.title} href={doc.href as any} className={styles.navDropdownItem}>
+                              <span className={styles.navDropdownTitle}>{doc.title}</span>
+                              <span className={styles.navDropdownDesc}>{doc.description}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
             return (
               <Link
                 key={link.href}

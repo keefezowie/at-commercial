@@ -20,22 +20,22 @@ export function Footer() {
               <h3>Product</h3>
               <ul className={styles.footerLinkList}>
                 <li>
-                  <Link href="/features" className="link-focus">
+                  <Link href="/#features" className="link-focus">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link href="/formats" className="link-focus">
+                  <Link href="/#formats" className="link-focus">
                     Formats
                   </Link>
                 </li>
                 <li>
-                  <Link href="/cad-translation" className="link-focus">
+                  <Link href="/#cad-translation" className="link-focus">
                     CAD Translation
                   </Link>
                 </li>
                 <li>
-                  <Link href="/pricing" className="link-focus">
+                  <Link href="/#pricing" className="link-focus">
                     Pricing
                   </Link>
                 </li>
@@ -45,22 +45,22 @@ export function Footer() {
               <h3>Company</h3>
               <ul className={styles.footerLinkList}>
                 <li>
-                  <Link href="/security" className="link-focus">
+                  <Link href="/#security" className="link-focus">
                     Security
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="link-focus">
+                  <Link href="/#contact" className="link-focus">
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="link-focus">
+                  <Link href="/#contact" className="link-focus">
                     Talk to Sales
                   </Link>
                 </li>
                 <li>
-                  <Link href="/pricing" className="link-focus">
+                  <Link href="/#pricing" className="link-focus">
                     View Pricing
                   </Link>
                 </li>

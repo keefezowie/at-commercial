@@ -1,8 +1,9 @@
 import type { Metadata } from "next/types";
 import { FinalCtaBand } from "@/components/marketing/FinalCtaBand";
 import { PageHero } from "@/components/marketing/PageHero";
+import { PricingTiers } from "@/components/marketing/PricingTiers";
 import styles from "@/components/marketing/styles/sections.module.css";
-import { pricingComparisonRows, pricingTiers } from "@/content/site-content";
+import { pricingComparisonRows } from "@/content/site-content";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -25,24 +26,9 @@ export default function PricingPage() {
         <div className="container">
           <h2 className="section-title">Subscription tiers</h2>
           <p className="section-description" style={{ marginTop: "0.6rem" }}>
-            No annual lock-in required. Annual plans may include discounting as an optional upsell.
+            Choose a plan based on quota, collaboration requirements, and automation needs.
           </p>
-          <div className={styles.pricingTierGrid}>
-            {pricingTiers.map((tier) => (
-              <article key={tier.name} className={`card ${styles.pricingTierCard}`}>
-                <header className={styles.pricingTierHead}>
-                  <h3>{tier.name}</h3>
-                  <p className={styles.pricingTierPrice}>{tier.price}</p>
-                  <p className={styles.pricingTierSubtitle}>{tier.subtitle}</p>
-                </header>
-                <ul className={styles.pricingTierList}>
-                  {tier.highlights.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
+          <PricingTiers />
         </div>
       </section>
 

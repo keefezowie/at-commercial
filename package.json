@@ -10,6 +10,8 @@
     "build": "npm run build --workspace @at/marketing",
     "start": "npm run start --workspace @at/marketing",
     "lint": "npm run lint --workspace @at/marketing"
+  },
+  "dependencies": {
+    "resend": "^6.9.2"
   }
 }
-

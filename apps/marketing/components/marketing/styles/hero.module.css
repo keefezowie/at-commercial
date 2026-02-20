@@ -91,7 +91,7 @@
   line-height: 0.97;
   letter-spacing: -0.048em;
   margin: 0.92rem 0 1rem;
-  max-width: 15.2ch;
+  max-width: 32ch;
 }
 
 .heroLead {
@@ -276,7 +276,7 @@
   font-size: clamp(2rem, 5vw, 3.7rem);
   letter-spacing: -0.04em;
   line-height: 1.03;
-  max-width: 17ch;
+  max-width: 32ch;
 }
 
 .pageHero p {

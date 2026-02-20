@@ -13,6 +13,10 @@ body {
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   color: var(--text-primary);
@@ -102,7 +106,7 @@ img {
 
 .section-title {
   margin: 0.78rem 0 0.82rem;
-  max-width: 20ch;
+  max-width: 32ch;
   line-height: 1.04;
   font-size: clamp(2rem, 4.55vw, 3.45rem);
   letter-spacing: -0.04em;

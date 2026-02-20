@@ -41,13 +41,25 @@ export default function HomePage() {
       <ProofChipRail title="Enterprise readiness snapshot" items={proofChips} />
       <TranslationResultsGallery />
       <ProblemFraming items={problemCards} />
-      <OutcomesSection items={outcomes} />
-      <FormatsMatrix rows={formatRows} />
-      <CadShowcase pageTemplate="home" />
-      <SecurityPanel pageTemplate="home" />
-      <PricingPreviewSection items={pricingPreview} pageTemplate="home" />
+      <div id="features">
+        <OutcomesSection items={outcomes} />
+      </div>
+      <div id="formats">
+        <FormatsMatrix rows={formatRows} />
+      </div>
+      <div id="cad-translation">
+        <CadShowcase pageTemplate="home" />
+      </div>
+      <div id="security">
+        <SecurityPanel pageTemplate="home" />
+      </div>
+      <div id="pricing">
+        <PricingPreviewSection items={pricingPreview} pageTemplate="home" />
+      </div>
       <FaqAccordion items={faqs} />
-      <FinalCtaBand pageTemplate="home" />
+      <div id="contact">
+        <FinalCtaBand pageTemplate="home" />
+      </div>
       <script
         type="application/ld+json"
         suppressHydrationWarning
