@@ -3,23 +3,20 @@ import { CadShowcase } from "@/components/marketing/CadShowcase";
 import { FaqAccordion } from "@/components/marketing/FaqAccordion";
 import { FinalCtaBand } from "@/components/marketing/FinalCtaBand";
 import { FormatsMatrix } from "@/components/marketing/FormatsMatrix";
-import { HeroLayered } from "@/components/marketing/HeroLayered";
 import { OutcomesSection } from "@/components/marketing/OutcomesSection";
+import { PageHero } from "@/components/marketing/PageHero";
 import { PricingPreviewSection } from "@/components/marketing/PricingPreviewSection";
 import { ProblemFraming } from "@/components/marketing/ProblemFraming";
 import { ProofChipRail } from "@/components/marketing/ProofChipRail";
 import { SecurityPanel } from "@/components/marketing/SecurityPanel";
 import { TranslationResultsGallery } from "@/components/marketing/TranslationResultsGallery";
-import { WorkflowStepper } from "@/components/marketing/WorkflowStepper";
-import { WorkflowPreviewStrip } from "@/components/marketing/WorkflowPreviewStrip";
 import {
   faqs,
   formatRows,
   outcomes,
   pricingPreview,
   problemCards,
-  proofChips,
-  workflowSteps
+  proofChips
 } from "@/content/site-content";
 import { faqPageSchema, buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
@@ -34,13 +31,17 @@ export const metadata: Metadata = buildPageMetadata({
 export default function HomePage() {
   return (
     <main>
-      <HeroLayered />
-      <ProofChipRail items={proofChips} />
+      <PageHero
+        eyebrow="Enterprise AI Translation Control"
+        title="Translate complex business and engineering documents without breaking operational control."
+        description="Transora delivers format-preserving translation, centralized termbases, and direct CAD (DWG/DXF) pathways. Built for strict IT compliance and global manufacturing workflows."
+        primaryCtaLabel="Start Enterprise Trial"
+        primaryCtaHref="/contact"
+      />
+      <ProofChipRail title="Enterprise readiness snapshot" items={proofChips} />
       <TranslationResultsGallery />
       <ProblemFraming items={problemCards} />
       <OutcomesSection items={outcomes} />
-      <WorkflowStepper items={workflowSteps} />
-      <WorkflowPreviewStrip />
       <FormatsMatrix rows={formatRows} />
       <CadShowcase pageTemplate="home" />
       <SecurityPanel pageTemplate="home" />

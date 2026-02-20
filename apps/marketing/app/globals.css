@@ -14,7 +14,7 @@ body {
 }
 
 body {
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   color: var(--text-primary);
   background:
     radial-gradient(circle at 16% -10%, rgba(255, 255, 255, 0.06), transparent 34%),
@@ -23,6 +23,7 @@ body {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
 }
 
@@ -36,12 +37,20 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 500;
 }
 
 p {
   margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 img {
@@ -86,9 +95,9 @@ img {
   background: rgba(17, 17, 17, 0.78);
   color: #d7d7d7;
   font-size: 0.74rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 .section-title {
@@ -96,7 +105,8 @@ img {
   max-width: 20ch;
   line-height: 1.04;
   font-size: clamp(2rem, 4.55vw, 3.45rem);
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
+  font-weight: 500;
 }
 
 .section-description {
@@ -122,7 +132,7 @@ img {
   border: 1px solid transparent;
   min-height: 2.75rem;
   padding: 0.72rem 1.2rem;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.93rem;
   letter-spacing: -0.01em;
   cursor: pointer;

@@ -3,7 +3,6 @@
 import { m } from "framer-motion";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { SectionShell } from "@/components/marketing/SectionShell";
-import { TrackedAppAccessCtas } from "@/components/marketing/TrackedAppAccessCtas";
 import { type PageTemplate } from "@/lib/analytics";
 import {
   createSectionReveal,
@@ -14,16 +13,19 @@ import {
 
 const securityPoints = [
   {
-    title: "Authenticated access controls",
-    summary: "User identity and access are required for operational workflows and history visibility."
+    title: "Zero-Retention Workflows",
+    summary:
+      "Document data is processed for workflow execution and then flushed; content is not retained for public model training."
   },
   {
-    title: "Permissioned terminology governance",
-    summary: "Managed termbase permissions help protect approved vocabulary across teams."
+    title: "Role-Based Access Control (RBAC)",
+    summary:
+      "Glossary and termbase changes are restricted to designated localization managers with controlled approval paths."
   },
   {
-    title: "Operational workflow transparency",
-    summary: "Asynchronous task processing and history flows support traceable execution."
+    title: "Audit-Ready Histories",
+    summary:
+      "Authenticated task logs provide the traceability enterprise IT governance teams require during compliance reviews."
   }
 ];
 
@@ -31,7 +33,7 @@ type Props = {
   pageTemplate?: PageTemplate;
 };
 
-export function SecurityPanel({ pageTemplate = "home" }: Props) {
+export function SecurityPanel(_: Props) {
   const profile = useMotionProfile("low");
   const sectionMotion = createSectionReveal(profile, { y: 12 });
   const listMotion = createStaggerContainer(profile, { y: 0 });
@@ -41,9 +43,9 @@ export function SecurityPanel({ pageTemplate = "home" }: Props) {
     <section className="section">
       <m.div className="container" {...sectionMotion}>
         <SectionShell
-          eyebrow="Security Snapshot"
-          title="Designed for enterprise procurement conversations."
-          description="This V1 marketing site avoids unverified certification claims while clearly presenting operational controls. Discovery and security review lead into subscription onboarding."
+          eyebrow="Enterprise Security Controls"
+          title="Security answers aligned with procurement and IT governance questionnaires."
+          description="Review the operational controls enterprise teams typically require before approving translation platform deployment."
         />
 
         <m.ul className={styles.securityList} {...listMotion}>
@@ -58,12 +60,6 @@ export function SecurityPanel({ pageTemplate = "home" }: Props) {
           ))}
         </m.ul>
 
-        <TrackedAppAccessCtas
-          surface="security_section"
-          pageTemplate={pageTemplate}
-          containerClassName="cta-row"
-          tertiaryClassName="button button-secondary link-focus"
-        />
       </m.div>
     </section>
   );

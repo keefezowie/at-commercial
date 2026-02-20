@@ -206,7 +206,7 @@
   margin: 0;
   font-size: 0.82rem;
   color: var(--text-muted);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .heroDotRow {
@@ -240,11 +240,11 @@
 .heroPanelLabel {
   color: var(--text-secondary);
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .heroPanelValue {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.82rem;
   color: var(--text-primary);
   font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -283,6 +283,14 @@
   max-width: 70ch;
   color: var(--text-secondary);
   line-height: 1.68;
+}
+
+.pageHeroActions {
+  margin-top: 1rem;
+}
+
+.pageHeroPrimaryCta {
+  min-width: 11.5rem;
 }
 
 @media (hover: hover) and (pointer: fine) {

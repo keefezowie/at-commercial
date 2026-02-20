@@ -30,8 +30,8 @@ export function ProblemFraming({ items }: Props) {
       <m.div className="container" {...sectionMotion}>
         <SectionShell
           eyebrow="Operational Risks"
-          title="Most document translation projects break on operations, not language coverage."
-          description="Enterprise teams need consistent formatting, terminology control, image-text support, and engineering compatibility in one governed workflow."
+          title="Most translation initiatives fail in operations control, not language coverage."
+          description="For manufacturing and IT teams, broken formatting, uncontrolled terminology, and CAD workflow gaps directly delay deployment."
         />
 
         <m.div className={`grid-4 ${styles.problemGrid}`} {...gridMotion}>

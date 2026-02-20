@@ -3,38 +3,26 @@
 import { m } from "framer-motion";
 import { useState } from "react";
 import { BeforeAfterSlider } from "@/components/marketing/BeforeAfterSlider";
+import {
+  MockupCad,
+  MockupDocx,
+  MockupImage,
+  MockupPdf,
+  MockupPptx,
+  MockupXlsx
+} from "@/components/marketing/FormatMockups";
 import { ImageLightbox, type LightboxImage } from "@/components/marketing/ImageLightbox";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { SectionShell } from "@/components/marketing/SectionShell";
-import {
-  createSectionReveal,
-  createStaggerContainer,
-  createStaggerItem,
-  useMotionProfile
-} from "@/lib/motion";
+import { createSectionReveal, createStaggerContainer, createStaggerItem, useMotionProfile } from "@/lib/motion";
 
-const translationExamples = [
-  {
-    id: "docx",
-    title: "DOCX layout fidelity",
-    summary: "Headers, tables, spacing, and owner columns stay aligned after translation.",
-    before: "/mockups/result-doc-before.svg",
-    after: "/mockups/result-doc-after.svg"
-  },
-  {
-    id: "pptx",
-    title: "PPTX visual continuity",
-    summary: "Slide hierarchy and bullet rhythm are preserved while content is translated.",
-    before: "/mockups/result-slide-before.svg",
-    after: "/mockups/result-slide-after.svg"
-  },
-  {
-    id: "cad",
-    title: "DWG and DXF annotation carryover",
-    summary: "CAD annotation positions remain intact with translated layer labels.",
-    before: "/mockups/result-cad-before.svg",
-    after: "/mockups/result-cad-after.svg"
-  }
+const formatExamples = [
+  { id: "docx", title: "DOCX / Word", desc: "Table layouts perfectly anchored.", component: MockupDocx },
+  { id: "xlsx", title: "XLSX / Excel", desc: "Cell grids and numerical logic preserved.", component: MockupXlsx },
+  { id: "pptx", title: "PPTX / PowerPoint", desc: "Slide hierarchy and visual rhythm aligned.", component: MockupPptx },
+  { id: "pdf", title: "PDF / Manuals", desc: "Multi-column regulatory text OCR-parsed cleanly.", component: MockupPdf },
+  { id: "ocr", title: "Image OCR", desc: "Embedded diagrams targeted and extracted.", component: MockupImage },
+  { id: "cad", title: "DWG / DXF", desc: "Engineering layers natively localized.", component: MockupCad }
 ] as const;
 
 export function TranslationResultsGallery() {
@@ -48,29 +36,33 @@ export function TranslationResultsGallery() {
     <section className="section">
       <m.div className="container" {...sectionMotion}>
         <SectionShell
-          eyebrow="Translation Results"
-          title="See before and after outputs at a glance."
-          description="Synthetic previews below show the type of format-preserving results teams can expect during evaluation."
+          eyebrow="Format Coverage"
+          title="Pixel-perfect fidelity across business and engineering files."
+          description="Transora reconstructs files as structured layout systems, preserving hierarchy while localized text updates in place."
         />
-        <m.div className={styles.resultsGrid} {...gridMotion}>
-          {translationExamples.map((example) => (
-            <m.article key={example.id} className={`card ${styles.resultCard}`} {...cardMotion}>
-              <div className={styles.resultCardHead}>
-                <h3>{example.title}</h3>
-                <p>{example.summary}</p>
-              </div>
-              <BeforeAfterSlider
-                id={example.id}
-                title={example.title}
-                before={{ src: example.before, alt: `${example.title} before translation` }}
-                after={{ src: example.after, alt: `${example.title} after translation` }}
-                onOpenImage={setActiveImage}
-              />
-            </m.article>
-          ))}
+        <m.div className={styles.showcaseGrid2Col} {...gridMotion}>
+          {formatExamples.map((example) => {
+            const Component = example.component;
+            return (
+              <m.article key={example.id} className={`card ${styles.resultCard}`} {...cardMotion}>
+                <div className={styles.resultCardHead}>
+                  <h3>{example.title}</h3>
+                  <p>{example.desc}</p>
+                </div>
+                <BeforeAfterSlider
+                  id={example.id}
+                  title={example.title}
+                  before={{ element: <Component state="before" />, alt: `${example.title} English source` }}
+                  after={{ element: <Component state="after" />, alt: `${example.title} Translated output` }}
+                  onOpenImage={setActiveImage}
+                />
+              </m.article>
+            );
+          })}
         </m.div>
       </m.div>
       <ImageLightbox image={activeImage} onClose={() => setActiveImage(null)} />
     </section>
   );
 }
+

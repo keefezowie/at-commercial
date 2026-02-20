@@ -1,20 +1,20 @@
 "use client";
 
-import Image from "next/image";
-import { KeyboardEvent, PointerEvent as ReactPointerEvent, useRef, useState } from "react";
+import { type KeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode, useRef, useState } from "react";
 import styles from "@/components/marketing/styles/sections.module.css";
 import type { LightboxImage } from "@/components/marketing/ImageLightbox";
 
-type SlideImage = {
-  src: string;
+type SlideContent = {
+  element: ReactNode;
   alt: string;
+  lightboxSrc?: string;
 };
 
 type Props = {
   id: string;
   title: string;
-  before: SlideImage;
-  after: SlideImage;
+  before: SlideContent;
+  after: SlideContent;
   compact?: boolean;
   onOpenImage?: (image: LightboxImage) => void;
 };
@@ -23,6 +23,8 @@ export function BeforeAfterSlider({ id, title, before, after, compact = false, o
   const [position, setPosition] = useState(52);
   const [dragging, setDragging] = useState(false);
   const frameRef = useRef<HTMLDivElement>(null);
+  const beforeLightboxSrc = before.lightboxSrc;
+  const afterLightboxSrc = after.lightboxSrc;
 
   const clampPosition = (value: number) => Math.max(5, Math.min(95, value));
 
@@ -98,9 +100,13 @@ export function BeforeAfterSlider({ id, title, before, after, compact = false, o
         onPointerUp={onFramePointerUp}
         onPointerCancel={onFramePointerUp}
       >
-        <Image src={before.src} alt={before.alt} width={1200} height={760} className={styles.beforeAfterImage} />
+        <div className={styles.beforeAfterPane} role="img" aria-label={before.alt}>
+          {before.element}
+        </div>
         <div className={styles.beforeAfterReveal} style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
-          <Image src={after.src} alt={after.alt} width={1200} height={760} className={styles.beforeAfterImage} />
+          <div className={styles.beforeAfterPane} role="img" aria-label={after.alt}>
+            {after.element}
+          </div>
         </div>
         <div className={styles.beforeAfterDivider} style={{ left: `${position}%` }} aria-hidden />
         <button
@@ -123,19 +129,19 @@ export function BeforeAfterSlider({ id, title, before, after, compact = false, o
         </div>
       </div>
 
-      {onOpenImage ? (
+      {onOpenImage && beforeLightboxSrc && afterLightboxSrc ? (
         <div className={styles.beforeAfterActions}>
           <button
             type="button"
             className={styles.imageAction}
-            onClick={() => onOpenImage({ src: before.src, alt: before.alt, title: `${title} (Before)` })}
+            onClick={() => onOpenImage({ src: beforeLightboxSrc, alt: before.alt, title: `${title} (Before)` })}
           >
             View before
           </button>
           <button
             type="button"
             className={styles.imageAction}
-            onClick={() => onOpenImage({ src: after.src, alt: after.alt, title: `${title} (After)` })}
+            onClick={() => onOpenImage({ src: afterLightboxSrc, alt: after.alt, title: `${title} (After)` })}
           >
             View after
           </button>

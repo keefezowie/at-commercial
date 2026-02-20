@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
+import { SvgCadWorkflow } from "@/components/marketing/SvgCadWorkflow";
 import { AbstractCadFlow } from "@/components/marketing/AbstractCadFlow";
 import { SpotlightCard } from "@/components/marketing/SpotlightCard";
 import { TrackedAppAccessCtas } from "@/components/marketing/TrackedAppAccessCtas";
@@ -42,10 +43,15 @@ export function CadShowcase({ pageTemplate = "home" }: Props) {
 
           <div className={styles.cadShowcase}>
             <SpotlightCard className={styles.cadPanel} contentClassName={styles.cadPanelContent} motionProps={itemMotion}>
-              <h3>Engineering-native workflow support</h3>
-              <p className={`section-description ${styles.cadPanelDescription}`}>
-                Use one authenticated flow for business files and CAD deliverables without switching tools.
-              </p>
+              <div className={styles.cadPanelVisual}>
+                <SvgCadWorkflow />
+              </div>
+              <div>
+                <h3>Engineering-native workflow support</h3>
+                <p className={`section-description ${styles.cadPanelDescription}`}>
+                  Use one authenticated flow for business files and CAD deliverables without switching tools.
+                </p>
+              </div>
               <TrackedAppAccessCtas
                 surface="cad_section"
                 pageTemplate={pageTemplate}

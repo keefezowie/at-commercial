@@ -39,35 +39,36 @@ export const navLinks = [
 ] satisfies readonly NavLink[];
 
 export const proofChips = [
-  "DOCX",
-  "PPTX",
-  "XLSX",
-  "PDF",
-  "TXT",
-  "OCR image translation",
-  "DWG",
-  "DXF",
-  "Glossary & termbase controls"
+  "SOC2-ready security posture",
+  "Format-preserving engine",
+  "Enterprise termbases",
+  "RBAC governance controls",
+  "OCR image-text extraction",
+  "DWG + DXF pathways",
+  "Authenticated task history",
+  "Procurement-ready onboarding"
 ];
 
 export const problemCards = [
   {
-    title: "Formatting rework drains delivery time",
-    detail: "Teams lose hours rebuilding layout and style after machine translation export."
-  },
-  {
-    title: "Terminology drifts across teams",
+    title: "Formatting rework blocks deployment.",
     detail:
-      "Without controlled termbases, regional teams publish inconsistent legal and technical language."
+      "IT and engineering teams lose thousands of hours rebuilding layouts for technical manuals and SOPs after standard machine translation."
   },
   {
-    title: "Image text gets skipped",
+    title: "Fragmented terminology creates compliance risks.",
     detail:
-      "Embedded text in diagrams and screenshots is often missed unless OCR is integrated into workflow."
+      "Without governed termbases, regional teams publish conflicting instructions in critical process documents."
   },
   {
-    title: "Engineering translation bottlenecks",
-    detail: "CAD handoffs get blocked when DWG and DXF workflows are handled outside translation stack."
+    title: "Image-embedded text breaks training accuracy.",
+    detail:
+      "Critical labels inside diagrams and UI screenshots are missed when OCR is outside the governed translation workflow."
+  },
+  {
+    title: "CAD localization stalls engineering handoffs.",
+    detail:
+      "Production teams lose velocity when DWG and DXF localization depends on disconnected tools and manual rework."
   }
 ];
 
@@ -113,13 +114,54 @@ export const workflowSteps = [
 ];
 
 export const formatRows = [
-  { format: "DOCX", coverage: "Full workflow support", note: "Formatting-aware translation flow" },
-  { format: "PPTX", coverage: "Full workflow support", note: "Slide text and layout continuity" },
-  { format: "XLSX", coverage: "Full workflow support", note: "Table-oriented translation outputs" },
-  { format: "PDF", coverage: "Full workflow support", note: "OCR workflow available for scanned inputs" },
-  { format: "TXT", coverage: "Full workflow support", note: "High-throughput plain text ingestion" },
-  { format: "DWG", coverage: "Workflow support", note: "Engineering pipeline aligned translation" },
-  { format: "DXF", coverage: "Workflow support", note: "CAD exchange format coverage" }
+  {
+    format: "DOCX",
+    coverage: "Full workflow support",
+    note: "Formatting-aware translation flow",
+    useCase: "Standard operating procedures (SOPs), IT security policies, regulatory filings"
+  },
+  {
+    format: "PPTX",
+    coverage: "Full workflow support",
+    note: "Slide text and layout continuity",
+    useCase: "Cross-site engineering briefings, program reviews, training decks"
+  },
+  {
+    format: "XLSX",
+    coverage: "Full workflow support",
+    note: "Table-oriented translation outputs",
+    useCase: "Quality trackers, procurement matrices, BOM-related operational sheets"
+  },
+  {
+    format: "PDF",
+    coverage: "Full workflow support",
+    note: "OCR workflow available for scanned inputs",
+    useCase: "Standard operating procedures (SOPs), IT security policies, regulatory filings"
+  },
+  {
+    format: "TXT",
+    coverage: "Full workflow support",
+    note: "High-throughput plain text ingestion",
+    useCase: "System logs, release notes, technical change summaries"
+  },
+  {
+    format: "OCR / Image Text",
+    coverage: "Integrated workflow support",
+    note: "Embedded and standalone image text extraction",
+    useCase: "Embedded system diagrams, software UI screenshots in training manuals"
+  },
+  {
+    format: "DWG",
+    coverage: "Workflow support",
+    note: "Engineering pipeline aligned translation",
+    useCase: "Production line layouts, solar cell manufacturing schematics, mechanical assemblies"
+  },
+  {
+    format: "DXF",
+    coverage: "Workflow support",
+    note: "CAD exchange format coverage",
+    useCase: "Production line layouts, solar cell manufacturing schematics, mechanical assemblies"
+  }
 ];
 
 export const pricingTiers = [

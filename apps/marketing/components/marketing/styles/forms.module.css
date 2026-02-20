@@ -23,7 +23,7 @@
 
 .formField label {
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text-secondary);
 }
 
@@ -70,7 +70,7 @@
   padding: 0.37rem 0.72rem;
   color: var(--text-secondary);
   font-size: 0.81rem;
-  font-weight: 620;
+  font-weight: 500;
   transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
@@ -101,7 +101,7 @@
 .successNote {
   margin-top: 0.6rem;
   color: var(--success);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {

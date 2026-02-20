@@ -1,7 +1,15 @@
 .spotlightCard {
   position: relative;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  box-shadow:
+    var(--shadow-sm),
+    inset 0 0 0 1px var(--border);
   overflow: hidden;
   isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   --mouse-x: -1000px;
   --mouse-y: -1000px;
 }
@@ -19,7 +27,7 @@
     rgba(255, 255, 255, 0.05),
     transparent 40%
   );
-  transition: opacity var(--transition-fast);
+  transition: opacity 300ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -33,6 +41,8 @@
   z-index: 2;
   height: 100%;
   padding: 1.5rem;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @media (max-width: 768px) {
@@ -40,4 +50,3 @@
     padding: 1rem;
   }
 }
-

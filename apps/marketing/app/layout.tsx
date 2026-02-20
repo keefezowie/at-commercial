@@ -1,26 +1,20 @@
 import type { Metadata } from "next/types";
-import { Space_Grotesk, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { buildPageMetadata, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 import { GlobalLoader } from "@/components/marketing/GlobalLoader";
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["600", "700"]
+  variable: "--font-sans",
+  display: "swap",
 });
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700"]
-});
-
-const mono = IBM_Plex_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400", "500", "600"]
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -48,7 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body
-        className={`noise-overlay ${spaceGrotesk.variable} ${manrope.variable} ${mono.variable}`}
+        className={`noise-overlay ${inter.variable} ${mono.variable}`}
       >
         <GlobalLoader />
         {children}

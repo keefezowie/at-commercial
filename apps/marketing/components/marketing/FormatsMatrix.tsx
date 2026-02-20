@@ -1,8 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { AbstractCadFlow } from "@/components/marketing/AbstractCadFlow";
-import { AbstractDocumentFlow } from "@/components/marketing/AbstractDocumentFlow";
+import { SvgFormatCad, SvgFormatDocx, SvgFormatPptx } from "@/components/marketing/FormatIllustrations";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { SectionShell } from "@/components/marketing/SectionShell";
 import { SpotlightCard } from "@/components/marketing/SpotlightCard";
@@ -17,6 +16,7 @@ type FormatRow = {
   format: string;
   coverage: string;
   note: string;
+  useCase: string;
 };
 
 type Props = {
@@ -39,7 +39,7 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
             <SectionShell
               eyebrow="Formats Matrix"
               title={title}
-              description="Supported formats shown below represent available workflow coverage. Scope and volume can be qualified during evaluation."
+              description="Validate file coverage against real enterprise workloads before rollout: SOPs, security policy packs, and engineering handoff files."
             />
           </m.div>
 
@@ -54,6 +54,7 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
                   <th className="mono">Format</th>
                   <th>Coverage</th>
                   <th>Notes</th>
+                  <th>Common Use Case</th>
                 </tr>
               </thead>
               <m.tbody {...tableMotion}>
@@ -62,6 +63,7 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
                     <td className="mono">{row.format}</td>
                     <td>{row.coverage}</td>
                     <td>{row.note}</td>
+                    <td>{row.useCase}</td>
                   </m.tr>
                 ))}
               </m.tbody>
@@ -74,10 +76,10 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
               contentClassName={styles.formatPreviewCard}
               motionProps={itemMotion}
             >
-              <h3>DOCX and table fidelity</h3>
-              <p>Columns, row spacing, and ownership metadata remain structured in translated exports.</p>
+              <h3>DOCX and XLSX table fidelity</h3>
+              <p>Table grids and structured cells remain stable for SOPs, trackers, and regulated reporting exports.</p>
               <div className={styles.formatPreviewVisual}>
-                <AbstractDocumentFlow className={styles.formatPreviewFlow} />
+                <SvgFormatDocx />
               </div>
             </SpotlightCard>
             <SpotlightCard
@@ -88,7 +90,7 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
               <h3>PPTX visual continuity</h3>
               <p>Slide hierarchy and bullet rhythm preserve presentation readability after translation.</p>
               <div className={styles.formatPreviewVisual}>
-                <AbstractDocumentFlow className={styles.formatPreviewFlow} />
+                <SvgFormatPptx />
               </div>
             </SpotlightCard>
             <SpotlightCard
@@ -99,7 +101,7 @@ export function FormatsMatrix({ title = "Technical fit at a glance", rows }: Pro
               <h3>DWG and DXF annotation mapping</h3>
               <p>Annotation positions stay anchored while layer labels are localized for engineering teams.</p>
               <div className={styles.formatPreviewVisual}>
-                <AbstractCadFlow className={styles.formatPreviewFlow} />
+                <SvgFormatCad />
               </div>
             </SpotlightCard>
           </div>
