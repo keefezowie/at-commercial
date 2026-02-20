@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { AnimatePresence, m } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -63,33 +62,33 @@ export function MobileStickyCta() {
             exit={profile.reduced ? { opacity: 0 } : { opacity: 0, y: 14 }}
             transition={profile.reduced ? { duration: 0.01 } : { duration: 0.18 }}
           >
-            <Link
-              href="/demo"
+            <a
+              href={siteConfig.appUrl}
               className={`button button-primary link-focus ${styles.mobileStickyButton}`}
               onClick={() =>
-                trackEvent("cta_primary_request_demo_click", {
+                trackEvent("cta_primary_app_register_click", {
                   surface: "mobile_sticky_bar",
                   page_template: pageTemplate,
-                  cta_role: "primary_demo"
+                  cta_role: "primary_register"
                 })
               }
             >
-              Request Demo
-            </Link>
+              Get Started
+            </a>
             <a
-              href={siteConfig.appUrl}
-              target="_blank"
+              href={`${siteConfig.appUrl}/login`}
+              target="_self"
               rel="noreferrer"
               className={`button button-secondary link-focus ${styles.mobileStickyButton}`}
               onClick={() =>
-                trackEvent("cta_secondary_subscriber_login_click", {
+                trackEvent("cta_secondary_app_login_click", {
                   surface: "mobile_sticky_bar",
                   page_template: pageTemplate,
                   cta_role: "secondary_login"
                 })
               }
             >
-              Subscriber Login
+              Login
             </a>
           </m.aside>
         ) : null}

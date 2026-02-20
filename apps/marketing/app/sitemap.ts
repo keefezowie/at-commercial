@@ -1,4 +1,4 @@
-import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next/types";
 import { siteConfig } from "@/lib/site-config";
 
 const routes = [

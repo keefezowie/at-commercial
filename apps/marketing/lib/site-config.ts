@@ -1,13 +1,18 @@
 const productName = process.env.NEXT_PUBLIC_PRODUCT_NAME ?? "Transora";
 const marketingDomain = process.env.NEXT_PUBLIC_MARKETING_DOMAIN ?? "transora.example.com";
-const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN ?? "app.transora.example.com";
+const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN ?? "localhost:5174";
 
 const withHttps = (domain: string): string => {
   if (domain.startsWith("http://") || domain.startsWith("https://")) {
     return domain;
   }
+  // Special case for localhost to enable http during development
+  if (domain.includes("localhost")) {
+    return `http://${domain}`;
+  }
   return `https://${domain}`;
 };
+
 
 export const siteConfig = {
   productName,

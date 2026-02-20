@@ -1,14 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { m } from "framer-motion";
 import { useState } from "react";
 import { BeforeAfterSlider } from "@/components/marketing/BeforeAfterSlider";
 import { ImageLightbox, type LightboxImage } from "@/components/marketing/ImageLightbox";
+import { TrackedAppAccessCtas } from "@/components/marketing/TrackedAppAccessCtas";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { SectionShell } from "@/components/marketing/SectionShell";
-import { type PageTemplate, trackEvent } from "@/lib/analytics";
-import { siteConfig } from "@/lib/site-config";
+import { type PageTemplate } from "@/lib/analytics";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -46,49 +45,13 @@ export function CadShowcase({ pageTemplate = "home" }: Props) {
             <p className={`section-description ${styles.cadPanelDescription}`}>
               Use one authenticated flow for business files and CAD deliverables without switching tools.
             </p>
-            <div className={styles.cadPrimaryActions} data-testid="cad-primary-actions">
-              <Link
-                href="/demo"
-                className="button button-primary link-focus"
-                onClick={() =>
-                  trackEvent("cta_primary_request_demo_click", {
-                    surface: "cad_section",
-                    page_template: pageTemplate,
-                    cta_role: "primary_demo"
-                  })
-                }
-              >
-                Request Demo
-              </Link>
-              <a
-                href={siteConfig.appUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="button button-secondary link-focus"
-                onClick={() =>
-                  trackEvent("cta_secondary_subscriber_login_click", {
-                    surface: "cad_section",
-                    page_template: pageTemplate,
-                    cta_role: "secondary_login"
-                  })
-                }
-              >
-                Subscriber Login
-              </a>
-            </div>
-            <Link
-              href="/contact"
-              className={`${styles.tertiaryCtaLink} ${styles.cadSalesLink}`}
-              onClick={() =>
-                trackEvent("cta_tertiary_talk_to_sales_click", {
-                  surface: "cad_section",
-                  page_template: pageTemplate,
-                  cta_role: "tertiary_sales"
-                })
-              }
-            >
-              Talk to Sales
-            </Link>
+            <TrackedAppAccessCtas
+              surface="cad_section"
+              pageTemplate={pageTemplate}
+              containerClassName={styles.cadPrimaryActions}
+              tertiaryClassName={`${styles.tertiaryCtaLink} ${styles.cadSalesLink}`}
+              dataTestId="cad-primary-actions"
+            />
           </m.article>
 
           <m.aside className={`${styles.cadVisual} glass ${styles.cardInteractive}`} {...itemMotion}>

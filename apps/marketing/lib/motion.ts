@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionProps, Transition, useReducedMotion } from "framer-motion";
+import { MotionProps, Transition } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 const msToSeconds = (value: number) => value / 1000;
@@ -101,8 +101,20 @@ const reducedTransition: Transition = {
 };
 
 export const useMotionProfile = (intensity: MotionIntensity = "medium"): MotionProfile => {
-  const prefersReducedMotion = useReducedMotion();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [allowHover, setAllowHover] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setPrefersReducedMotion(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) {
@@ -117,7 +129,7 @@ export const useMotionProfile = (intensity: MotionIntensity = "medium"): MotionP
   }, []);
 
   return useMemo(() => {
-    const reduced = Boolean(prefersReducedMotion);
+    const reduced = prefersReducedMotion;
     return {
       reduced,
       allowHover: allowHover && !reduced,

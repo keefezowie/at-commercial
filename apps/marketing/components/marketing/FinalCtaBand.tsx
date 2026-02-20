@@ -30,45 +30,44 @@ export function FinalCtaBand({ pageTemplate = "home" }: Props) {
     <section className="section-tight">
       <m.div className="container" {...sectionMotion}>
         <m.div className={styles.finalBand} {...contentMotion}>
-          <m.h2 {...itemMotion}>Run a guided evaluation with real documents and engineering workflows.</m.h2>
+          <m.h2 {...itemMotion}>Start translating your documents with engineering-grade precision.</m.h2>
           <m.p {...itemMotion}>
-            Move from pilot validation to production onboarding with structured demos, terminology setup,
-            and cross-team rollout guidance.
+            Create an account to access our translation platform, terminology management, and team collaboration tools immediately.
           </m.p>
           <m.div className="cta-row" {...itemMotion}>
             <MagneticAction enabled={profile.allowHover}>
               <m.div {...buttonMotion}>
-                <Link
-                  href="/demo"
+                <a
+                  href={siteConfig.appUrl}
                   className={`button button-primary link-focus ${styles.finalPrimaryCta}`}
                   onClick={() =>
-                    trackEvent("cta_primary_request_demo_click", {
+                    trackEvent("cta_primary_app_register_click", {
                       surface: "final_cta",
                       page_template: pageTemplate,
-                      cta_role: "primary_demo"
+                      cta_role: "primary_register"
                     })
                   }
                 >
-                  Request Demo
-                </Link>
+                  Get Started
+                </a>
               </m.div>
             </MagneticAction>
             <MagneticAction enabled={profile.allowHover}>
               <m.a
                 {...linkMotion}
-                href={siteConfig.appUrl}
-                target="_blank"
+                href={`${siteConfig.appUrl}/login`}
+                target="_self"
                 rel="noreferrer"
                 className={`button button-secondary link-focus ${styles.finalSecondaryCta}`}
                 onClick={() =>
-                  trackEvent("cta_secondary_subscriber_login_click", {
+                  trackEvent("cta_secondary_app_login_click", {
                     surface: "final_cta",
                     page_template: pageTemplate,
                     cta_role: "secondary_login"
                   })
                 }
               >
-                Subscriber Login
+                Login
               </m.a>
             </MagneticAction>
             <m.div {...itemMotion}>

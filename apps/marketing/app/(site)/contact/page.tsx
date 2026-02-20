@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from "next/types";
+import { AppAccessCtaRow } from "@/components/marketing/AppAccessCtaRow";
 import { ContactForm } from "@/components/marketing/ContactForm";
 import { PageHero } from "@/components/marketing/PageHero";
 import { siteConfig } from "@/lib/site-config";
@@ -23,19 +23,7 @@ export default function ContactPage() {
       <section className="section-tight">
         <div className="container">
           <ContactForm />
-          <div className="cta-row" style={{ marginTop: "1rem" }}>
-            <Link href="/demo" className="button button-primary link-focus">
-              Request Demo
-            </Link>
-            <a
-              href={siteConfig.appUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="button button-secondary link-focus"
-            >
-              Subscriber Login
-            </a>
-          </div>
+          <AppAccessCtaRow className="cta-row" />
           <p style={{ marginTop: "1rem", color: "var(--text-secondary)" }}>
             Direct contact: <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> |{" "}
             {siteConfig.contactPhone}

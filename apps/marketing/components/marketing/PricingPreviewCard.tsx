@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import { m } from "framer-motion";
 import styles from "@/components/marketing/styles/sections.module.css";
+import { siteConfig } from "@/lib/site-config";
 import { type PageTemplate, trackEvent } from "@/lib/analytics";
 import { createStaggerItem, motionTokens, useMotionProfile } from "@/lib/motion";
 
@@ -12,7 +13,7 @@ type PricingItem = {
   audience: string;
   points: string[];
   cta: string;
-  href: Route;
+  href: Route | string;
   featured?: boolean;
 };
 
@@ -24,9 +25,9 @@ type Props = {
 export function PricingPreviewCard({ item, pageTemplate }: Props) {
   const profile = useMotionProfile("low");
   const itemMotion = createStaggerItem(profile, { y: 8 });
-  const isPrimaryDemo = item.href === "/demo";
-  const eventName = isPrimaryDemo
-    ? "cta_primary_request_demo_click"
+  const isPrimary = item.href === siteConfig.appUrl;
+  const eventName = isPrimary
+    ? "cta_primary_app_register_click"
     : "cta_tertiary_talk_to_sales_click";
 
   return (
@@ -56,13 +57,13 @@ export function PricingPreviewCard({ item, pageTemplate }: Props) {
         ))}
       </ul>
       <Link
-        href={item.href}
-        className={`button ${isPrimaryDemo ? "button-primary" : "button-secondary"} link-focus`}
+        href={item.href as Route}
+        className={`button ${isPrimary ? "button-primary" : "button-secondary"} link-focus`}
         onClick={() =>
           trackEvent(eventName, {
             surface: "pricing_card",
             page_template: pageTemplate,
-            cta_role: isPrimaryDemo ? "primary_demo" : "tertiary_sales",
+            cta_role: isPrimary ? "primary_register" : "tertiary_sales",
             tier: item.tier,
             href: item.href
           })

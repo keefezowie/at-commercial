@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { CadShowcase } from "@/components/marketing/CadShowcase";
 import { FinalCtaBand } from "@/components/marketing/FinalCtaBand";
 import { PageHero } from "@/components/marketing/PageHero";

@@ -112,41 +112,41 @@ export function HeroLayered() {
             <MagneticAction enabled={profile.allowHover}>
               <m.div {...buttonMotion}>
                 <Link
-                  href="/demo"
+                  href={siteConfig.appUrl}
                   className={`button button-primary link-focus ${styles.heroPrimaryCta}`}
                   onClick={() =>
-                    trackEvent("cta_primary_request_demo_click", {
+                    trackEvent("cta_primary_app_register_click", {
                       surface: "hero",
                       page_template: "home",
-                      cta_role: "primary_demo"
+                      cta_role: "primary_register"
                     })
                   }
                 >
-                  Request Demo
+                  Get Started
                 </Link>
               </m.div>
             </MagneticAction>
             <MagneticAction enabled={profile.allowHover}>
               <m.a
                 {...buttonMotion}
-                href={siteConfig.appUrl}
-                target="_blank"
+                href={`${siteConfig.appUrl}/login`}
+                target="_self"
                 rel="noreferrer"
                 className={`button button-secondary link-focus ${styles.heroSecondaryCta}`}
                 onClick={() =>
-                  trackEvent("cta_secondary_subscriber_login_click", {
+                  trackEvent("cta_secondary_app_login_click", {
                     surface: "hero",
                     page_template: "home",
                     cta_role: "secondary_login"
                   })
                 }
               >
-                Subscriber Login
+                Login
               </m.a>
             </MagneticAction>
           </m.div>
           <m.p className={styles.heroSubscriberHint} {...createHeroLayer(profile, { delay: 0.33, y: 8 })}>
-            Already subscribed? Use Subscriber Login. New teams should start with Request Demo.
+            Already have an account? Use Login. New users should start with Get Started.
           </m.p>
           <m.ul className={styles.heroAssurance} {...createHeroLayer(profile, { delay: 0.34, y: 8 })}>
             <li>No credit card required</li>

@@ -16,16 +16,16 @@ export function NotFoundState() {
             <Link href="/" className="button button-primary link-focus">
               Back to Home
             </Link>
-            <Link href="/demo" className="button button-secondary link-focus">
-              Request Demo
-            </Link>
+            <a href={siteConfig.appUrl} className="button button-secondary link-focus">
+              Get Started
+            </a>
             <a
-              href={siteConfig.appUrl}
-              target="_blank"
+              href={`${siteConfig.appUrl}/login`}
+              target="_self"
               rel="noreferrer"
               className="button button-secondary link-focus"
             >
-              Subscriber Login
+              Login
             </a>
           </div>
         </article>

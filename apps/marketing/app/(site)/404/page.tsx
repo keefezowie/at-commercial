@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { NotFoundState } from "@/components/marketing/NotFoundState";
 import { buildPageMetadata } from "@/lib/seo";
 

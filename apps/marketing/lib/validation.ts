@@ -13,7 +13,7 @@ export const leadSchema = z.object({
   intent: z.enum(["demo", "security_review", "pricing_discussion"]).optional(),
   consent: z.literal(true),
   source_page: z.string().min(1),
-  utm: z.record(z.string()).optional()
+  utm: z.record(z.string(), z.string()).optional()
 });
 
 export const contactSchema = z.object({

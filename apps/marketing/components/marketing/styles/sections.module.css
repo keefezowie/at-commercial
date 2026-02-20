@@ -943,6 +943,109 @@
   margin-bottom: 0.45rem;
 }
 
+.pricingTierGrid {
+  margin-top: 1.2rem;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pricingTierCard {
+  padding: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.pricingTierHead {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.pricingTierHead h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.pricingTierPrice {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.pricingTierSubtitle {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+}
+
+.pricingTierList {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.pricingTierList li {
+  margin-bottom: 0.4rem;
+}
+
+.pricingComparisonWrap {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: auto;
+  background: var(--bg-surface);
+}
+
+.pricingComparisonTable {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.pricingComparisonTable th,
+.pricingComparisonTable td {
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 0.58rem 0.72rem;
+  font-size: 0.88rem;
+}
+
+.pricingComparisonTable thead th {
+  color: var(--text-primary);
+  font-weight: 700;
+  background: var(--bg-subtle);
+}
+
+.pricingComparisonTable tbody th {
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.pricingComparisonTable td {
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.pricingComparisonTable tr:last-child th,
+.pricingComparisonTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.pricingComparisonTable th:last-child,
+.pricingComparisonTable td:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 860px) {
+  .pricingTierGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .faqList {
   margin-top: 1.5rem;
   display: grid;

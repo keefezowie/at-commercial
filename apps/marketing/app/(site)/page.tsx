@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { CadShowcase } from "@/components/marketing/CadShowcase";
 import { FaqAccordion } from "@/components/marketing/FaqAccordion";
 import { FinalCtaBand } from "@/components/marketing/FinalCtaBand";

@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from "next/types";
 import { FinalCtaBand } from "@/components/marketing/FinalCtaBand";
 import { OutcomesSection } from "@/components/marketing/OutcomesSection";
 import { PageHero } from "@/components/marketing/PageHero";
@@ -7,7 +6,6 @@ import { ProofChipRail } from "@/components/marketing/ProofChipRail";
 import { WorkflowStepper } from "@/components/marketing/WorkflowStepper";
 import { outcomes, proofChips, workflowSteps } from "@/content/site-content";
 import { buildPageMetadata } from "@/lib/seo";
-import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/features",
@@ -27,26 +25,6 @@ export default function FeaturesPage() {
       <ProofChipRail title="Capability proof points" items={proofChips} />
       <OutcomesSection items={outcomes} />
       <WorkflowStepper items={workflowSteps} />
-      <section className="section-tight">
-        <div className="container">
-          <div className="cta-row">
-            <Link href="/demo" className="button button-primary link-focus">
-              Request Demo
-            </Link>
-            <a
-              href={siteConfig.appUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="button button-secondary link-focus"
-            >
-              Subscriber Login
-            </a>
-            <Link href="/cad-translation" className="button button-secondary link-focus">
-              View CAD
-            </Link>
-          </div>
-        </div>
-      </section>
       <FinalCtaBand pageTemplate="features" />
     </main>
   );

@@ -2,7 +2,7 @@
 
 type MetadataValue = string | number | boolean;
 
-export type CtaRole = "primary_demo" | "secondary_login" | "tertiary_sales";
+export type CtaRole = "primary_demo" | "primary_register" | "secondary_login" | "tertiary_sales";
 
 export type CtaSurface =
   | "global_nav"

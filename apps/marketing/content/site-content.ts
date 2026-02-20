@@ -11,9 +11,10 @@ type PricingPreviewItem = {
   audience: string;
   points: string[];
   cta: string;
-  href: Route;
+  href: Route | string;
   featured?: boolean;
 };
+
 
 export const navLinks = [
   { label: "Features", href: "/features" },
@@ -111,15 +112,15 @@ export const pricingPreview = [
     tier: "Pilot Launch",
     audience: "Small rollout team",
     points: ["Guided onboarding", "Core document workflows", "Standard support"],
-    cta: "Request Demo",
-    href: "/demo"
+    cta: "Get Started",
+    href: siteConfig.appUrl
   },
   {
     tier: "Growth Program",
     audience: "Multi-team adoption",
     points: ["Expanded usage profiles", "Glossary governance", "Priority onboarding"],
-    cta: "Request Demo",
-    href: "/demo",
+    cta: "Get Started",
+    href: siteConfig.appUrl,
     featured: true
   },
   {

@@ -55,13 +55,13 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/demo" className="link-focus">
-                    Request Demo
-                  </Link>
+                  <a href={siteConfig.appUrl} className="link-focus">
+                    Get Started
+                  </a>
                 </li>
                 <li>
-                  <a href={siteConfig.appUrl} target="_blank" rel="noreferrer" className="link-focus">
-                    Subscriber Login
+                  <a href={`${siteConfig.appUrl}/login`} target="_self" rel="noreferrer" className="link-focus">
+                    Login
                   </a>
                 </li>
               </ul>
@@ -91,7 +91,7 @@ export function Footer() {
 
         <div className={styles.footerBottom}>
           <span>
-            {new Date().getFullYear()} {siteConfig.companyName}
+            <span suppressHydrationWarning>{new Date().getFullYear()}</span> {siteConfig.companyName}
           </span>
           <span>Commercial website for conversion and onboarding inquiries.</span>
         </div>

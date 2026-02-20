@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { Space_Grotesk, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { buildPageMetadata, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
+import { GlobalLoader } from "@/components/marketing/GlobalLoader";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body
         className={`noise-overlay ${spaceGrotesk.variable} ${manrope.variable} ${mono.variable}`}
       >
+        <GlobalLoader />
         {children}
         <script
           type="application/ld+json"

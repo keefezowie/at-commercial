@@ -121,36 +121,36 @@ export function GlobalNav() {
           <MagneticAction enabled={profile.allowHover}>
             <m.div {...buttonMotion}>
               <Link
-                href="/demo"
+                href={siteConfig.appUrl}
                 className={`button button-primary link-focus ${styles.navPrimaryCta}`}
                 onClick={() =>
-                  trackEvent("cta_primary_request_demo_click", {
+                  trackEvent("cta_primary_app_register_click", {
                     surface: "global_nav",
                     page_template: pageTemplate,
-                    cta_role: "primary_demo"
+                    cta_role: "primary_register"
                   })
                 }
               >
-                Request Demo
+                Get Started
               </Link>
             </m.div>
           </MagneticAction>
           <div className={styles.navSubscriberBlock}>
             <m.a
               {...linkMotion}
-              href={siteConfig.appUrl}
-              target="_blank"
+              href={`${siteConfig.appUrl}/login`}
+              target="_self"
               rel="noreferrer"
               className={`${styles.navSubscriberLink} link-focus`}
               onClick={() =>
-                trackEvent("cta_secondary_subscriber_login_click", {
+                trackEvent("cta_secondary_app_login_click", {
                   surface: "global_nav",
                   page_template: pageTemplate,
                   cta_role: "secondary_login"
                 })
               }
             >
-              Subscriber Login
+              Login
             </m.a>
           </div>
         </div>
@@ -213,38 +213,38 @@ export function GlobalNav() {
               <div className={styles.mobileCtas}>
                 <m.div {...buttonMotion}>
                   <Link
-                    href="/demo"
+                    href={siteConfig.appUrl}
                     className="button button-primary link-focus"
                     onClick={() => {
                       setMenuOpen(false);
-                      trackEvent("cta_primary_request_demo_click", {
+                      trackEvent("cta_primary_app_register_click", {
                         surface: "mobile_nav",
                         page_template: pageTemplate,
-                        cta_role: "primary_demo"
+                        cta_role: "primary_register"
                       });
                     }}
                   >
-                    Request Demo
+                   Get Started
                   </Link>
                 </m.div>
                 <p className={styles.mobileSubscriberHint}>
-                  Already subscribed?{" "}
+                  Already have an account?{" "}
                   <m.a
                     {...linkMotion}
-                    href={siteConfig.appUrl}
-                    target="_blank"
+                    href={`${siteConfig.appUrl}/login`}
+                    target="_self"
                     rel="noreferrer"
                     className={`${styles.mobileSubscriberLink} link-focus`}
                     onClick={() => {
                       setMenuOpen(false);
-                      trackEvent("cta_secondary_subscriber_login_click", {
+                      trackEvent("cta_secondary_app_login_click", {
                         surface: "mobile_nav",
                         page_template: pageTemplate,
                         cta_role: "secondary_login"
                       });
                     }}
                   >
-                    Subscriber Login
+                    Login
                   </m.a>
                 </p>
               </div>

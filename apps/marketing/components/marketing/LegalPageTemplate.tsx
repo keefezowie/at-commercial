@@ -1,6 +1,5 @@
 import styles from "@/components/marketing/styles/legal.module.css";
-import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
+import { AppAccessCtaRow } from "@/components/marketing/AppAccessCtaRow";
 
 type Section = {
   heading: string;
@@ -32,19 +31,7 @@ export function LegalPageTemplate({ title, updatedDate, intro, sections }: Props
               ))}
             </section>
           ))}
-          <div className="cta-row" style={{ marginTop: "1.2rem" }}>
-            <Link href="/demo" className="button button-primary link-focus">
-              Request Demo
-            </Link>
-            <a
-              href={siteConfig.appUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="button button-secondary link-focus"
-            >
-              Subscriber Login
-            </a>
-          </div>
+          <AppAccessCtaRow className="cta-row" />
         </article>
       </div>
     </main>

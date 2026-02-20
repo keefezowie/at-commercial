@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, m } from "framer-motion";
-import { useEffect } from "react";
+import { type MouseEvent, useEffect } from "react";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { useMotionProfile } from "@/lib/motion";
 
@@ -64,7 +64,7 @@ export function ImageLightbox({ image, onClose }: Props) {
             role="dialog"
             aria-modal="true"
             aria-label={image.title}
-            onClick={(event) => event.stopPropagation()}
+            onClick={(event: MouseEvent<HTMLDivElement>) => event.stopPropagation()}
             initial={profile.reduced ? { opacity: 1 } : { opacity: 0, y: 10, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={profile.reduced ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.985 }}
