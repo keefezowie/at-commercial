@@ -121,7 +121,7 @@ export function GlobalNav() {
           <MagneticAction enabled={profile.allowHover}>
             <m.div {...buttonMotion}>
               <a
-                href={siteConfig.appUrl}
+                href={`${siteConfig.appUrl}/register`}
                 className={`button button-primary link-focus ${styles.navPrimaryCta}`}
                 onClick={() =>
                   trackEvent("cta_primary_app_register_click", {
