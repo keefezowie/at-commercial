@@ -25,6 +25,7 @@ export function HeroLayered() {
   const sectionRef = useRef<HTMLElement>(null);
   const profile = useMotionProfile("high");
   const buttonMotion = createMicroInteraction(profile, { kind: "button" });
+  const linkMotion = createMicroInteraction(profile, { kind: "link" });
   const heroDelays = useMemo(
     () => ({
       headline: profile.reduced ? 0 : 0.1,
@@ -111,42 +112,29 @@ export function HeroLayered() {
           >
             <MagneticAction enabled={profile.allowHover}>
               <m.div {...buttonMotion}>
-                <a
-                  href={siteConfig.appUrl}
-                  className={`button button-primary link-focus ${styles.heroPrimaryCta}`}
+                <Link
+                  href="/contact"
+                  className={`button button-primary link-focus ${styles.heroSalesCta}`}
                   onClick={() =>
-                    trackEvent("cta_primary_app_register_click", {
+                    trackEvent("cta_tertiary_talk_to_sales_click", {
                       surface: "hero",
                       page_template: "home",
-                      cta_role: "primary_register"
+                      cta_role: "tertiary_sales"
                     })
                   }
                 >
-                  Get Started
-                </a>
+                  Talk to Sales
+                </Link>
               </m.div>
             </MagneticAction>
-            <MagneticAction enabled={profile.allowHover}>
-              <m.a
-                {...buttonMotion}
-                href={`${siteConfig.appUrl}/login`}
-                target="_self"
-                rel="noreferrer"
-                className={`button button-secondary link-focus ${styles.heroSecondaryCta}`}
-                onClick={() =>
-                  trackEvent("cta_secondary_app_login_click", {
-                    surface: "hero",
-                    page_template: "home",
-                    cta_role: "secondary_login"
-                  })
-                }
-              >
-                Login
-              </m.a>
-            </MagneticAction>
+            <m.div {...linkMotion}>
+              <Link href="/pricing" className={`button button-secondary link-focus ${styles.heroSecondaryCta}`}>
+                View Pricing
+              </Link>
+            </m.div>
           </m.div>
           <m.p className={styles.heroSubscriberHint} {...createHeroLayer(profile, { delay: 0.33, y: 8 })}>
-            Already have an account? Use Login. New users should start with Get Started.
+            Platform access links stay pinned in the header. Use this section for sales and procurement intake.
           </m.p>
           <m.ul className={styles.heroAssurance} {...createHeroLayer(profile, { delay: 0.34, y: 8 })}>
             <li>No credit card required</li>

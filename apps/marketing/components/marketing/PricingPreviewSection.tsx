@@ -8,6 +8,7 @@ import { createSectionReveal, createStaggerContainer, useMotionProfile } from "@
 
 type PricingItem = {
   tier: string;
+  price: string;
   audience: string;
   points: string[];
   cta: string;
@@ -30,8 +31,8 @@ export function PricingPreviewSection({ items, pageTemplate = "home" }: Props) {
       <m.div className="container" {...sectionMotion}>
         <SectionShell
           eyebrow="Pricing Preview"
-          title="Commercial pathways for pilot to enterprise rollout."
-          description="Discovery leads to request-demo qualification, then subscription onboarding aligned to procurement scope and workflow complexity."
+          title="Preview the same monthly plans shown on the full pricing page."
+          description="Starter, Bisnis, and Enterprise tiers below mirror the current public pricing structure."
         />
         <m.div className={`grid-3 ${styles.pricingGrid}`} {...gridMotion}>
           {items.map((item) => (

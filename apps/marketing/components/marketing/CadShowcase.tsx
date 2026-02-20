@@ -49,7 +49,7 @@ export function CadShowcase({ pageTemplate = "home" }: Props) {
               surface="cad_section"
               pageTemplate={pageTemplate}
               containerClassName={styles.cadPrimaryActions}
-              tertiaryClassName={`${styles.tertiaryCtaLink} ${styles.cadSalesLink}`}
+              tertiaryClassName="button button-secondary link-focus"
               dataTestId="cad-primary-actions"
             />
           </m.article>

@@ -1,6 +1,6 @@
 .hero {
-  padding-top: clamp(3.15rem, 7.6vw, 5.2rem);
-  padding-bottom: clamp(2.5rem, 5.9vw, 4.2rem);
+  padding-top: clamp(3rem, 7.2vw, 5rem);
+  padding-bottom: clamp(2.8rem, 6.1vw, 4.6rem);
   position: relative;
   isolation: isolate;
   overflow: clip;
@@ -80,8 +80,8 @@
 
 .heroGrid {
   display: grid;
-  gap: 2rem;
-  align-items: center;
+  gap: clamp(1.75rem, 3.2vw, 2.9rem);
+  align-items: start;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
   padding-inline: clamp(0.2rem, 1.8vw, 1.4rem);
 }
@@ -90,42 +90,48 @@
   font-size: clamp(2.4rem, 6.2vw, 4.95rem);
   line-height: 0.97;
   letter-spacing: -0.048em;
-  margin: 1rem 0 0.9rem;
-  max-width: 16ch;
+  margin: 0.92rem 0 1rem;
+  max-width: 15.2ch;
 }
 
 .heroLead {
-  margin: 0 0 1.45rem;
-  max-width: 56ch;
+  margin: 0 0 1.25rem;
+  max-width: 58ch;
   color: var(--text-secondary);
   font-size: clamp(1rem, 1.35vw, 1.14rem);
+  line-height: 1.68;
 }
 
-.heroPrimaryCta {
+.heroSalesCta {
   padding: 0.84rem 1.3rem;
+  min-width: 11rem;
 }
 
 .heroSecondaryCta {
   padding: 0.72rem 1.12rem;
+  min-width: 10.25rem;
   border-color: var(--border);
   background: linear-gradient(180deg, var(--bg-elevated), var(--bg-surface));
 }
 
 .heroSubscriberHint {
-  margin: 0.65rem 0 0;
+  margin: 0.78rem 0 0;
   color: var(--text-secondary);
   font-size: 0.9rem;
+  line-height: 1.55;
+  max-width: 54ch;
 }
 
 .heroAssurance {
-  margin-top: 0.85rem;
+  margin-top: 0.95rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem 0.8rem;
+  gap: 0.58rem 0.95rem;
   padding: 0;
   list-style: none;
   color: var(--text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.83rem;
+  line-height: 1.45;
 }
 
 .heroAssurance li {
@@ -179,7 +185,7 @@
 .heroFrame {
   position: relative;
   width: min(550px, 100%);
-  padding: 1.05rem;
+  padding: 1.12rem;
   border-radius: 24px;
   border: 1px solid var(--border);
   background: linear-gradient(160deg, rgba(14, 14, 14, 0.95), rgba(11, 11, 11, 0.92));
@@ -224,7 +230,7 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   background: rgba(16, 16, 16, 0.82);
-  padding: 0.78rem;
+  padding: 0.82rem 0.86rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -262,23 +268,25 @@
 }
 
 .pageHero {
-  padding-block: clamp(2.3rem, 5.8vw, 3.8rem);
+  padding-block: clamp(2.5rem, 5.9vw, 4.2rem);
 }
 
 .pageHero h1 {
-  margin: 0.92rem 0 0.82rem;
+  margin: 0.88rem 0 0.82rem;
   font-size: clamp(2rem, 5vw, 3.7rem);
   letter-spacing: -0.04em;
   line-height: 1.03;
+  max-width: 17ch;
 }
 
 .pageHero p {
   max-width: 70ch;
   color: var(--text-secondary);
+  line-height: 1.68;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .heroPrimaryCta:hover {
+  .heroSalesCta:hover {
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.32),
       0 16px 30px rgba(0, 0, 0, 0.45);
@@ -294,6 +302,7 @@
   .heroGrid {
     grid-template-columns: minmax(0, 1fr);
     padding-inline: 0;
+    gap: 1.65rem;
   }
 
   .heroFrameDepth {
@@ -302,6 +311,10 @@
 
   .heroFrameWrap {
     min-height: 390px;
+  }
+
+  .heroLead {
+    max-width: 62ch;
   }
 }
 
@@ -323,5 +336,23 @@
   .heroMetricChip {
     position: static;
     margin-top: 0.6rem;
+  }
+
+  .heroLead {
+    margin-bottom: 1.05rem;
+  }
+
+  .heroSubscriberHint {
+    font-size: 0.87rem;
+  }
+
+  .heroAssurance {
+    font-size: 0.8rem;
+    gap: 0.45rem 0.7rem;
+  }
+
+  .heroSalesCta,
+  .heroSecondaryCta {
+    min-width: 0;
   }
 }

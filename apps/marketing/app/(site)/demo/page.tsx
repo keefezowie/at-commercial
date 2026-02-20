@@ -1,47 +1,32 @@
 import type { Metadata } from "next/types";
-import { siteConfig } from "@/lib/site-config";
+import Link from "next/link";
 import { PageHero } from "@/components/marketing/PageHero";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/demo",
-  title: "Get Started | Enterprise Translation Evaluation",
+  title: "Demo Request | Enterprise Translation Evaluation",
   description:
-    "Start your evaluation instantly. Access the platform, configure glossaries, and translate documents immediately."
+    "Request a guided commercial walkthrough for enterprise translation workflows and rollout planning."
 });
 
 export default function DemoPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Get Started"
-        title="Start translating your documents immediately."
-        description="Access the platform directly to begin your evaluation with full feature access."
+        eyebrow="Demo Request"
+        title="Start with a guided translation workflow walkthrough."
+        description="Use the buttons below for commercial intake. Header actions remain available for direct platform access and login."
       />
       <section className="section-tight">
         <div className="container">
-          <div className="cta-row" style={{ flexDirection: "column", alignItems: "start", gap: "1.5rem" }}>
-             <a
-              href={siteConfig.appUrl}
-              className="button button-primary link-focus"
-              style={{ minWidth: "200px", justifyContent: "center" }}
-            >
-              Launch Platform
-            </a>
-            
-            <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-              <p style={{ margin: 0, color: "var(--text-secondary)" }}>
-                Already have an account?
-              </p>
-              <a
-                href={`${siteConfig.appUrl}/login`}
-                target="_self"
-                rel="noreferrer"
-                className="button button-secondary link-focus"
-              >
-                Login
-              </a>
-            </div>
+          <div className="cta-row">
+            <Link href="/contact" className="button button-primary link-focus">
+              Talk to Sales
+            </Link>
+            <Link href="/pricing" className="button button-secondary link-focus">
+              View Pricing
+            </Link>
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, m } from "framer-motion";
-import { type MouseEvent, useEffect } from "react";
+import { type MouseEvent, useEffect, useRef } from "react";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { useMotionProfile } from "@/lib/motion";
 
@@ -19,6 +19,7 @@ type Props = {
 
 export function ImageLightbox({ image, onClose }: Props) {
   const profile = useMotionProfile("low");
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!image) {
@@ -47,6 +48,21 @@ export function ImageLightbox({ image, onClose }: Props) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [image, onClose]);
 
+  useEffect(() => {
+    if (!image) {
+      return;
+    }
+
+    const previousActiveElement = document.activeElement;
+    dialogRef.current?.focus();
+
+    return () => {
+      if (previousActiveElement instanceof HTMLElement) {
+        previousActiveElement.focus();
+      }
+    };
+  }, [image]);
+
   return (
     <AnimatePresence>
       {image ? (
@@ -60,10 +76,12 @@ export function ImageLightbox({ image, onClose }: Props) {
           transition={profile.reduced ? { duration: 0.01 } : { duration: 0.2 }}
         >
           <m.div
+            ref={dialogRef}
             className={styles.lightboxDialog}
             role="dialog"
             aria-modal="true"
             aria-label={image.title}
+            tabIndex={-1}
             onClick={(event: MouseEvent<HTMLDivElement>) => event.stopPropagation()}
             initial={profile.reduced ? { opacity: 1 } : { opacity: 0, y: 10, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -35,6 +35,19 @@ export type PageTemplate =
   | "legal"
   | "not_found";
 
+export const resolvePageTemplate = (pathname: string): PageTemplate => {
+  if (pathname === "/") return "home";
+  if (pathname.startsWith("/features")) return "features";
+  if (pathname.startsWith("/formats")) return "formats";
+  if (pathname.startsWith("/cad-translation")) return "cad_translation";
+  if (pathname.startsWith("/security")) return "security";
+  if (pathname.startsWith("/pricing")) return "pricing";
+  if (pathname.startsWith("/demo")) return "demo";
+  if (pathname.startsWith("/contact")) return "contact";
+  if (pathname.startsWith("/privacy") || pathname.startsWith("/terms")) return "legal";
+  return "home";
+};
+
 export type MarketingEventMetadata = Record<string, MetadataValue> & {
   surface?: CtaSurface;
   page_template?: PageTemplate;

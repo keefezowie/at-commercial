@@ -2,44 +2,8 @@ import type { Metadata } from "next/types";
 import { FinalCtaBand } from "@/components/marketing/FinalCtaBand";
 import { PageHero } from "@/components/marketing/PageHero";
 import styles from "@/components/marketing/styles/sections.module.css";
+import { pricingComparisonRows, pricingTiers } from "@/content/site-content";
 import { buildPageMetadata } from "@/lib/seo";
-
-const tiers = [
-  {
-    name: "Starter",
-    price: "Rp 99.000/bln",
-    subtitle: "Freelancers & individuals",
-    highlights: ["600.000 chars", "2 image credits", "All document formats", "20 MB max file size"]
-  },
-  {
-    name: "Bisnis",
-    price: "Rp 299.000/bln",
-    subtitle: "SMBs & agencies",
-    highlights: ["2.000.000 chars", "10 image credits", "Custom glossary", "50 MB max file size"]
-  },
-  {
-    name: "Enterprise",
-    price: "Rp 1.199.000/bln",
-    subtitle: "High-volume operations",
-    highlights: ["10.000.000 chars", "30 image credits", "API access", "100 MB max file size"]
-  }
-] as const;
-
-const comparisonRows = [
-  { feature: "Monthly Price", starter: "Rp 99.000", bisnis: "Rp 299.000", enterprise: "Rp 1.199.000" },
-  { feature: "Character Quota / mo", starter: "600.000", bisnis: "2.000.000", enterprise: "10.000.000" },
-  { feature: "Image Regen Credits / mo", starter: "2", bisnis: "10", enterprise: "30" },
-  { feature: "Supported Formats", starter: "All", bisnis: "All", enterprise: "All" },
-  { feature: "Batch API (Async Queue)", starter: "—", bisnis: "✓", enterprise: "✓" },
-  { feature: "Glossary / Custom Terms", starter: "—", bisnis: "✓", enterprise: "✓" },
-  { feature: "Translation History", starter: "30 days", bisnis: "90 days", enterprise: "1 year" },
-  { feature: "Max File Size", starter: "20 MB", bisnis: "50 MB", enterprise: "100 MB" },
-  { feature: "Max Images per File", starter: "10", bisnis: "30", enterprise: "50" },
-  { feature: "Priority Processing", starter: "—", bisnis: "—", enterprise: "✓" },
-  { feature: "API Access", starter: "—", bisnis: "—", enterprise: "✓" },
-  { feature: "Dedicated Support", starter: "—", bisnis: "Email", enterprise: "Email + Chat" },
-  { feature: "Image Credit Add-On Pack", starter: "5 cr / Rp 25k", bisnis: "5 cr / Rp 25k", enterprise: "10 cr / Rp 45k" }
-] as const;
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/pricing",
@@ -64,7 +28,7 @@ export default function PricingPage() {
             No annual lock-in required. Annual plans may include discounting as an optional upsell.
           </p>
           <div className={styles.pricingTierGrid}>
-            {tiers.map((tier) => (
+            {pricingTiers.map((tier) => (
               <article key={tier.name} className={`card ${styles.pricingTierCard}`}>
                 <header className={styles.pricingTierHead}>
                   <h3>{tier.name}</h3>
@@ -99,7 +63,7 @@ export default function PricingPage() {
                 </tr>
               </thead>
               <tbody>
-                {comparisonRows.map((row) => (
+                {pricingComparisonRows.map((row) => (
                   <tr key={row.feature}>
                     <th scope="row">{row.feature}</th>
                     <td>{row.starter}</td>
@@ -116,4 +80,3 @@ export default function PricingPage() {
     </main>
   );
 }
-

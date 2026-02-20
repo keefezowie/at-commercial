@@ -31,7 +31,7 @@ export function LegalPageTemplate({ title, updatedDate, intro, sections }: Props
               ))}
             </section>
           ))}
-          <AppAccessCtaRow className="cta-row" />
+          <AppAccessCtaRow className="cta-row" showViewPricing />
         </article>
       </div>
     </main>

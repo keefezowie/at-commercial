@@ -4,12 +4,12 @@ import Link from "next/link";
 import type { Route } from "next";
 import { m } from "framer-motion";
 import styles from "@/components/marketing/styles/sections.module.css";
-import { siteConfig } from "@/lib/site-config";
 import { type PageTemplate, trackEvent } from "@/lib/analytics";
 import { createStaggerItem, motionTokens, useMotionProfile } from "@/lib/motion";
 
 type PricingItem = {
   tier: string;
+  price: string;
   audience: string;
   points: string[];
   cta: string;
@@ -25,10 +25,6 @@ type Props = {
 export function PricingPreviewCard({ item, pageTemplate }: Props) {
   const profile = useMotionProfile("low");
   const itemMotion = createStaggerItem(profile, { y: 8 });
-  const isPrimary = item.href === siteConfig.appUrl;
-  const eventName = isPrimary
-    ? "cta_primary_app_register_click"
-    : "cta_tertiary_talk_to_sales_click";
 
   return (
     <m.article className={`card ${styles.priceCard} ${styles.cardInteractive}`} {...itemMotion}>
@@ -50,6 +46,7 @@ export function PricingPreviewCard({ item, pageTemplate }: Props) {
         </m.span>
       ) : null}
       <h3 className={styles.priceTier}>{item.tier}</h3>
+      <p className={styles.priceValue}>{item.price}</p>
       <p className={styles.priceAudience}>{item.audience}</p>
       <ul className={styles.priceList}>
         {item.points.map((point) => (
@@ -58,12 +55,12 @@ export function PricingPreviewCard({ item, pageTemplate }: Props) {
       </ul>
       <Link
         href={item.href as Route}
-        className={`button ${isPrimary ? "button-primary" : "button-secondary"} link-focus`}
+        className={`button button-secondary link-focus ${styles.priceCta}`}
         onClick={() =>
-          trackEvent(eventName, {
+          trackEvent("cta_tertiary_talk_to_sales_click", {
             surface: "pricing_card",
             page_template: pageTemplate,
-            cta_role: isPrimary ? "primary_register" : "tertiary_sales",
+            cta_role: "tertiary_sales",
             tier: item.tier,
             href: item.href
           })

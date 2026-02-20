@@ -1,50 +1,51 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import styles from "./styles/loader.module.css"; // Create this CSS file next
+import styles from "./styles/loader.module.css";
 
 export function GlobalLoader() {
   const [isVisible, setIsVisible] = useState(true);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    // Show loader for 2 seconds
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 2000);
+    }, prefersReducedMotion ? 1200 : 2000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div 
-// Use key to force re-render if needed, but AnimatePresence handles it
+        <motion.div
           key="loader"
           className={styles.loaderContainer}
+          role="status"
+          aria-live="polite"
+          aria-label="Loading"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, pointerEvents: "none" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: prefersReducedMotion ? 0.2 : 0.5, ease: "easeInOut" }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            // When exiting, scale up slightly and fade out
-            exit={{ opacity: 0, scale: 1.1 }}
+            exit={{ opacity: 0, scale: prefersReducedMotion ? 1 : 1.1 }}
             transition={{ 
-              duration: 0.8, 
-              repeat: Infinity, 
+              duration: prefersReducedMotion ? 0.2 : 0.8,
+              repeat: prefersReducedMotion ? 0 : Infinity,
               repeatType: "reverse",
               ease: "easeInOut"
             }}
           >
-            <Image 
-              src="/brand/transora-logo.png" 
-              alt="Transora Loading" 
-              width={80} 
-              height={80} 
+            <Image
+              src="/brand/transora-logo.png"
+              alt="Transora Loading"
+              width={80}
+              height={80}
               priority
             />
           </motion.div>

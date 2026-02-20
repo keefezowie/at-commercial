@@ -8,11 +8,26 @@ type NavLink = {
 
 type PricingPreviewItem = {
   tier: string;
+  price: string;
   audience: string;
   points: string[];
   cta: string;
   href: Route | string;
   featured?: boolean;
+};
+
+export type PricingTier = {
+  name: string;
+  price: string;
+  subtitle: string;
+  highlights: string[];
+};
+
+export type PricingComparisonRow = {
+  feature: string;
+  starter: string;
+  bisnis: string;
+  enterprise: string;
 };
 
 
@@ -107,30 +122,52 @@ export const formatRows = [
   { format: "DXF", coverage: "Workflow support", note: "CAD exchange format coverage" }
 ];
 
-export const pricingPreview = [
+export const pricingTiers = [
   {
-    tier: "Pilot Launch",
-    audience: "Small rollout team",
-    points: ["Guided onboarding", "Core document workflows", "Standard support"],
-    cta: "Get Started",
-    href: siteConfig.appUrl
+    name: "Starter",
+    price: "Rp 99.000/bln",
+    subtitle: "Freelancers & individuals",
+    highlights: ["600.000 chars", "2 image credits", "All document formats", "20 MB max file size"]
   },
   {
-    tier: "Growth Program",
-    audience: "Multi-team adoption",
-    points: ["Expanded usage profiles", "Glossary governance", "Priority onboarding"],
-    cta: "Get Started",
-    href: siteConfig.appUrl,
-    featured: true
+    name: "Bisnis",
+    price: "Rp 299.000/bln",
+    subtitle: "SMBs & agencies",
+    highlights: ["2.000.000 chars", "10 image credits", "Custom glossary", "50 MB max file size"]
   },
   {
-    tier: "Enterprise Governance",
-    audience: "Procurement-led deployment",
-    points: ["Security alignment review", "CAD workflow consultation", "Commercial SLA discussion"],
-    cta: "Contact Sales",
-    href: "/contact"
+    name: "Enterprise",
+    price: "Rp 1.199.000/bln",
+    subtitle: "High-volume operations",
+    highlights: ["10.000.000 chars", "30 image credits", "API access", "100 MB max file size"]
   }
-] satisfies readonly PricingPreviewItem[];
+] satisfies readonly PricingTier[];
+
+export const pricingComparisonRows = [
+  { feature: "Monthly Price", starter: "Rp 99.000", bisnis: "Rp 299.000", enterprise: "Rp 1.199.000" },
+  { feature: "Character Quota / mo", starter: "600.000", bisnis: "2.000.000", enterprise: "10.000.000" },
+  { feature: "Image Regen Credits / mo", starter: "2", bisnis: "10", enterprise: "30" },
+  { feature: "Supported Formats", starter: "All", bisnis: "All", enterprise: "All" },
+  { feature: "Batch API (Async Queue)", starter: "No", bisnis: "Yes", enterprise: "Yes" },
+  { feature: "Glossary / Custom Terms", starter: "No", bisnis: "Yes", enterprise: "Yes" },
+  { feature: "Translation History", starter: "30 days", bisnis: "90 days", enterprise: "1 year" },
+  { feature: "Max File Size", starter: "20 MB", bisnis: "50 MB", enterprise: "100 MB" },
+  { feature: "Max Images per File", starter: "10", bisnis: "30", enterprise: "50" },
+  { feature: "Priority Processing", starter: "No", bisnis: "No", enterprise: "Yes" },
+  { feature: "API Access", starter: "No", bisnis: "No", enterprise: "Yes" },
+  { feature: "Dedicated Support", starter: "No", bisnis: "Email", enterprise: "Email + Chat" },
+  { feature: "Image Credit Add-On Pack", starter: "5 cr / Rp 25k", bisnis: "5 cr / Rp 25k", enterprise: "10 cr / Rp 45k" }
+] satisfies readonly PricingComparisonRow[];
+
+export const pricingPreview = pricingTiers.map((tier) => ({
+  tier: tier.name,
+  price: tier.price,
+  audience: tier.subtitle,
+  points: tier.highlights,
+  cta: "Talk to Sales",
+  href: "/contact",
+  featured: tier.name === "Bisnis"
+})) satisfies readonly PricingPreviewItem[];
 
 export const faqs = [
   {

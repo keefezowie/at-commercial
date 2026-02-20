@@ -55,14 +55,14 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <a href={siteConfig.appUrl} className="link-focus">
-                    Get Started
-                  </a>
+                  <Link href="/contact" className="link-focus">
+                    Talk to Sales
+                  </Link>
                 </li>
                 <li>
-                  <a href={`${siteConfig.appUrl}/login`} target="_self" rel="noreferrer" className="link-focus">
-                    Login
-                  </a>
+                  <Link href="/pricing" className="link-focus">
+                    View Pricing
+                  </Link>
                 </li>
               </ul>
             </section>

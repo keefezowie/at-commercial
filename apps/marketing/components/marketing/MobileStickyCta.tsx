@@ -4,30 +4,16 @@ import { AnimatePresence, m } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import styles from "@/components/marketing/styles/shell.module.css";
-import { type PageTemplate, trackEvent } from "@/lib/analytics";
+import { resolvePageTemplate, trackEvent } from "@/lib/analytics";
 import { useMotionProfile } from "@/lib/motion";
-import { siteConfig } from "@/lib/site-config";
 
 const revealOffset = 32;
-
-const getPageTemplate = (pathname: string): PageTemplate => {
-  if (pathname === "/") return "home";
-  if (pathname.startsWith("/features")) return "features";
-  if (pathname.startsWith("/formats")) return "formats";
-  if (pathname.startsWith("/cad-translation")) return "cad_translation";
-  if (pathname.startsWith("/security")) return "security";
-  if (pathname.startsWith("/pricing")) return "pricing";
-  if (pathname.startsWith("/demo")) return "demo";
-  if (pathname.startsWith("/contact")) return "contact";
-  if (pathname.startsWith("/privacy") || pathname.startsWith("/terms")) return "legal";
-  return "home";
-};
 
 export function MobileStickyCta() {
   const pathname = usePathname();
   const profile = useMotionProfile("low");
   const [visible, setVisible] = useState(false);
-  const pageTemplate = useMemo(() => getPageTemplate(pathname), [pathname]);
+  const pageTemplate = useMemo(() => resolvePageTemplate(pathname), [pathname]);
   const hideSticky = pathname.startsWith("/demo");
 
   useEffect(() => {
@@ -36,12 +22,30 @@ export function MobileStickyCta() {
       return;
     }
 
-    const updateVisibility = () => setVisible(window.scrollY > revealOffset);
-    updateVisibility();
-    const interval = window.setInterval(updateVisibility, 160);
+    let frame = 0;
+    const updateVisibility = () => {
+      frame = 0;
+      const nextVisible = window.scrollY > revealOffset;
+      setVisible((current) => (current === nextVisible ? current : nextVisible));
+    };
+
+    const scheduleVisibilityUpdate = () => {
+      if (frame !== 0) {
+        return;
+      }
+      frame = window.requestAnimationFrame(updateVisibility);
+    };
+
+    scheduleVisibilityUpdate();
+    window.addEventListener("scroll", scheduleVisibilityUpdate, { passive: true });
+    window.addEventListener("resize", scheduleVisibilityUpdate);
 
     return () => {
-      window.clearInterval(interval);
+      if (frame !== 0) {
+        window.cancelAnimationFrame(frame);
+      }
+      window.removeEventListener("scroll", scheduleVisibilityUpdate);
+      window.removeEventListener("resize", scheduleVisibilityUpdate);
     };
   }, [hideSticky]);
 
@@ -63,32 +67,23 @@ export function MobileStickyCta() {
             transition={profile.reduced ? { duration: 0.01 } : { duration: 0.18 }}
           >
             <a
-              href={siteConfig.appUrl}
+              href="/contact"
               className={`button button-primary link-focus ${styles.mobileStickyButton}`}
               onClick={() =>
-                trackEvent("cta_primary_app_register_click", {
+                trackEvent("cta_tertiary_talk_to_sales_click", {
                   surface: "mobile_sticky_bar",
                   page_template: pageTemplate,
-                  cta_role: "primary_register"
+                  cta_role: "tertiary_sales"
                 })
               }
             >
-              Get Started
+              Talk to Sales
             </a>
             <a
-              href={`${siteConfig.appUrl}/login`}
-              target="_self"
-              rel="noreferrer"
+              href="/pricing"
               className={`button button-secondary link-focus ${styles.mobileStickyButton}`}
-              onClick={() =>
-                trackEvent("cta_secondary_app_login_click", {
-                  surface: "mobile_sticky_bar",
-                  page_template: pageTemplate,
-                  cta_role: "secondary_login"
-                })
-              }
             >
-              Login
+              View Pricing
             </a>
           </m.aside>
         ) : null}

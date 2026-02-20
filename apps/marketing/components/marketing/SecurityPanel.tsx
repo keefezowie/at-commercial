@@ -62,7 +62,7 @@ export function SecurityPanel({ pageTemplate = "home" }: Props) {
           surface="security_section"
           pageTemplate={pageTemplate}
           containerClassName="cta-row"
-          tertiaryClassName={styles.tertiaryCtaLink}
+          tertiaryClassName="button button-secondary link-focus"
         />
       </m.div>
     </section>

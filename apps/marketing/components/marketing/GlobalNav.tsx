@@ -10,29 +10,17 @@ import { MagneticAction } from "@/components/marketing/MagneticAction";
 import { navLinks } from "@/content/site-content";
 import { createMicroInteraction, motionEasing, motionTokens, useMotionProfile } from "@/lib/motion";
 import { siteConfig } from "@/lib/site-config";
-import { type PageTemplate, trackEvent } from "@/lib/analytics";
+import { resolvePageTemplate, trackEvent } from "@/lib/analytics";
 
 const mobileMenuId = "mobile-nav-menu";
-
-const getPageTemplate = (pathname: string): PageTemplate => {
-  if (pathname === "/") return "home";
-  if (pathname.startsWith("/features")) return "features";
-  if (pathname.startsWith("/formats")) return "formats";
-  if (pathname.startsWith("/cad-translation")) return "cad_translation";
-  if (pathname.startsWith("/security")) return "security";
-  if (pathname.startsWith("/pricing")) return "pricing";
-  if (pathname.startsWith("/demo")) return "demo";
-  if (pathname.startsWith("/contact")) return "contact";
-  if (pathname.startsWith("/privacy") || pathname.startsWith("/terms")) return "legal";
-  return "home";
-};
+const mobileToggleId = "mobile-nav-toggle";
 
 export function GlobalNav() {
   const pathname = usePathname();
   const profile = useMotionProfile("low");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pageTemplate = useMemo(() => getPageTemplate(pathname), [pathname]);
+  const pageTemplate = useMemo(() => resolvePageTemplate(pathname), [pathname]);
 
   const uiTransition = useMemo(
     () =>
@@ -68,6 +56,22 @@ export function GlobalNav() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(min-width: 981px)");
+    const onViewportChange = () => {
+      if (mediaQuery.matches) {
+        setMenuOpen(false);
+      }
+    };
+
+    mediaQuery.addEventListener("change", onViewportChange);
+    return () => mediaQuery.removeEventListener("change", onViewportChange);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -157,15 +161,18 @@ export function GlobalNav() {
 
         <button
           type="button"
+          id={mobileToggleId}
           className={`${styles.menuToggle} link-focus`}
           aria-expanded={menuOpen}
           aria-controls={mobileMenuId}
+          aria-haspopup="menu"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           data-testid="mobile-menu-toggle"
           onClick={() => setMenuOpen((previous) => !previous)}
         >
-          <span className={styles.menuToggleBar} />
-          <span className={styles.menuToggleBar} />
-          <span className={styles.menuToggleBar} />
+          <span className={styles.menuToggleBar} aria-hidden />
+          <span className={styles.menuToggleBar} aria-hidden />
+          <span className={styles.menuToggleBar} aria-hidden />
           <span className={styles.menuToggleLabel}>Menu</span>
         </button>
       </div>
@@ -188,6 +195,9 @@ export function GlobalNav() {
               id={mobileMenuId}
               className={styles.mobilePanel}
               data-testid="mobile-menu-panel"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={mobileToggleId}
               initial={profile.reduced ? { opacity: 0 } : { opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={profile.reduced ? { opacity: 0 } : { opacity: 0, y: -12 }}

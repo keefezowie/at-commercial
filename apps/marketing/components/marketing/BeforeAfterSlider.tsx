@@ -109,9 +109,10 @@ export function BeforeAfterSlider({ id, title, before, after, compact = false, o
           style={{ left: `${position}%` }}
           role="slider"
           aria-label={`${title} comparison handle`}
-          aria-valuemin={0}
-          aria-valuemax={100}
+          aria-valuemin={5}
+          aria-valuemax={95}
           aria-valuenow={Math.round(position)}
+          aria-valuetext={`${Math.round(position)}% revealed`}
           onKeyDown={onHandleKeyDown}
         >
           <span className={styles.beforeAfterHandleKnob} aria-hidden />

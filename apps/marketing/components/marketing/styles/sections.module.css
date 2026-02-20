@@ -1,10 +1,10 @@
 .sectionTop {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.68rem;
 }
 
 .sectionTopTight {
-  gap: 0.44rem;
+  gap: 0.5rem;
 }
 
 .sectionTop[data-tone="muted"] {
@@ -37,16 +37,16 @@
 }
 
 .resultsGrid {
-  margin-top: 1.6rem;
+  margin-top: 1.7rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .resultCard {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  padding: 1rem;
+  padding: 1.08rem;
   --card-fade-mask: linear-gradient(
     180deg,
     rgba(0, 0, 0, 1) 0%,
@@ -155,6 +155,7 @@
   background: var(--bg-subtle);
   cursor: ew-resize;
   user-select: none;
+  touch-action: pan-y;
 }
 
 .beforeAfterFrame[data-dragging="true"] {
@@ -201,6 +202,7 @@
   padding: 0;
   margin: 0;
   z-index: 4;
+  touch-action: pan-y;
 }
 
 .beforeAfterHandleKnob {
@@ -281,7 +283,7 @@
 }
 
 .outcomeCard {
-  padding: 1.25rem 1.15rem;
+  padding: 1.35rem 1.22rem;
 }
 
 .outcomeFigureHead {
@@ -502,14 +504,15 @@
 .outcomeSummary {
   margin: 0;
   color: var(--text-secondary);
+  line-height: 1.62;
 }
 
 .problemGrid {
-  margin-top: 1.6rem;
+  margin-top: 1.7rem;
 }
 
 .problemCard {
-  padding: 1.2rem 1.1rem;
+  padding: 1.3rem 1.2rem;
 }
 
 .problemCard h3 {
@@ -520,10 +523,11 @@
 .problemCard p {
   margin: 0;
   color: var(--text-secondary);
+  line-height: 1.62;
 }
 
 .workflowWrap {
-  margin-top: 1.3rem;
+  margin-top: 1.45rem;
   position: relative;
 }
 
@@ -539,7 +543,7 @@
 
 .workflowItem {
   position: relative;
-  padding: 1rem 1rem 1rem 2.5rem;
+  padding: 1.08rem 1.05rem 1.08rem 2.55rem;
   margin-bottom: 0.8rem;
   border-left: 2px solid transparent;
   transition: border-left-color var(--transition-base), background-color var(--transition-base);
@@ -573,12 +577,13 @@
 
 .workflowItem h3 {
   margin: 0 0 0.35rem;
-  font-size: 1rem;
+  font-size: 1.02rem;
 }
 
 .workflowItem p {
   margin: 0;
   color: var(--text-secondary);
+  line-height: 1.62;
 }
 
 .formatsTableWrap {
@@ -608,14 +613,14 @@
 }
 
 .formatPreviewGrid {
-  margin-top: 1rem;
+  margin-top: 1.15rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: 0.95rem;
 }
 
 .formatPreviewCard {
-  padding: 0.9rem;
+  padding: 1rem;
 }
 
 .formatPreviewCard h3 {
@@ -627,6 +632,7 @@
   margin: 0.45rem 0 0.8rem;
   color: var(--text-secondary);
   font-size: 0.91rem;
+  line-height: 1.58;
 }
 
 .formatPreviewImage {
@@ -638,9 +644,9 @@
 }
 
 .cadShowcase {
-  margin-top: 1.8rem;
+  margin-top: 2rem;
   display: grid;
-  gap: 1.2rem;
+  gap: 1.3rem;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
@@ -691,11 +697,12 @@
 }
 
 .cadPanel {
-  padding: 1.3rem;
+  padding: 1.4rem;
 }
 
 .cadPanelDescription {
   max-width: 48ch;
+  line-height: 1.66;
 }
 
 .cadPrimaryActions {
@@ -728,17 +735,17 @@
 }
 
 .workflowPreviewGrid {
-  margin-top: 1.5rem;
+  margin-top: 1.7rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.95rem;
+  gap: 1.05rem;
 }
 
 .workflowPreviewCard {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  padding: 0.95rem;
+  padding: 1.06rem;
   --card-fade-mask: linear-gradient(
     180deg,
     rgba(0, 0, 0, 1) 0%,
@@ -808,10 +815,16 @@
   overflow: hidden;
 }
 
+.workflowPreviewZoom:focus-visible .workflowPreviewImage {
+  border-color: #4a4a4a;
+  box-shadow: 0 0 0 3px rgba(152, 152, 152, 0.24);
+}
+
 .workflowPreviewCard p {
   margin: 0.6rem 0 0;
   color: var(--text-secondary);
   font-size: 0.92rem;
+  line-height: 1.58;
 }
 
 .lightboxBackdrop {
@@ -864,6 +877,11 @@
   cursor: pointer;
 }
 
+.lightboxClose:focus-visible {
+  outline: 3px solid rgba(166, 166, 166, 0.42);
+  outline-offset: 2px;
+}
+
 .lightboxImage {
   width: 100%;
   height: auto;
@@ -873,18 +891,18 @@
 }
 
 .securityList {
-  margin: 1.6rem 0 0;
+  margin: 1.8rem 0 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.85rem;
+  gap: 0.95rem;
 }
 
 .securityItem {
   display: flex;
   gap: 0.8rem;
   align-items: flex-start;
-  padding: 0.9rem 1rem;
+  padding: 1rem 1.06rem;
 }
 
 .securityIcon {
@@ -898,17 +916,27 @@
 }
 
 .pricingGrid {
-  margin-top: 1.3rem;
+  margin-top: 1.5rem;
 }
 
 .priceCard {
-  padding: 1.25rem;
+  padding: 1.35rem 1.28rem;
   position: relative;
+  display: grid;
+  gap: 0.75rem;
 }
 
 .priceTier {
   margin: 0;
   font-size: 1.18rem;
+  line-height: 1.12;
+}
+
+.priceValue {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.02rem;
+  font-weight: 780;
 }
 
 .priceBadge {
@@ -929,31 +957,39 @@
 }
 
 .priceAudience {
-  margin: 0.25rem 0 0.8rem;
+  margin: 0;
   color: var(--text-secondary);
+  font-size: 0.89rem;
+  line-height: 1.56;
 }
 
 .priceList {
-  margin: 0 0 1rem;
+  margin: 0;
   padding-left: 1rem;
   color: var(--text-secondary);
+  line-height: 1.56;
 }
 
 .priceList li {
   margin-bottom: 0.45rem;
 }
 
+.priceCta {
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
 .pricingTierGrid {
-  margin-top: 1.2rem;
+  margin-top: 1.4rem;
   display: grid;
-  gap: 0.9rem;
+  gap: 1rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .pricingTierCard {
-  padding: 1rem;
+  padding: 1.16rem 1.08rem;
   display: grid;
-  gap: 0.8rem;
+  gap: 0.9rem;
 }
 
 .pricingTierHead {
@@ -977,13 +1013,15 @@
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 .pricingTierList {
   margin: 0;
   padding-left: 1rem;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.56;
 }
 
 .pricingTierList li {
@@ -991,7 +1029,7 @@
 }
 
 .pricingComparisonWrap {
-  margin-top: 1rem;
+  margin-top: 1.15rem;
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: auto;
@@ -1008,8 +1046,9 @@
 .pricingComparisonTable td {
   border-bottom: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  padding: 0.58rem 0.72rem;
+  padding: 0.64rem 0.76rem;
   font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 .pricingComparisonTable thead th {
@@ -1082,8 +1121,8 @@
 }
 
 .finalBand {
-  margin-top: 1.3rem;
-  padding: 2.2rem 1.4rem;
+  margin-top: 1.45rem;
+  padding: 2.35rem 1.6rem;
   border-radius: 24px;
   border: 1px solid rgba(104, 104, 104, 0.52);
   background:
@@ -1098,9 +1137,10 @@
 }
 
 .finalBand p {
-  margin: 0 0 1.2rem;
+  margin: 0 0 1.3rem;
   color: rgba(236, 236, 236, 0.9);
   max-width: 64ch;
+  line-height: 1.62;
 }
 
 .finalPrimaryCta {
@@ -1135,6 +1175,14 @@
 
 .notFoundCard {
   padding: clamp(1.3rem, 3vw, 2rem);
+}
+
+.notFoundCard :global(.section-title) {
+  margin-top: 0.75rem;
+}
+
+.notFoundCard :global(.section-description) {
+  line-height: 1.6;
 }
 
 @keyframes gallerySheen {
@@ -1229,7 +1277,7 @@
 
 @media (max-width: 768px) {
   .resultCard {
-    padding: 0.8rem;
+    padding: 0.86rem;
   }
 
   .resultCardHead h3 {
@@ -1293,7 +1341,7 @@
 
   .cadPrimaryActions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.45rem;
   }
 
@@ -1313,6 +1361,22 @@
   .cadVisualHead p,
   .workflowPreviewCard p {
     font-size: 0.93rem;
+  }
+
+  .priceCard {
+    padding: 1.15rem 1rem;
+  }
+
+  .priceCta {
+    margin-top: 0.2rem;
+  }
+
+  .finalBand {
+    padding: 1.95rem 1.15rem;
+  }
+
+  .finalBand h2 {
+    font-size: clamp(1.5rem, 7.2vw, 2rem);
   }
 
   .beforeAfterCompact .beforeAfterBadges {

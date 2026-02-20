@@ -63,6 +63,7 @@
 }
 
 .chipCheck {
+  position: relative;
   cursor: pointer;
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
@@ -71,6 +72,12 @@
   font-size: 0.81rem;
   font-weight: 620;
   transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.chipCheck:focus-within {
+  outline: 3px solid rgba(166, 166, 166, 0.45);
+  outline-offset: 2px;
+  border-color: rgba(130, 130, 130, 0.54);
 }
 
 .chipCheck input {

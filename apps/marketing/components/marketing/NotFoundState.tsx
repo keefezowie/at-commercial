@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
 import styles from "@/components/marketing/styles/sections.module.css";
 
 export function NotFoundState() {
@@ -16,17 +15,12 @@ export function NotFoundState() {
             <Link href="/" className="button button-primary link-focus">
               Back to Home
             </Link>
-            <a href={siteConfig.appUrl} className="button button-secondary link-focus">
-              Get Started
-            </a>
-            <a
-              href={`${siteConfig.appUrl}/login`}
-              target="_self"
-              rel="noreferrer"
-              className="button button-secondary link-focus"
-            >
-              Login
-            </a>
+            <Link href="/contact" className="button button-secondary link-focus">
+              Talk to Sales
+            </Link>
+            <Link href="/pricing" className="button button-secondary link-focus">
+              View Pricing
+            </Link>
           </div>
         </article>
       </div>
