@@ -282,6 +282,14 @@
   outline-offset: 1px;
 }
 
+.outcomesLayout {
+  display: grid;
+}
+
+.outcomeCardContent {
+  padding: 0;
+}
+
 .outcomeCard {
   padding: 1.35rem 1.22rem;
 }
@@ -591,6 +599,14 @@
   overflow: hidden;
 }
 
+.formatsLayout {
+  display: grid;
+}
+
+.formatsTableCardContent {
+  padding: 0;
+}
+
 .formatsTable {
   width: 100%;
   border-collapse: collapse;
@@ -619,8 +635,15 @@
   gap: 0.95rem;
 }
 
+.formatPreviewSpotlight {
+  min-height: 100%;
+}
+
 .formatPreviewCard {
   padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
 }
 
 .formatPreviewCard h3 {
@@ -629,18 +652,29 @@
 }
 
 .formatPreviewCard p {
-  margin: 0.45rem 0 0.8rem;
+  margin: 0;
   color: var(--text-secondary);
   font-size: 0.91rem;
   line-height: 1.58;
 }
 
-.formatPreviewImage {
+.formatPreviewVisual {
   width: 100%;
-  height: auto;
+  aspect-ratio: 4 / 3;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: var(--bg-subtle);
+  overflow: hidden;
+  background: transparent;
+}
+
+.formatPreviewFlow {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cadShowcaseLayout {
+  display: grid;
 }
 
 .cadShowcase {
@@ -697,10 +731,22 @@
 }
 
 .cadPanel {
+  min-height: 100%;
+}
+
+.cadPanelContent {
   padding: 1.4rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.cadPanelContent h3 {
+  margin: 0;
+  font-size: 1.05rem;
 }
 
 .cadPanelDescription {
+  margin: 0;
   max-width: 48ch;
   line-height: 1.66;
 }
@@ -717,10 +763,13 @@
 }
 
 .cadVisual {
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  min-height: 100%;
+}
+
+.cadVisualContent {
   padding: 1rem;
-  background: linear-gradient(180deg, rgba(16, 16, 16, 0.95), rgba(12, 12, 12, 0.95));
+  display: grid;
+  gap: 0.85rem;
 }
 
 .cadVisualHead h3 {
@@ -729,9 +778,24 @@
 }
 
 .cadVisualHead p {
-  margin: 0.45rem 0 0.85rem;
+  margin: 0.45rem 0 0;
   color: var(--text-secondary);
   font-size: 0.91rem;
+}
+
+.cadVisualCanvas {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.cadVisualFlow {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .workflowPreviewGrid {
@@ -1331,7 +1395,7 @@
     background-size: 22px 22px;
   }
 
-  .cadPanel {
+  .cadPanelContent {
     padding: 1rem;
   }
 
@@ -1354,7 +1418,7 @@
     margin-top: 0.5rem;
   }
 
-  .cadVisual {
+  .cadVisualContent {
     padding: 0.8rem;
   }
 

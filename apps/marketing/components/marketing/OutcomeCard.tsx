@@ -17,7 +17,7 @@ export function OutcomeCard({ item, index }: Props) {
   const label = figureLabels[variantIndex];
 
   return (
-    <article className={`card ${styles.outcomeCard} ${styles.cardInteractive}`}>
+    <article className={styles.outcomeCard}>
       <div className={styles.outcomeFigureHead} aria-hidden>
         <span className={`mono ${styles.figureLabel}`}>{label}</span>
 
