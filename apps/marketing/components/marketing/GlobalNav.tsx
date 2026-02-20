@@ -120,7 +120,7 @@ export function GlobalNav() {
         <div className={styles.navCtas}>
           <MagneticAction enabled={profile.allowHover}>
             <m.div {...buttonMotion}>
-              <Link
+              <a
                 href={siteConfig.appUrl}
                 className={`button button-primary link-focus ${styles.navPrimaryCta}`}
                 onClick={() =>
@@ -132,7 +132,7 @@ export function GlobalNav() {
                 }
               >
                 Get Started
-              </Link>
+              </a>
             </m.div>
           </MagneticAction>
           <div className={styles.navSubscriberBlock}>
@@ -212,7 +212,7 @@ export function GlobalNav() {
               </nav>
               <div className={styles.mobileCtas}>
                 <m.div {...buttonMotion}>
-                  <Link
+                  <a
                     href={siteConfig.appUrl}
                     className="button button-primary link-focus"
                     onClick={() => {
@@ -225,7 +225,7 @@ export function GlobalNav() {
                     }}
                   >
                    Get Started
-                  </Link>
+                  </a>
                 </m.div>
                 <p className={styles.mobileSubscriberHint}>
                   Already have an account?{" "}

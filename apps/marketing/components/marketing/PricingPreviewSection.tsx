@@ -1,6 +1,4 @@
 "use client";
-
-import type { Route } from "next";
 import { m } from "framer-motion";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { PricingPreviewCard } from "@/components/marketing/PricingPreviewCard";
@@ -13,7 +11,7 @@ type PricingItem = {
   audience: string;
   points: string[];
   cta: string;
-  href: Route;
+  href: string;
   featured?: boolean;
 };
 

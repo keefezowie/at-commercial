@@ -111,7 +111,7 @@ export function HeroLayered() {
           >
             <MagneticAction enabled={profile.allowHover}>
               <m.div {...buttonMotion}>
-                <Link
+                <a
                   href={siteConfig.appUrl}
                   className={`button button-primary link-focus ${styles.heroPrimaryCta}`}
                   onClick={() =>
@@ -123,7 +123,7 @@ export function HeroLayered() {
                   }
                 >
                   Get Started
-                </Link>
+                </a>
               </m.div>
             </MagneticAction>
             <MagneticAction enabled={profile.allowHover}>

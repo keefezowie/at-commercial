@@ -1,6 +1,6 @@
 const productName = process.env.NEXT_PUBLIC_PRODUCT_NAME ?? "Transora";
 const marketingDomain = process.env.NEXT_PUBLIC_MARKETING_DOMAIN ?? "transora.example.com";
-const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN ?? "localhost:5174";
+const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN ?? "triple-happening-coaches-nursery.trycloudflare.com";
 
 const withHttps = (domain: string): string => {
   if (domain.startsWith("http://") || domain.startsWith("https://")) {
