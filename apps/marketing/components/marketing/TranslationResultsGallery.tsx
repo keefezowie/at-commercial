@@ -20,7 +20,7 @@ const formatExamples = [
   { id: "docx", title: "DOCX / Word", desc: "Table layouts perfectly anchored.", component: MockupDocx },
   { id: "xlsx", title: "XLSX / Excel", desc: "Cell grids and numerical logic preserved.", component: MockupXlsx },
   { id: "pptx", title: "PPTX / PowerPoint", desc: "Slide hierarchy and visual rhythm aligned.", component: MockupPptx },
-  { id: "pdf", title: "PDF / Manuals", desc: "Multi-column regulatory text OCR-parsed cleanly.", component: MockupPdf },
+  { id: "pdf", title: "PDF / Manuals", desc: "Multi-column technical documents OCR-parsed cleanly.", component: MockupPdf },
   { id: "ocr", title: "Image OCR", desc: "Embedded diagrams targeted and extracted.", component: MockupImage },
   { id: "cad", title: "DWG / DXF", desc: "Engineering layers natively localized.", component: MockupCad }
 ] as const;
