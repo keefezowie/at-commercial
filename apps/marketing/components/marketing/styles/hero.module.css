@@ -75,7 +75,8 @@
   z-index: -1;
   background:
     radial-gradient(circle at 24% 38%, rgba(154, 154, 154, 0.1), transparent 52%),
-    radial-gradient(circle at 70% 52%, rgba(128, 128, 128, 0.1), transparent 58%);
+    radial-gradient(circle at 70% 52%, rgba(128, 128, 128, 0.1), transparent 58%),
+    radial-gradient(circle at 50% 20%, rgba(0, 229, 255, 0.08), transparent 60%);
 }
 
 .heroGrid {

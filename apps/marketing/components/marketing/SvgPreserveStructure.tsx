@@ -19,7 +19,7 @@ export function SvgPreserveStructure() {
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#333" />
-          <stop offset="100%" stopColor="#e5e5e5" />
+          <stop offset="100%" stopColor="var(--accent-electric)" />
         </linearGradient>
         <clipPath id={maskId}>
           <rect x="0" y="0" width="400" height="0">

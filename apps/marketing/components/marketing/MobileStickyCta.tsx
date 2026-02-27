@@ -7,6 +7,8 @@ import styles from "@/components/marketing/styles/shell.module.css";
 import { resolvePageTemplate, trackEvent } from "@/lib/analytics";
 import { useMotionProfile } from "@/lib/motion";
 
+import { siteConfig } from "@/lib/site-config";
+
 const revealOffset = 32;
 
 export function MobileStickyCta() {
@@ -67,23 +69,17 @@ export function MobileStickyCta() {
             transition={profile.reduced ? { duration: 0.01 } : { duration: 0.18 }}
           >
             <a
-              href="/contact"
+              href={`${siteConfig.appUrl}/register`}
               className={`button button-primary link-focus ${styles.mobileStickyButton}`}
-              onClick={() =>
-                trackEvent("cta_tertiary_talk_to_sales_click", {
-                  surface: "mobile_sticky_bar",
-                  page_template: pageTemplate,
-                  cta_role: "tertiary_sales"
-                })
-              }
+              style={{ backgroundColor: "var(--accent-electric)", color: "#000", borderColor: "var(--accent-electric)" }}
             >
-              Talk to Sales
+              Start for Free
             </a>
             <a
-              href="/pricing"
+              href="/contact"
               className={`button button-secondary link-focus ${styles.mobileStickyButton}`}
             >
-              View Pricing
+              Contact Sales
             </a>
           </m.aside>
         ) : null}

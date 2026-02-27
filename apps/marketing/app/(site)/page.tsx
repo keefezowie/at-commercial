@@ -4,7 +4,7 @@ import { FaqAccordion } from "@/components/marketing/FaqAccordion";
 import { FinalCtaBand } from "@/components/marketing/FinalCtaBand";
 import { FormatsMatrix } from "@/components/marketing/FormatsMatrix";
 import { OutcomesSection } from "@/components/marketing/OutcomesSection";
-import { PageHero } from "@/components/marketing/PageHero";
+import { HeroLayered } from "@/components/marketing/HeroLayered";
 import { PricingPreviewSection } from "@/components/marketing/PricingPreviewSection";
 import { ProblemFraming } from "@/components/marketing/ProblemFraming";
 import { ProofChipRail } from "@/components/marketing/ProofChipRail";
@@ -31,13 +31,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function HomePage() {
   return (
     <main>
-      <PageHero
-        eyebrow="Enterprise AI Translation Control"
-        title="Translate complex business and engineering documents without breaking operational control."
-        description="Transora delivers format-preserving translation, centralized termbases, and direct CAD (DWG/DXF) pathways. Built for strict IT compliance and global manufacturing workflows."
-        primaryCtaLabel="Start Enterprise Trial"
-        primaryCtaHref="/contact"
-      />
+      <HeroLayered />
       <ProofChipRail title="Enterprise readiness snapshot" items={proofChips} />
       <TranslationResultsGallery />
       <ProblemFraming items={problemCards} />

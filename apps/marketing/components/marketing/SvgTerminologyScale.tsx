@@ -16,23 +16,23 @@ export function SvgTerminologyScale() {
         <path d="M200 120 L200 190" />
       </g>
 
-      <circle r="3" fill="#e5e5e5">
+      <circle r="3" fill="var(--accent-electric)">
         <animateMotion path="M200 120 L120 70" dur="2s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" />
       </circle>
 
-      <circle r="3" fill="#e5e5e5">
+      <circle r="3" fill="var(--accent-electric)">
         <animateMotion path="M200 120 L280 70" dur="2s" repeatCount="indefinite" begin="0.5s" />
         <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="0.5s" />
       </circle>
 
-      <circle r="3" fill="#e5e5e5">
+      <circle r="3" fill="var(--accent-electric)">
         <animateMotion path="M200 120 L200 190" dur="2s" repeatCount="indefinite" begin="1s" />
         <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="1s" />
       </circle>
 
       <circle cx="200" cy="120" r="16" fill="#111" stroke="#444" strokeWidth="2" />
-      <circle cx="200" cy="120" r="6" fill="#e5e5e5">
+      <circle cx="200" cy="120" r="6" fill="var(--accent-electric)">
         <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
       </circle>
 

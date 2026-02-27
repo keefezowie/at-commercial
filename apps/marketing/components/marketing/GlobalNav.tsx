@@ -186,6 +186,7 @@ export function GlobalNav() {
               <a
                 href={`${siteConfig.appUrl}/register`}
                 className={`button button-primary link-focus ${styles.navPrimaryCta}`}
+                style={{ backgroundColor: "var(--accent-electric)", color: "#000", borderColor: "var(--accent-electric)" }}
                 onClick={() =>
                   trackEvent("cta_primary_app_register_click", {
                     surface: "global_nav",
@@ -194,7 +195,7 @@ export function GlobalNav() {
                   })
                 }
               >
-                Get Started
+                Start for Free
               </a>
             </m.div>
           </MagneticAction>

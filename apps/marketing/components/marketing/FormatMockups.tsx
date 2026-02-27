@@ -19,6 +19,10 @@ export function MockupDocx({ state }: MockupProps) {
   const isAfter = state === "after";
   return (
     <svg viewBox="0 0 400 225" width="100%" height="100%" style={{ background: "#050505" }} role="img" aria-label="DOCX translation mockup">
+      <style>{`
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor { animation: blink 1s step-end infinite; }
+      `}</style>
       <WindowChrome />
       
       {/* Toolbar */}
@@ -41,6 +45,8 @@ export function MockupDocx({ state }: MockupProps) {
       <text x="100" y="105" fill="#A0A0A0" fontSize="6" fontFamily="system-ui, sans-serif">
         {isAfter ? "Perjanjian ini dibuat pada tanggal 12 Mei 2024, antara:" : "This Agreement is entered into on May 12, 2024, between:"}
       </text>
+      {isAfter && <line x1="265" y1="100" x2="265" y2="106" stroke="#00E5FF" strokeWidth="1" className="cursor" />}
+      {!isAfter && <line x1="275" y1="100" x2="275" y2="106" stroke="#00E5FF" strokeWidth="1" className="cursor" />}
       
       {/* Complex Table */}
       <g stroke="#444" strokeWidth="1" fill="none">
@@ -79,6 +85,10 @@ export function MockupXlsx({ state }: MockupProps) {
   const isAfter = state === "after";
   return (
     <svg viewBox="0 0 400 225" width="100%" height="100%" style={{ background: "#050505" }} role="img" aria-label="XLSX translation mockup">
+      <style>{`
+        @keyframes drawChart { from { stroke-dashoffset: 300; } to { stroke-dashoffset: 0; } }
+        .chart-line { stroke-dasharray: 300; animation: drawChart 2s ease-out forwards; }
+      `}</style>
       <WindowChrome />
       
       {/* Ribbon */}
@@ -153,12 +163,12 @@ export function MockupXlsx({ state }: MockupProps) {
       <text x="45" y="182" fill="#A0A0A0" fontSize="6" fontWeight="700" fontFamily="system-ui, sans-serif">
         {isAfter ? "Tren Pertumbuhan" : "Growth Trend"}
       </text>
-      <path d="M 45 205 L 100 195 L 155 190 L 210 185 L 265 175" fill="none" stroke="#EDEDED" strokeWidth="2" />
-      <circle cx="45" cy="205" r="2" fill="#EDEDED" />
-      <circle cx="100" cy="195" r="2" fill="#EDEDED" />
-      <circle cx="155" cy="190" r="2" fill="#EDEDED" />
-      <circle cx="210" cy="185" r="2" fill="#EDEDED" />
-      <circle cx="265" cy="175" r="2" fill="#EDEDED" />
+      <path d="M 45 205 L 100 195 L 155 190 L 210 185 L 265 175" fill="none" stroke="#00E5FF" strokeWidth="2" className="chart-line" />
+      <circle cx="45" cy="205" r="2" fill="#00E5FF" />
+      <circle cx="100" cy="195" r="2" fill="#00E5FF" />
+      <circle cx="155" cy="190" r="2" fill="#00E5FF" />
+      <circle cx="210" cy="185" r="2" fill="#00E5FF" />
+      <circle cx="265" cy="175" r="2" fill="#00E5FF" />
     </svg>
   );
 }
@@ -386,6 +396,10 @@ export function MockupImage({ state }: MockupProps) {
   const isAfter = state === "after";
   return (
     <svg viewBox="0 0 400 225" width="100%" height="100%" style={{ background: "#050505" }} role="img" aria-label="Image OCR translation mockup">
+      <style>{`
+        @keyframes scan { 0% { transform: translateY(0); } 50% { transform: translateY(140px); } 100% { transform: translateY(0); } }
+        .scan-line { animation: scan 3s linear infinite; }
+      `}</style>
       <WindowChrome />
 
       {/* Image Viewer Background */}
@@ -430,7 +444,21 @@ export function MockupImage({ state }: MockupProps) {
         <text x="160" y="73" fill={isAfter ? "#EDEDED" : "#A0A0A0"} fontSize="5" fontFamily="monospace">
           {isAfter ? "DIAMETER 40mm" : "40mm DIAMETER"}
         </text>
+        
+        {/* Scanning Line */}
+        {!isAfter && (
+          <g className="scan-line">
+            <line x1="10" y1="20" x2="230" y2="20" stroke="#00E5FF" strokeWidth="2" opacity="0.8" />
+            <rect x="10" y="0" width="220" height="20" fill="url(#scan-grad)" opacity="0.3" />
+          </g>
+        )}
       </g>
+      <defs>
+        <linearGradient id="scan-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#00E5FF" stopOpacity="0" />
+          <stop offset="100%" stopColor="#00E5FF" stopOpacity="1" />
+        </linearGradient>
+      </defs>
     </svg>
   );
 }

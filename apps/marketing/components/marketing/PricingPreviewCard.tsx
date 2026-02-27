@@ -27,10 +27,15 @@ export function PricingPreviewCard({ item, pageTemplate }: Props) {
   const itemMotion = createStaggerItem(profile, { y: 8 });
 
   return (
-    <m.article className={`card ${styles.priceCard} ${styles.cardInteractive}`} {...itemMotion}>
+    <m.article 
+      className={`card ${styles.priceCard} ${styles.cardInteractive}`} 
+      style={item.featured ? { borderColor: "var(--accent-electric)", boxShadow: "0 0 20px rgba(0, 229, 255, 0.1)" } : undefined}
+      {...itemMotion}
+    >
       {item.featured ? (
         <m.span
           className={styles.priceBadge}
+          style={{ backgroundColor: "var(--accent-electric)", color: "#000" }}
           animate={profile.reduced ? { opacity: 1 } : { y: [0, -4, 0] }}
           transition={
             profile.reduced
@@ -55,7 +60,8 @@ export function PricingPreviewCard({ item, pageTemplate }: Props) {
       </ul>
       <Link
         href={item.href as Route}
-        className={`button button-secondary link-focus ${styles.priceCta}`}
+        className={`button ${item.featured ? 'button-primary' : 'button-secondary'} link-focus ${styles.priceCta}`}
+        style={item.featured ? { backgroundColor: "var(--accent-electric)", color: "#000", borderColor: "var(--accent-electric)" } : undefined}
         onClick={() =>
           trackEvent("cta_tertiary_talk_to_sales_click", {
             surface: "pricing_card",

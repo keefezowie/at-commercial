@@ -11,6 +11,8 @@ import {
   useMotionProfile
 } from "@/lib/motion";
 
+import { siteConfig } from "@/lib/site-config";
+
 type Props = {
   pageTemplate?: PageTemplate;
 };
@@ -25,33 +27,26 @@ export function FinalCtaBand({ pageTemplate = "home" }: Props) {
     <section className="section-tight">
       <m.div className="container" {...sectionMotion}>
         <m.div className={styles.finalBand} {...contentMotion}>
-          <m.h2 {...itemMotion}>Book a guided rollout discussion for your translation workflows.</m.h2>
+          <m.h2 {...itemMotion}>Ready to eliminate layout rework?</m.h2>
           <m.p {...itemMotion}>
-            Header actions remain available for platform access. Use this section to connect with sales for scope,
-            procurement, and onboarding alignment.
+            Try the core Transora app instantly with our free tier, or connect with sales for enterprise scope, procurement, and onboarding alignment.
           </m.p>
           <m.div className="cta-row" {...itemMotion}>
             <m.div {...itemMotion}>
-              <Link
-                href="/contact"
+              <a
+                href={`${siteConfig.appUrl}/register`}
                 className={`button button-primary link-focus ${styles.finalPrimaryCta}`}
-                onClick={() =>
-                  trackEvent("cta_tertiary_talk_to_sales_click", {
-                    surface: "final_cta",
-                    page_template: pageTemplate,
-                    cta_role: "tertiary_sales"
-                  })
-                }
+                style={{ backgroundColor: "var(--accent-electric)", color: "#000", borderColor: "var(--accent-electric)" }}
               >
-                Talk to Sales
-              </Link>
+                Start for Free
+              </a>
             </m.div>
             <m.div {...itemMotion}>
               <Link
-                href="/pricing"
+                href="/contact"
                 className={`button button-secondary link-focus ${styles.finalSecondaryCta}`}
               >
-                View Pricing
+                Contact Sales
               </Link>
             </m.div>
           </m.div>

@@ -93,7 +93,7 @@ export function HeroLayered() {
             data-hero-delay="100"
             {...createHeroLayer(profile, { delay: heroDelays.headline, y: 16 })}
           >
-            Translate business and engineering documents without losing operational control.
+            Enterprise Translation. Zero Layout Rework.
           </m.h1>
           <m.p
             className={styles.heroLead}
@@ -101,8 +101,7 @@ export function HeroLayered() {
             data-hero-delay="200"
             {...createHeroLayer(profile, { delay: heroDelays.subhead, y: 12 })}
           >
-            {siteConfig.productName} delivers format-preserving document workflows, glossary and termbase
-            control, OCR handling for image text, and CAD translation pathways for DWG and DXF teams.
+            Translate complex business and engineering documents without breaking operational control. {siteConfig.productName} delivers format-preserving translation, centralized termbases, and direct CAD (DWG/DXF) pathways.
           </m.p>
           <m.div
             className="cta-row"
@@ -112,29 +111,23 @@ export function HeroLayered() {
           >
             <MagneticAction enabled={profile.allowHover}>
               <m.div {...buttonMotion}>
-                <Link
-                  href="/contact"
+                <a
+                  href={`${siteConfig.appUrl}/register`}
                   className={`button button-primary link-focus ${styles.heroSalesCta}`}
-                  onClick={() =>
-                    trackEvent("cta_tertiary_talk_to_sales_click", {
-                      surface: "hero",
-                      page_template: "home",
-                      cta_role: "tertiary_sales"
-                    })
-                  }
+                  style={{ backgroundColor: "var(--accent-electric)", color: "#000", borderColor: "var(--accent-electric)" }}
                 >
-                  Talk to Sales
-                </Link>
+                  Start for Free
+                </a>
               </m.div>
             </MagneticAction>
             <m.div {...linkMotion}>
-              <Link href="/pricing" className={`button button-secondary link-focus ${styles.heroSecondaryCta}`}>
-                View Pricing
+              <Link href="/contact" className={`button button-secondary link-focus ${styles.heroSecondaryCta}`}>
+                Contact Sales
               </Link>
             </m.div>
           </m.div>
           <m.p className={styles.heroSubscriberHint} {...createHeroLayer(profile, { delay: 0.33, y: 8 })}>
-            Platform access links stay pinned in the header. Use this section for sales and procurement intake.
+            Try the core app instantly. No credit card required.
           </m.p>
           <m.ul className={styles.heroAssurance} {...createHeroLayer(profile, { delay: 0.34, y: 8 })}>
             <li>No credit card required</li>

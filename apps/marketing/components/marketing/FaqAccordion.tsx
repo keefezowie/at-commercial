@@ -49,7 +49,7 @@ export function FaqAccordion({ items }: Props) {
                   }}
                 >
                   <span>{item.question}</span>
-                  <span aria-hidden>{open ? "-" : "+"}</span>
+                  <span aria-hidden style={{ color: open ? "var(--accent-electric)" : "inherit", transition: "color 0.2s ease" }}>{open ? "-" : "+"}</span>
                 </button>
                 {profile.reduced ? (
                   open ? (

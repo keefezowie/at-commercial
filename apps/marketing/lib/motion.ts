@@ -15,8 +15,8 @@ export const motionTokens = {
     floatLoop: 7000
   },
   stagger: {
-    children: 0.05,
-    sectionDelay: 0.08
+    children: 0.04,
+    sectionDelay: 0.04
   },
   nav: {
     scrollThreshold: 32
@@ -39,13 +39,13 @@ export const motionEasing = {
 export const motionSprings = {
   default: {
     type: "spring" as const,
-    stiffness: 155,
-    damping: 24,
+    stiffness: 170,
+    damping: 26,
     mass: 0.92
   },
   hero: {
     type: "spring" as const,
-    stiffness: 125,
+    stiffness: 140,
     damping: 24,
     mass: 0.92
   }
@@ -53,7 +53,7 @@ export const motionSprings = {
 
 export const motionViewport = {
   once: true,
-  amount: 0.2
+  amount: 0.15
 } as const;
 
 export type MotionIntensity = "high" | "medium" | "low";

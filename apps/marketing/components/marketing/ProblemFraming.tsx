@@ -3,6 +3,7 @@
 import { m } from "framer-motion";
 import styles from "@/components/marketing/styles/sections.module.css";
 import { SectionShell } from "@/components/marketing/SectionShell";
+import { SpotlightCard } from "@/components/marketing/SpotlightCard";
 import {
   createSectionReveal,
   createStaggerContainer,
@@ -36,14 +37,14 @@ export function ProblemFraming({ items }: Props) {
 
         <m.div className={`grid-4 ${styles.problemGrid}`} {...gridMotion}>
           {items.map((problem) => (
-            <m.article
+            <SpotlightCard
               key={problem.title}
-              className={`card ${styles.problemCard} ${styles.cardInteractive}`}
-              {...itemMotion}
+              className={styles.problemCard}
+              motionProps={itemMotion}
             >
               <h3>{problem.title}</h3>
               <p>{problem.detail}</p>
-            </m.article>
+            </SpotlightCard>
           ))}
         </m.div>
       </m.div>
