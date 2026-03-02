@@ -77,7 +77,7 @@ export function CadShowcase({ pageTemplate = "home" }: Props) {
                   onClick={() => setIsTranslated(!isTranslated)}
                   style={{
                     background: isTranslated ? "var(--accent-electric)" : "transparent",
-                    color: isTranslated ? "#000" : "var(--text-primary)",
+                    color: isTranslated ? "var(--button-on-brand)" : "var(--text-primary)",
                     border: `1px solid ${isTranslated ? "var(--accent-electric)" : "var(--border)"}`,
                     padding: "0.5rem 1rem",
                     borderRadius: "var(--radius-sm)",

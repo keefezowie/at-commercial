@@ -32,7 +32,7 @@
 .formField textarea {
   width: 100%;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   padding: 0.65rem 0.7rem;
   font: inherit;
   color: var(--text-primary);
@@ -42,14 +42,14 @@
 
 .formField input::placeholder,
 .formField textarea::placeholder {
-  color: #7a7a7a;
+  color: var(--text-muted);
 }
 
 .formField input:focus,
 .formField select:focus,
 .formField textarea:focus {
-  border-color: #555555;
-  box-shadow: 0 0 0 3px rgba(166, 166, 166, 0.2);
+  border-color: var(--brand-violet);
+  box-shadow: 0 0 0 3px var(--brand-violet-glow);
 }
 
 .formFull {
@@ -75,9 +75,9 @@
 }
 
 .chipCheck:focus-within {
-  outline: 3px solid rgba(166, 166, 166, 0.45);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 2px;
-  border-color: rgba(130, 130, 130, 0.54);
+  border-color: color-mix(in srgb, var(--brand-violet) 54%, transparent);
 }
 
 .chipCheck input {
@@ -87,8 +87,8 @@
 }
 
 .chipCheck[data-checked="true"] {
-  border-color: rgba(130, 130, 130, 0.54);
-  background: linear-gradient(180deg, rgba(42, 42, 42, 0.86), rgba(31, 31, 31, 0.86));
+  border-color: color-mix(in srgb, var(--brand-violet) 54%, transparent);
+  background: var(--panel-strong);
   color: var(--text-primary);
 }
 

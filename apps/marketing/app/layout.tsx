@@ -4,6 +4,22 @@ import "@/app/globals.css";
 import { buildPageMetadata, organizationSchema, softwareApplicationSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 import { GlobalLoader } from "@/components/marketing/GlobalLoader";
+import { ThemeToggle } from "@/components/marketing/ThemeToggle";
+
+const themeInitializer = `(function(){
+  try {
+    var storageKey = "transora-theme";
+    var storedTheme = window.localStorage.getItem(storageKey);
+    var prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+    var resolvedTheme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : (prefersLight ? "light" : "dark");
+    var root = document.documentElement;
+    root.dataset.theme = resolvedTheme;
+    root.classList.toggle("dark", resolvedTheme === "dark");
+  } catch (error) {
+    document.documentElement.dataset.theme = "dark";
+    document.documentElement.classList.add("dark");
+  }
+})();`;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,12 +56,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" data-theme="dark" suppressHydrationWarning>
       <body
         className={`noise-overlay ${inter.variable} ${mono.variable}`}
       >
+        <script
+          id="theme-init"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: themeInitializer }}
+        />
         <GlobalLoader />
         {children}
+        <ThemeToggle />
         <script
           type="application/ld+json"
           suppressHydrationWarning

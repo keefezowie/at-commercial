@@ -8,27 +8,27 @@ export function SvgCadWorkflow() {
       height="100%"
       role="img"
       aria-label="Handle CAD workflow in same platform"
-      style={{ background: "#050505" }}
+      style={{ background: "var(--bg-base)" }}
     >
-      <g stroke="#222" strokeWidth="1" fill="none">
+      <g stroke="var(--border)" strokeWidth="1" fill="none">
         <path d="M 100 120 L 200 70 L 300 120 L 200 170 Z" />
         <path d="M 150 95 L 250 145" />
         <path d="M 150 145 L 250 95" />
       </g>
 
       <g transform="translate(150, 95)">
-        <line x1="0" y1="0" x2="-20" y2="-30" stroke="#444" strokeWidth="1" />
-        <rect x="-50" y="-45" width="40" height="12" rx="2" fill="#111" stroke="#333" />
-        <rect x="-45" y="-42" width="30" height="6" rx="2" fill="#333">
-          <animate attributeName="fill" values="#333;var(--accent-electric);#333" dur="4s" repeatCount="indefinite" keyTimes="0;0.2;1" />
+        <line x1="0" y1="0" x2="-20" y2="-30" stroke="var(--border)" strokeWidth="1" />
+        <rect x="-50" y="-45" width="40" height="12" rx="2" fill="var(--bg-subtle)" stroke="var(--border)" />
+        <rect x="-45" y="-42" width="30" height="6" rx="2" fill="var(--border)">
+          <animate attributeName="fill" values="var(--border);var(--accent-electric);var(--border)" dur="4s" repeatCount="indefinite" keyTimes="0;0.2;1" />
         </rect>
       </g>
 
       <g transform="translate(250, 145)">
-        <line x1="0" y1="0" x2="20" y2="30" stroke="#444" strokeWidth="1" />
-        <rect x="10" y="30" width="40" height="12" rx="2" fill="#111" stroke="#333" />
-        <rect x="15" y="33" width="30" height="6" rx="2" fill="#333">
-          <animate attributeName="fill" values="#333;var(--accent-electric);#333" dur="4s" repeatCount="indefinite" keyTimes="0;0.6;1" />
+        <line x1="0" y1="0" x2="20" y2="30" stroke="var(--border)" strokeWidth="1" />
+        <rect x="10" y="30" width="40" height="12" rx="2" fill="var(--bg-subtle)" stroke="var(--border)" />
+        <rect x="15" y="33" width="30" height="6" rx="2" fill="var(--border)">
+          <animate attributeName="fill" values="var(--border);var(--accent-electric);var(--border)" dur="4s" repeatCount="indefinite" keyTimes="0;0.6;1" />
         </rect>
       </g>
 

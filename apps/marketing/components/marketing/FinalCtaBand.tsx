@@ -36,7 +36,7 @@ export function FinalCtaBand({ pageTemplate = "home" }: Props) {
               <a
                 href={`${siteConfig.appUrl}/register`}
                 className={`button button-primary link-focus ${styles.finalPrimaryCta}`}
-                style={{ backgroundColor: "var(--accent-electric)", color: "#000", borderColor: "var(--accent-electric)" }}
+                style={{ backgroundColor: "var(--accent-electric)", color: "var(--button-on-brand)", borderColor: "var(--accent-electric)" }}
               >
                 Start for Free
               </a>

@@ -29,13 +29,13 @@ export function PricingPreviewCard({ item, pageTemplate }: Props) {
   return (
     <m.article 
       className={`card ${styles.priceCard} ${styles.cardInteractive}`} 
-      style={item.featured ? { borderColor: "var(--accent-electric)", boxShadow: "0 0 20px rgba(0, 229, 255, 0.1)" } : undefined}
+      style={item.featured ? { borderColor: "var(--accent-electric)", boxShadow: "0 0 20px color-mix(in srgb, var(--accent-electric) 20%, transparent)" } : undefined}
       {...itemMotion}
     >
       {item.featured ? (
         <m.span
           className={styles.priceBadge}
-          style={{ backgroundColor: "var(--accent-electric)", color: "#000" }}
+          style={{ backgroundColor: "var(--accent-electric)", color: "var(--button-on-brand)" }}
           animate={profile.reduced ? { opacity: 1 } : { y: [0, -4, 0] }}
           transition={
             profile.reduced
@@ -61,7 +61,7 @@ export function PricingPreviewCard({ item, pageTemplate }: Props) {
       <Link
         href={item.href as Route}
         className={`button ${item.featured ? 'button-primary' : 'button-secondary'} link-focus ${styles.priceCta}`}
-        style={item.featured ? { backgroundColor: "var(--accent-electric)", color: "#000", borderColor: "var(--accent-electric)" } : undefined}
+        style={item.featured ? { backgroundColor: "var(--accent-electric)", color: "var(--button-on-brand)", borderColor: "var(--accent-electric)" } : undefined}
         onClick={() =>
           trackEvent("cta_tertiary_talk_to_sales_click", {
             surface: "pricing_card",

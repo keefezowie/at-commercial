@@ -24,8 +24,8 @@ export function AbstractDocumentFlow({ className }: AbstractDocumentFlowProps) {
     >
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#555555" />
-          <stop offset="100%" stopColor="#eeeeee" />
+          <stop offset="0%" stopColor="var(--text-muted)" />
+          <stop offset="100%" stopColor="var(--text-primary)" />
         </linearGradient>
         <clipPath id={maskId}>
           <rect x="0" y="0" width="400" height="0">
@@ -40,9 +40,9 @@ export function AbstractDocumentFlow({ className }: AbstractDocumentFlowProps) {
         </clipPath>
       </defs>
 
-      <rect x="100" y="40" width="200" height="220" rx="8" fill="#111111" stroke="#333333" strokeWidth="1" />
+      <rect x="100" y="40" width="200" height="220" rx="8" fill="var(--bg-subtle)" stroke="var(--border)" strokeWidth="1" />
 
-      <g fill="#2a2a2a">
+      <g fill="var(--bg-elevated)">
         <rect x="120" y="70" width="160" height="8" rx="4" />
         <rect x="120" y="95" width="130" height="8" rx="4" />
         <rect x="120" y="120" width="150" height="8" rx="4" />

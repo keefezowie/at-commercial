@@ -31,19 +31,19 @@ export function AbstractCadFlow({ className }: AbstractCadFlowProps) {
         </filter>
       </defs>
 
-      <g stroke="#333333" strokeWidth="1" fill="none">
+      <g stroke="var(--border)" strokeWidth="1" fill="none">
         <path d="M 50 150 L 200 75 L 350 150 L 200 225 Z" />
         <path d="M 125 112.5 L 275 187.5" />
         <path d="M 125 187.5 L 275 112.5" />
       </g>
 
-      <circle cx="50" cy="150" r="4" fill="#d2d6dd" filter={`url(#${glowId})`}>
+      <circle cx="50" cy="150" r="4" fill="var(--text-secondary)" filter={`url(#${glowId})`}>
         <animate attributeName="cx" values="50;200;200" dur="3s" repeatCount="indefinite" />
         <animate attributeName="cy" values="150;75;75" dur="3s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="1;1;0" dur="3s" repeatCount="indefinite" />
       </circle>
 
-      <circle cx="200" cy="225" r="4" fill="#a4b1c0" filter={`url(#${glowId})`}>
+      <circle cx="200" cy="225" r="4" fill="var(--text-secondary)" filter={`url(#${glowId})`}>
         <animate attributeName="cx" values="200;350;350" dur="3.5s" repeatCount="indefinite" />
         <animate attributeName="cy" values="225;150;150" dur="3.5s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="1;1;0" dur="3.5s" repeatCount="indefinite" />

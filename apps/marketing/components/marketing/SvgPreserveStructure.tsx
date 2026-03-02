@@ -14,11 +14,11 @@ export function SvgPreserveStructure() {
       height="100%"
       role="img"
       aria-label="Preserve document structure"
-      style={{ background: "#050505" }}
+      style={{ background: "var(--bg-base)" }}
     >
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#333" />
+          <stop offset="0%" stopColor="var(--border)" />
           <stop offset="100%" stopColor="var(--accent-electric)" />
         </linearGradient>
         <clipPath id={maskId}>
@@ -34,10 +34,10 @@ export function SvgPreserveStructure() {
         </clipPath>
       </defs>
 
-      <rect x="110" y="30" width="180" height="180" rx="6" fill="#0a0a0a" stroke="#222" strokeWidth="1" />
-      <rect x="130" y="50" width="140" height="60" rx="4" fill="#1a1a1a" stroke="#333" strokeDasharray="4 4" />
+      <rect x="110" y="30" width="180" height="180" rx="6" fill="var(--bg-surface)" stroke="var(--border)" strokeWidth="1" />
+      <rect x="130" y="50" width="140" height="60" rx="4" fill="var(--bg-elevated)" stroke="var(--border)" strokeDasharray="4 4" />
 
-      <g fill="#222">
+      <g fill="var(--bg-elevated)">
         <rect x="130" y="130" width="140" height="6" rx="3" />
         <rect x="130" y="145" width="110" height="6" rx="3" />
         <rect x="130" y="160" width="130" height="6" rx="3" />
